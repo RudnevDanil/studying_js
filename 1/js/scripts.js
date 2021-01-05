@@ -30,19 +30,20 @@ function flip(i, j)
 {
     let isBackFirst = state.isBackSideArr[i][j];
     state.isBackSideArr[i][j] = !state.isBackSideArr[i][j];
-    document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.animation = "flipClose 0.2s 1 linear";
+
+    //document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.animation = "flipClose 0.2s 1 linear";
 
     setTimeout(function()
     {
-        document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).width = "0";
-        document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).border = "0px";
+        //document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).width = "0";
+        //document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).border = "0px";
         setTimeout(function()
         {
-            document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.animation = "flipOpen 0.2s 1 linear";
-            document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).border = "3px";
+            //document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.animation = "flipOpen 0.2s 1 linear";
+            //document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).border = "3px";
             setTimeout(function()
             {
-                document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).width = "100";
+                //document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).width = "100";
                 state.isAnimationStarted = false;
             }, 200); // animation time
         }, 20); // timeout between opening
@@ -96,7 +97,7 @@ function init()
                 "<img src=" + settings.cardFolders + settings.cardBackName + " alt='back' id='cardBack_"+i+"_"+j+"'>" +
                 "</div>" +
                 "<div class='cardFront'>" +
-                "<img src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front' id='cardFront_"+i+"_"+j+"'>" +
+                "<img src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front'id='cardFront_"+i+"_"+j+"'>" +
                 "</div>" +
                 "</th>"
         }
@@ -113,9 +114,9 @@ function init()
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.isBackSideArr[i].push(true)
-            document.getElementById("cardFront_"+i+"_"+j).width = "0";
+            /*document.getElementById("cardFront_"+i+"_"+j).width = "0";
             document.getElementById("cardFront_"+i+"_"+j).border = "0px";
-            document.getElementById("cardBack_"+i+"_"+j).width = "100";
+            document.getElementById("cardBack_"+i+"_"+j).width = "100";*/
             document.getElementById("th_"+i+"_"+j).addEventListener("click", function(){cardClicked(i,j);})
         }
     }

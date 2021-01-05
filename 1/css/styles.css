@@ -1,4 +1,90 @@
 body{
+    padding: 0;
+    margin: 0;
+}
+
+#scoreLine{
+    /*background-color: antiquewhite;*/
+    width: 50vw;
+    height: 10vh;
+    margin: auto;
+    font-size: 3vmin;
+    display: table;
+}
+
+.scoreBlock{
+    /*background-color: coral;*/
+    width: 33.3333%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.scoreLine{
+    /*background-color: darkmagenta;*/
+    display: table;
+    margin: auto;
+}
+
+.scoreText{
+    /*background-color: blue;*/
+    display: table-cell;
+}
+
+.scoreVal{
+    /*background-color: chartreuse;*/
+    display: table-cell;
+}
+
+#blackboard{
+    background-color: aquamarine;
+    width: 100vw;
+    height: 90vh;
+    padding-top: 10vh;
+}
+
+#cardsTable{
+    background-color: coral;
+    width: 80vw;
+    height: 70vh;
+    margin: 0 auto;
+}
+
+tr{
+    background-color: blue;
+    width: 100%;
+}
+
+th{
+    background-color: brown;
+    position: relative;
+}
+
+.cardBack{
+    background-color: blueviolet;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.cardFront{
+    background-color: forestgreen;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+
+/*body{
     margin: 2.5%;
     background-color: #1A1A1A;
 }
@@ -62,4 +148,4 @@ img{
 #cardBack{
     max-width: 100px;
     max-height: 150px;
-}
+}*/
