@@ -1,0 +1,65 @@
+body{
+    margin: 2.5%;
+    background-color: #1A1A1A;
+}
+
+#scoreLine{
+    width: 100%;
+    height: 10%;
+    padding-left: 20%;
+    font-size: xx-large;
+}
+
+#blackboard{
+    width: 100%;
+    height: 90%;
+}
+
+.scoreBlock{
+    width:20%;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.scoreVal, .scoreText{
+    display: inline-block;
+}
+
+.scoreText{
+    color: white;
+}
+
+.scoreVal{
+    margin-left: 3%;
+    color: #DBB6AB;
+}
+
+#cardsTable{
+    width: 100%;
+    height: 100%;
+    padding: 7%;
+}
+
+@keyframes flipClose {
+    from {width: 100;height: 150;}
+    to {width: 0;height: 150;}
+}
+
+@keyframes flipOpen {
+    from {width: 0;height: 150;}
+    to {width: 100;height: 150;}
+}
+
+img{
+    border-color: #1A1A1A;
+    border-style: solid;
+    border-radius: 10%;
+    max-width: 100px;
+    max-height: 150px;
+}
+
+#cardBack{
+    max-width: 100px;
+    max-height: 150px;
+}
