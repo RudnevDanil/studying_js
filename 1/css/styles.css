@@ -99,7 +99,7 @@ th{
 
 img{
     width: inherit;
-    height: -webkit-fill-available;
+    height: 100%;
     border-color: #1A1A1A;
     border-style: solid;
     border-radius: 10%;
