@@ -31,22 +31,21 @@ function flip(i, j)
     let isBackFirst = state.isBackSideArr[i][j];
     state.isBackSideArr[i][j] = !state.isBackSideArr[i][j];
 
-    //document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.animation = "flipClose 0.2s 1 linear";
+    document.getElementById("card_" + i + "_" + j).style.animation = "flipClose 0.2s 1 linear";
 
     setTimeout(function()
     {
-        //document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).width = "0";
-        //document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).border = "0px";
+        document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "1";
+        document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "2";
+
         setTimeout(function()
         {
-            //document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.animation = "flipOpen 0.2s 1 linear";
-            //document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).border = "3px";
+            document.getElementById("card_" + i + "_" + j).style.animation = "flipOpen 0.2s 1 linear";
             setTimeout(function()
             {
-                //document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).width = "100";
                 state.isAnimationStarted = false;
             }, 200); // animation time
-        }, 20); // timeout between opening
+        }, 0); // timeout between opening
     },200); // animation time
 }
 
@@ -93,11 +92,15 @@ function init()
             state.cardMatrix[i].push(cardRandList.pop())
             state.fixed[i].push(false)
             newStr += "<th id='th_" + i + "_" + j + "'> " +
-                "<div class='cardBack'>" +
-                "<img src=" + settings.cardFolders + settings.cardBackName + " alt='back' id='cardBack_"+i+"_"+j+"'>" +
+                "<div class = 'card'>" +
+                "<div class = 'card_c' id='card_"+i+"_"+j+"'>" +
+                "<div class='cardBack' id='cardBack_"+i+"_"+j+"'>" +
+                "<img src=" + settings.cardFolders + settings.cardBackName + " alt='back'>" +
                 "</div>" +
-                "<div class='cardFront'>" +
-                "<img src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front'id='cardFront_"+i+"_"+j+"'>" +
+                "<div class='cardFront' id='cardFront_"+i+"_"+j+"'>" +
+                "<img src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front'>" +
+                "</div>" +
+                "</div>" +
                 "</div>" +
                 "</th>"
         }
@@ -114,10 +117,7 @@ function init()
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.isBackSideArr[i].push(true)
-            /*document.getElementById("cardFront_"+i+"_"+j).width = "0";
-            document.getElementById("cardFront_"+i+"_"+j).border = "0px";
-            document.getElementById("cardBack_"+i+"_"+j).width = "100";*/
-            document.getElementById("th_"+i+"_"+j).addEventListener("click", function(){cardClicked(i,j);})
+            document.getElementById("card_"+i+"_"+j).addEventListener("click", function(){cardClicked(i,j);})
         }
     }
 }
@@ -133,10 +133,10 @@ function cardClicked(i, j)
     state.isAnimationStarted = true;
     setTimeout(function()
     {
-        // если нет текущей карты
+        // if no current
         if(state.currentCard.i == -1 && state.currentCard.j == -1)
         {
-            // выбираем текущую
+            // take current
             state.currentCard = {i: i, j: j};
             state.isAnimationStarted = false;
         }
@@ -144,11 +144,11 @@ function cardClicked(i, j)
         {
             if(state.cardMatrix[i][j] == state.cardMatrix[state.currentCard.i][state.currentCard.j])
             {
-                // закрепить обе
+                // fix both
                 state.fixed[i][j] = true;
                 state.fixed[state.currentCard.i][state.currentCard.j] = true;
 
-                // проверка на выигрыш
+                // checking win
                 for(let i = 0; i < settings.blocks.h; i++)
                     for(let j = 0; j < settings.blocks.w; j++)
                         if(!state.fixed[i][j])
@@ -158,7 +158,7 @@ function cardClicked(i, j)
                             return
                         }
 
-                // в случае если зафиксированы все
+                // in case if all fixed
                 state.wins += 1
                 for(let fi = 0; fi < settings.blocks.h; fi++)
                 {
