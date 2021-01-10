@@ -99,13 +99,13 @@ th{
 
 img{
     width: inherit;
-    height: -webkit-fill-available;
+    height: fit-content;
     border-color: #1A1A1A;
     border-style: solid;
     border-radius: 10%;
     border-width: 0px;
 }
-
+/*
 @keyframes flipOpen {
     0% {width: 0%;}
 	10% {width: 10%;}
@@ -132,4 +132,4 @@ img{
 	80% {width: 20%;}
 	90% {width: 10%;}
     100% {width: 0%;}
-}
+}*/

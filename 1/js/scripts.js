@@ -26,6 +26,7 @@ let state = {
     wins: 0,
 }
 
+/*
 function flip(i, j)
 {
     let isBackFirst = state.isBackSideArr[i][j];
@@ -47,6 +48,65 @@ function flip(i, j)
             }, 200); // animation time
         }, 0); // timeout between opening
     },200); // animation time
+}
+*/
+
+function animate({timing, drawClosing, drawOpening, duration,i ,j})
+{
+
+    let start = performance.now();
+    let animState = 0;
+
+    requestAnimationFrame(function animate(time)
+    {
+        // timeFraction изменяется от 0 до 1
+        let timeFraction = (time - start) / duration;
+        if (timeFraction > 1) timeFraction = 1;
+
+        // вычисление текущего состояния анимации
+        let progress = timing(timeFraction);
+
+        // отрисовать её
+        animState == 0 ? drawClosing(progress, i, j) : drawOpening(progress, i, j);
+
+        if (timeFraction < 1)
+        {
+            requestAnimationFrame(animate);
+        }
+        else if (animState == 0)
+        {
+            start = time;
+            animState = 1;
+            let isBackFirst = state.isBackSideArr[i][j];
+            state.isBackSideArr[i][j] = !state.isBackSideArr[i][j];
+            document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "1";
+            document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "2";
+            requestAnimationFrame(animate);
+        }
+        else
+        {
+            state.isAnimationStarted = false;
+        }
+    });
+}
+
+function flip2(i ,j)
+{
+    animate({
+        duration: 200,
+        timing(timeFraction) {
+            return timeFraction;
+        },
+        drawClosing(progress, i, j) {
+            document.getElementById("card_"+i+"_"+j).style.width = 100 - progress * 100 + "%"; // close
+        },
+        drawOpening(progress, i, j) {
+            document.getElementById("card_"+i+"_"+j).style.width = progress * 100 + "%"; // open
+        },
+        i,
+        j
+    });
+
 }
 
 function init()
@@ -117,7 +177,10 @@ function init()
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.isBackSideArr[i].push(true)
-            document.getElementById("card_"+i+"_"+j).addEventListener("click", function(){cardClicked(i,j);})
+            document.getElementById("card_"+i+"_"+j).addEventListener("click", function()
+            {
+                cardClicked(i,j);
+            });
         }
     }
 }
@@ -129,7 +192,7 @@ function cardClicked(i, j)
         return
 
     state.isAnimationStarted = true;
-    flip(i,j);
+    flip2(i,j);
     state.isAnimationStarted = true;
     setTimeout(function()
     {
@@ -165,7 +228,7 @@ function cardClicked(i, j)
                     for(let fj = 0; fj < settings.blocks.w; fj++)
                     {
                         if(state.fixed[fi][fj])
-                            flip(fi,fj)
+                            flip2(fi,fj)
                         state.fixed[fi][fj] = false;
                     }
                 }
@@ -177,8 +240,8 @@ function cardClicked(i, j)
             }
             else
             {
-                flip(i, j)
-                flip(state.currentCard.i, state.currentCard.j)
+                flip2(i, j)
+                flip2(state.currentCard.i, state.currentCard.j)
                 if(state.turns == 0)
                 {
                     state.turns = 2;
@@ -191,7 +254,7 @@ function cardClicked(i, j)
                         for(let fj = 0; fj < settings.blocks.w; fj++)
                         {
                             if(state.fixed[fi][fj])
-                                flip(fi,fj)
+                                flip2(fi,fj)
                         }
                     }
                     for(let fi = 0; fi < settings.blocks.h; fi++)
