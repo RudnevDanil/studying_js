@@ -1,7 +1,7 @@
 let settings = {
     blocks:{
-        w:6,
-        h:3,
+        w:60,
+        h:30,
     },
     cardFolders: "data/",
     cardNames:[
@@ -20,6 +20,9 @@ let state = {
     isAnimationStarted: false,
     cardMatrix: [],
     fixed: [],
+    //cardsId: [],
+    //frontId: [],
+    //backId:[],
     currentCard: {i: -1, j: -1},
     turns: 2,
     attempts: 0,
@@ -81,6 +84,12 @@ function animate({timing, drawClosing, drawOpening, duration,i ,j})
             state.isBackSideArr[i][j] = !state.isBackSideArr[i][j];
             document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "1";
             document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "2";
+            //state.backId[i][j].style.zIndex = isBackFirst ? "1" : "2";
+            //state.frontId[i][j].style.zIndex = !isBackFirst ? "1" : "2";
+
+            //state.backId[i][j].style.display = isBackFirst ? "none" : "block";
+            //state.frontId[i][j].style.display = !isBackFirst ? "none" : "block";
+
             requestAnimationFrame(animate);
         }
         else
@@ -99,9 +108,11 @@ function flip2(i ,j)
         },
         drawClosing(progress, i, j) {
             document.getElementById("card_"+i+"_"+j).style.width = 100 - progress * 100 + "%"; // close
+            //state.cardsId[i][j].style.width = 100 - progress * 100 + "%"; // close
         },
         drawOpening(progress, i, j) {
             document.getElementById("card_"+i+"_"+j).style.width = progress * 100 + "%"; // open
+            //state.cardsId[i][j].style.width = progress * 100 + "%"; // open
         },
         i,
         j
@@ -141,48 +152,71 @@ function init()
     // Make table
     state.cardMatrix = [];
     state.fixed = [];
-    let table = "<table id='cardsTable'>";
+    //let table = "<table id='cardsTable'>";
+    let table = "";
     for(let i = 0; i < settings.blocks.h; i++)
     {
         state.cardMatrix.push([])
         state.fixed.push([])
-        let newStr = "<tr id='tr_" + i + "'>";
+        //let newStr = "<tr id='tr_" + i + "'>";
+        let newStr = "";
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.cardMatrix[i].push(cardRandList.pop())
             state.fixed[i].push(false)
-            newStr += "<th id='th_" + i + "_" + j + "'> " +
+            //newStr += "<th id='th_" + i + "_" + j + "'> " +
+            newStr += "" +
                 "<div class = 'card'>" +
                 "<div class = 'card_c' id='card_"+i+"_"+j+"'>" +
-                "<div class='cardBack' id='cardBack_"+i+"_"+j+"'>" +
-                "<img src=" + settings.cardFolders + settings.cardBackName + " alt='back'>" +
-                "</div>" +
-                "<div class='cardFront' id='cardFront_"+i+"_"+j+"'>" +
-                "<img src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front'>" +
-                "</div>" +
+                "<img class='cardBack' src=" + settings.cardFolders + settings.cardBackName + " alt='back' id='cardBack_"+i+"_"+j+"'>" +
+                "<img class='cardFront' src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front'  id='cardFront_"+i+"_"+j+"'>" +
                 "</div>" +
                 "</div>" +
                 "</th>"
         }
-        newStr += "</tr>";
+        //newStr += "</tr>";
         table += newStr;
     }
-    table += "</table>";
+    //table += "</table>";
     let blackboard = document.getElementById("blackboard");
     blackboard.innerHTML = table;
 
     for(let i = 0; i < settings.blocks.h; i++)
     {
         state.isBackSideArr.push([])
+        //state.cardsId.push([])
+        //state.backId.push([])
+        //state.frontId.push([])
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.isBackSideArr[i].push(true)
+            //state.cardsId[i].push(document.getElementById("card_"+i+"_"+j))
+            //state.backId[i].push(document.getElementById("cardBack_"+i+"_"+j))
+            //state.frontId[i].push(document.getElementById("cardFront_"+i+"_"+j))
+
+            //state.frontId[i][j].style.display = "none";
             document.getElementById("card_"+i+"_"+j).addEventListener("click", function()
             {
                 cardClicked(i,j);
             });
         }
     }
+
+    let elements = document.querySelectorAll('.card');
+    for(let i = 0; i < elements.length; i++)
+    {
+        let valW = (80 / settings.blocks.w);
+        elements[i].style.width =  valW * 0.8 + "vw";
+
+        let valH = (70 / settings.blocks.h)
+        elements[i].style.height = valH * 0.8 + "vh";
+
+        valW *= 0.1;
+        valH *= 0.1;
+
+        elements[i].style.margin = valH + "vh " + valW + "vw";
+    }
+
 }
 
 function cardClicked(i, j)

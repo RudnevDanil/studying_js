@@ -42,9 +42,12 @@ body{
 
 #blackboard{
     /*background-color: aquamarine;*/
-    width: 100vw;
-    height: 90vh;
+    width: 80vw;
+    height: 70vh;
     padding-top: 10vh;
+    padding-bottom: 10vh;
+    padding-right: 10vw;
+    padding-left: 10vw;
 }
 
 #cardsTable{
@@ -65,9 +68,9 @@ th{
 
 .card{
     /*background-color: aqua;*/
-    width: 80%;
-    height: 80%;
-    /*position: relative;*/
+    width: 100%;
+    height: 100%;
+    display: inline-block;
     margin: auto;
 }
 
@@ -88,14 +91,14 @@ th{
 }
 
 .cardBack{
-    /*background-color: blueviolet;*/
     z-index: 2;
 }
 
 .cardFront{
-    /*background-color: forestgreen;*/
     z-index: 1;
 }
+
+
 
 img{
     width: inherit;
