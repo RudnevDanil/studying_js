@@ -1,7 +1,7 @@
 let settings = {
     blocks:{
-        w:60,
-        h:30,
+        w:6,
+        h:3,
     },
     cardFolders: "data/",
     cardNames:[
