@@ -20,39 +20,11 @@ let state = {
     isAnimationStarted: false,
     cardMatrix: [],
     fixed: [],
-    //cardsId: [],
-    //frontId: [],
-    //backId:[],
     currentCard: {i: -1, j: -1},
     turns: 2,
     attempts: 0,
     wins: 0,
 }
-
-/*
-function flip(i, j)
-{
-    let isBackFirst = state.isBackSideArr[i][j];
-    state.isBackSideArr[i][j] = !state.isBackSideArr[i][j];
-
-    document.getElementById("card_" + i + "_" + j).style.animation = "flipClose 0.2s 1 linear";
-
-    setTimeout(function()
-    {
-        document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "1";
-        document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "2";
-
-        setTimeout(function()
-        {
-            document.getElementById("card_" + i + "_" + j).style.animation = "flipOpen 0.2s 1 linear";
-            setTimeout(function()
-            {
-                state.isAnimationStarted = false;
-            }, 200); // animation time
-        }, 0); // timeout between opening
-    },200); // animation time
-}
-*/
 
 function animate({timing, drawClosing, drawOpening, duration,i ,j})
 {
@@ -84,11 +56,6 @@ function animate({timing, drawClosing, drawOpening, duration,i ,j})
             state.isBackSideArr[i][j] = !state.isBackSideArr[i][j];
             document.getElementById((isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "1";
             document.getElementById((!isBackFirst?"cardBack_":"cardFront_") + i + "_" + j).style.zIndex = "2";
-            //state.backId[i][j].style.zIndex = isBackFirst ? "1" : "2";
-            //state.frontId[i][j].style.zIndex = !isBackFirst ? "1" : "2";
-
-            //state.backId[i][j].style.display = isBackFirst ? "none" : "block";
-            //state.frontId[i][j].style.display = !isBackFirst ? "none" : "block";
 
             requestAnimationFrame(animate);
         }
@@ -108,11 +75,9 @@ function flip2(i ,j)
         },
         drawClosing(progress, i, j) {
             document.getElementById("card_"+i+"_"+j).style.width = 100 - progress * 100 + "%"; // close
-            //state.cardsId[i][j].style.width = 100 - progress * 100 + "%"; // close
         },
         drawOpening(progress, i, j) {
             document.getElementById("card_"+i+"_"+j).style.width = progress * 100 + "%"; // open
-            //state.cardsId[i][j].style.width = progress * 100 + "%"; // open
         },
         i,
         j
@@ -152,49 +117,35 @@ function init()
     // Make table
     state.cardMatrix = [];
     state.fixed = [];
-    //let table = "<table id='cardsTable'>";
     let table = "";
     for(let i = 0; i < settings.blocks.h; i++)
     {
         state.cardMatrix.push([])
         state.fixed.push([])
-        //let newStr = "<tr id='tr_" + i + "'>";
         let newStr = "";
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.cardMatrix[i].push(cardRandList.pop())
             state.fixed[i].push(false)
-            //newStr += "<th id='th_" + i + "_" + j + "'> " +
             newStr += "" +
                 "<div class = 'card'>" +
                 "<div class = 'card_c' id='card_"+i+"_"+j+"'>" +
                 "<img class='cardBack' src=" + settings.cardFolders + settings.cardBackName + " alt='back' id='cardBack_"+i+"_"+j+"'>" +
                 "<img class='cardFront' src=" + settings.cardFolders + settings.cardNames[state.cardMatrix[i][j]] + " alt='front'  id='cardFront_"+i+"_"+j+"'>" +
                 "</div>" +
-                "</div>" +
-                "</th>"
+                "</div>"
         }
-        //newStr += "</tr>";
         table += newStr;
     }
-    //table += "</table>";
     let blackboard = document.getElementById("blackboard");
     blackboard.innerHTML = table;
 
     for(let i = 0; i < settings.blocks.h; i++)
     {
         state.isBackSideArr.push([])
-        //state.cardsId.push([])
-        //state.backId.push([])
-        //state.frontId.push([])
         for(let j = 0; j < settings.blocks.w; j++)
         {
             state.isBackSideArr[i].push(true)
-            //state.cardsId[i].push(document.getElementById("card_"+i+"_"+j))
-            //state.backId[i].push(document.getElementById("cardBack_"+i+"_"+j))
-            //state.frontId[i].push(document.getElementById("cardFront_"+i+"_"+j))
-
-            //state.frontId[i][j].style.display = "none";
             document.getElementById("card_"+i+"_"+j).addEventListener("click", function()
             {
                 cardClicked(i,j);
