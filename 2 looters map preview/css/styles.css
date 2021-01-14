@@ -1,0 +1,177 @@
+@import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans);
+
+htnl{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #1A1A1A;
+    font-family: "Bubblegum Sans", sans-serif;
+    color: honeydew;
+}
+
+#header, #footer{
+    /*background-color: darkkhaki;*/
+    width: 97vw;
+    height: 8vh;
+    text-align: center;
+}
+
+#blackboard, #menu{
+    display: table-cell;
+}
+
+#header, #footer, #blackboard, #menu{
+    position: relative;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+}
+
+#blackboard{
+    /*background-color: aqua;*/
+    width: 78vw;
+    height: 80vh;
+}
+
+#blackboardSize{
+    width: 78vw;
+    height: 78vh;
+}
+
+#menuSize{
+    width: 17vw;
+    height: 78vh;
+}
+
+#menu{
+    /*background-color: forestgreen;*/
+    width: 17vw;
+    height: 80vh;
+}
+
+.content{
+    position: absolute;
+    /*width: calc(100% - 2vw);*/
+    /*height: calc(100% - 2vh);*/
+    background-color: darkkhaki;
+    border-radius: 1vmin;
+}
+
+.menu{
+    font-size: 3vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    list-style: none;
+}
+
+li{
+    padding-top: 2vh;
+}
+
+.text{
+    width: 97vw;
+    height: 8vh;
+    display: flex;
+}
+
+.textCenter{
+    margin: auto;
+}
+
+#headerContent{
+    font-size: 5vh;
+}
+#footerContent{
+    font-size: 2vh;
+}
+
+#inpCamAmountBlock{
+    width: 100%;
+    height: 8vh;
+    font-size: 3vh;
+    border-spacing: 1.5vw;
+}
+
+#inpCamAmountText, .inpCamAmountVal{
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: 3vw;
+}
+
+.inpCamAmountVal{
+    width: 5vw;
+    height: 5vh;
+    background-color:black;
+    border-radius: 3vmin;
+    text-align: center;
+}
+
+
+
+
+.cameraBlocks{
+    width: 76vw;
+    height: 68vh;
+    padding-top: 1vh;
+    padding-left: 1vw;
+    padding-bottom: 1vh;
+    padding-right: 1vw;
+}
+
+.cameraBlock{
+    padding-top: 1vh;
+    /*padding-left: 1vw;*/
+    padding-bottom: 1vh;
+    /*padding-right: 1vw;*/
+    background-color:bisque;
+    display: table-cell;
+}
+
+.amountCameras_1{
+    width: 74vw;
+    height: 66vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.testInside_1{
+    background-color: coral;
+    display: table-cell;
+    width: 74vw;
+    height: 64vh;
+}
+
+.amountCameras_2{
+    width: 37vw;
+    height: 33vh;
+    padding-left: 19.5vw;
+    padding-right: 19.5vw;
+}
+
+.amountCameras_4{
+    width: 37vw;
+    height: 33vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.testInside_2_4{
+    background-color: coral;
+    display: table-cell;
+    width: 36vw;
+    height: 32vh;
+}
+
+#newLineForAmount_2{
+    display: table-cell;
+}

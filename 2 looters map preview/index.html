@@ -1,0 +1,47 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Looters Map preview</title>
+        <meta name="description" content="Looters Map preview">
+        <meta name="author" content="RudnevDanil">
+        <link rel="stylesheet" href="css/styles.css?v=1.0">
+    </head>
+
+    <body>
+        <div id="header"><div class="content text" id="headerContent"><div class="textCenter">Looters Map</div></div></div>
+
+        <div id="menu"><div class="content" id="menuSize">
+            <ul class="menu">
+                <li onclick="mapClicked()">MAP</li>
+                <li onclick="camerasClicked()">CAMERAS</li>
+                <li onclick="cameraSettingsClicked()">CAMERA SETTINGS</li>
+                <li onclick="aboutProjectClicked()">ABOUT PROJECT</li>
+            </ul>
+        </div></div>
+
+        <div id="blackboard"><div class="content" id="blackboardSize">
+            <div id="camerasScreen">
+                <div id="inpCamAmountBlock">
+                    <div id="inpCamAmountText">Amount Displayed Cameras:</div>
+                    <div class="inpCamAmountVal" id="inpCamAmountVal_1" onclick="switchAmountCamerasTo_1()">1</div>
+                    <div class="inpCamAmountVal" id="inpCamAmountVal_2" onclick="switchAmountCamerasTo_2()">2</div>
+                    <div class="inpCamAmountVal" id="inpCamAmountVal_4" onclick="switchAmountCamerasTo_4()">4</div>
+                </div>
+                <div class="cameraBlocks">
+                    <div class="cameraBlock amountCameras_4" id="cameraBlock_1"><div class="testInside_2_4" id="placeholder_1"></div></div>
+                    <div class="cameraBlock amountCameras_4" id="cameraBlock_2"><div class="testInside_2_4" id="placeholder_2"></div></div>
+                    <div id="newLineForAmount_4"></div>
+                    <div class="cameraBlock amountCameras_4" id="cameraBlock_3"><div class="testInside_2_4" id="placeholder_3"></div></div>
+                    <div class="cameraBlock amountCameras_4" id="cameraBlock_4"><div class="testInside_2_4" id="placeholder_4"></div></div>
+
+                </div>
+            </div>
+
+        </div></div>
+
+        <div id="footer"><div class="content text" id="footerContent"><div class="textCenter">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
+
+    </body>
+</html>
+
+<script src="js/scripts.js"></script>
