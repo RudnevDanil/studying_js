@@ -42,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../2 looters map preview" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -68,7 +68,7 @@
       <workItem from="1610520442322" duration="5567000" />
       <workItem from="1610527056931" duration="1204000" />
       <workItem from="1610589570071" duration="2346000" />
-      <workItem from="1610596645607" duration="173000" />
+      <workItem from="1610596645607" duration="214000" />
     </task>
     <servers />
   </component>
@@ -88,10 +88,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1610596583098">
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1610596858095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="274" key="FileChooserDialogImpl/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1610596583098" />
+    <state x="740" y="274" key="FileChooserDialogImpl/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1610596858095" />
     <state x="616" y="235" key="run.anything.popup" timestamp="1609216064647">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
