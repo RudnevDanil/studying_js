@@ -50,22 +50,6 @@ body{
     padding-left: 10vw;
 }
 
-#cardsTable{
-    /*background-color: coral;*/
-    width: 80vw;
-    height: 70vh;
-    margin: 0 auto;
-}
-
-tr{
-    /*background-color: blue;*/
-    width: 100%;
-}
-
-th{
-    /*background-color: brown;*/
-}
-
 .card{
     /*background-color: aqua;*/
     width: 100%;
