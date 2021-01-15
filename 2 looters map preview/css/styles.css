@@ -108,6 +108,10 @@ li{
     white-space: nowrap;
 }
 
+#cameraSettingsScreen .text{
+    display: inline-block;
+}
+
 .button{
     width: fit-content;
     height: 5vh;
@@ -122,7 +126,7 @@ li{
     background-color:beige;
     border-radius: 3vmin;
     text-align: center;
-    color: honeydew;
+    color: black;
     font-size: 3vh;
     outline: none;
     border: 0;

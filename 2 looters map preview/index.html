@@ -60,13 +60,16 @@
                     <div class="settingsBackground"></div>
                     <div id="streamSetFirstPage">
                         <div class="topLine">
-                            <div class="text">streamSetFirstPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage1Text">Camera number</div>
+                            <input class="inputVal" id="streamSetCamNumb" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
-                            <div class="text">streamSetFirstPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage1Text">Description</div>
+                            <input class="inputVal"  id="streamSetDescription" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
-                            <div class="text">streamSetFirstPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage1Text">Connecting line</div>
+                            <input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
                             <div class="rightBut">
@@ -76,16 +79,24 @@
                     </div>
                     <div id="streamSetSecondPage">
                         <div class="topLine">
-                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage2Text">Saving skip frames</div>
+                            <input class="inputVal"  id="streamSetSavingSkipFrames" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
-                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage2Text">Classification skip frames</div>
+                            <input class="inputVal"  id="streamSetClassificationSkipFrames" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
-                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage2Text">Cam FPS</div>
+                            <input class="inputVal"  id="streamSetFPS" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
-                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                            <div class="text streamSetPage2Text">Frames in one video</div>
+                            <input class="inputVal"  id="streamSetFramesInOneVideo" type="text"placeholder="...">
+                        </div>
+                        <div class="topLine">
+                            <div class="text streamSetPage2Text">Scaling</div>
+                            <input class="inputVal"  id="streamSetScaling" type="text"placeholder="...">
                         </div>
                         <div class="topLine">
                             <div class="button" id="settingsPrevPage" onclick="switchDisplaySettingsToPrevPage()"><</div>
@@ -117,7 +128,33 @@
 </script>
 
 <script>
-    let blocks = document.getElementsByClassName("button");
-    for( let i = 0; i < blocks.length; i++)
-        blocks[i].style.width = "calc(" + blocks[i].offsetWidth + "px + 5vw)";
+    // make buttons better
+    {
+        let blocks = document.getElementsByClassName("button");
+        for (let i = 0; i < blocks.length; i++)
+            blocks[i].style.width = "calc(" + blocks[i].offsetWidth + "px + 5vw)";
+    }
+</script>
+
+<script>
+    // make text and input straight
+    // first page
+    {
+        let blocks = document.getElementsByClassName("streamSetPage1Text");
+        let page1List = [];
+        for (let i = 0; i < blocks.length; i++)
+            page1List.push(blocks[i].offsetWidth)
+        for (let i = 0; i < blocks.length; i++)
+            blocks[i].style.width = Math.max.apply(null, page1List);
+    }
+
+    //second page
+    {
+        let blocks = document.getElementsByClassName("streamSetPage2Text");
+        let page2List = [];
+        for (let i = 0; i < blocks.length; i++)
+            page2List.push(blocks[i].offsetWidth)
+        for (let i = 0; i < blocks.length; i++)
+            blocks[i].style.width = Math.max.apply(null, page2List);
+    }
 </script>
