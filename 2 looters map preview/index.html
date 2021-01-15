@@ -8,24 +8,29 @@
     </head>
 
     <body>
-        <div id="header"><div class="content text" id="headerContent"><div class="textCenter">Looters Map</div></div></div>
+        <div id="header"><div class="content textHF" id="headerContent"><div class="textCenter">Looters Map</div></div></div>
 
         <div id="menu"><div class="content" id="menuSize">
             <ul class="menu">
-                <li onclick="mapClicked()">MAP</li>
-                <li onclick="camerasClicked()">CAMERAS</li>
-                <li onclick="cameraSettingsClicked()">CAMERA SETTINGS</li>
-                <li onclick="aboutProjectClicked()">ABOUT PROJECT</li>
+                <li id="menuMap" onclick="mapClicked()">MAP</li>
+                <li id="menuCameras" onclick="camerasClicked()">CAMERAS</li>
+                <li id="menuCameraSettings" onclick="cameraSettingsClicked()">CAMERA SETTINGS</li>
+                <li id="menuAboutProject" onclick="aboutProjectClicked()">ABOUT PROJECT</li>
             </ul>
         </div></div>
 
         <div id="blackboard"><div class="content" id="blackboardSize">
+
+            <div id="mapScreen">
+
+            </div>
+
             <div id="camerasScreen">
-                <div id="inpCamAmountBlock">
-                    <div id="inpCamAmountText">Amount Displayed Cameras:</div>
-                    <div class="inpCamAmountVal" id="inpCamAmountVal_1" onclick="switchAmountCamerasTo_1()">1</div>
-                    <div class="inpCamAmountVal" id="inpCamAmountVal_2" onclick="switchAmountCamerasTo_2()">2</div>
-                    <div class="inpCamAmountVal" id="inpCamAmountVal_4" onclick="switchAmountCamerasTo_4()">4</div>
+                <div class="topLine">
+                    <div class="text">Amount Displayed Cameras:</div>
+                    <div class="button" id="inpCamAmountVal_1" onclick="switchDisplayAmountCamerasTo_1()">1</div>
+                    <div class="button" id="inpCamAmountVal_2" onclick="switchDisplayAmountCamerasTo_2()">2</div>
+                    <div class="button" id="inpCamAmountVal_4" onclick="switchDisplayAmountCamerasTo_4()">4</div>
                 </div>
                 <div class="cameraBlocks">
                     <div class="cameraBlock amountCameras_4" id="cameraBlock_1"><div class="testInside_2_4" id="placeholder_1"></div></div>
@@ -37,11 +42,82 @@
                 </div>
             </div>
 
+            <div id="cameraSettingsScreen">
+                <div class="topLine">
+                    <div class="button" id="inpCamSetUpUniversal" onclick="switchDisplayToUniSet()">Universal</div>
+                    <div class="button" id="inpCamSetUpStream" onclick="switchDisplayToStreamSet()">Stream</div>
+                </div>
+
+                <div class="settingsBackground"></div>
+
+                <div id="uniSet">
+                    <div class="topLine">
+                        <div class="text">Amount of cameras:<input class="inputVal" type="text"placeholder="1...16"></div>
+                    </div>
+                </div>
+
+                <div id="streamSet">
+                    <div class="settingsBackground"></div>
+                    <div id="streamSetFirstPage">
+                        <div class="topLine">
+                            <div class="text">streamSetFirstPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="text">streamSetFirstPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="text">streamSetFirstPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="rightBut">
+                                <div class="button" id="settingsNextPage" onclick="switchDisplaySettingsToNextPage()">></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="streamSetSecondPage">
+                        <div class="topLine">
+                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="text">streamSetSecondPage<input class="inputVal" type="text"placeholder="1...16"></div>
+                        </div>
+                        <div class="topLine">
+                            <div class="button" id="settingsPrevPage" onclick="switchDisplaySettingsToPrevPage()"><</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div id="aboutProjectScreen">
+
+            </div>
+
+
+
         </div></div>
 
-        <div id="footer"><div class="content text" id="footerContent"><div class="textCenter">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
+        <div id="footer"><div class="content textHF" id="footerContent"><div class="textCenter">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
 
     </body>
 </html>
 
 <script src="js/scripts.js"></script>
+
+<script>
+    document.getElementById("cameraSettingsScreen").style.zIndex = "2"
+</script>
+
+<script>
+    let blocks = document.getElementsByClassName("button");
+    for( let i = 0; i < blocks.length; i++)
+        blocks[i].style.width = "calc(" + blocks[i].offsetWidth + "px + 5vw)";
+</script>

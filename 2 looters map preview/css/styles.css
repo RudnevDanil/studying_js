@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans);
 
-htnl{
+html{
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -27,6 +27,7 @@ body{
 
 #blackboard, #menu{
     display: table-cell;
+    cursor: default;
 }
 
 #header, #footer, #blackboard, #menu{
@@ -61,8 +62,6 @@ body{
 
 .content{
     position: absolute;
-    /*width: calc(100% - 2vw);*/
-    /*height: calc(100% - 2vh);*/
     background-color: darkkhaki;
     border-radius: 1vmin;
 }
@@ -78,7 +77,7 @@ li{
     padding-top: 2vh;
 }
 
-.text{
+.textHF{
     width: 97vw;
     height: 8vh;
     display: flex;
@@ -95,37 +94,44 @@ li{
     font-size: 2vh;
 }
 
-#inpCamAmountBlock{
+.topLine{
     width: 100%;
     height: 8vh;
     font-size: 3vh;
     border-spacing: 1.5vw;
 }
 
-#inpCamAmountText, .inpCamAmountVal{
+.text, .button, .inputVal{
     display: table-cell;
     vertical-align: middle;
     margin-left: 3vw;
+    white-space: nowrap;
 }
 
-.inpCamAmountVal{
-    width: 5vw;
+.button{
+    width: fit-content;
     height: 5vh;
     background-color:black;
     border-radius: 3vmin;
     text-align: center;
 }
 
-
-
+.inputVal{
+    width: 20vw;
+    height: 5vh;
+    background-color:beige;
+    border-radius: 3vmin;
+    text-align: center;
+    color: honeydew;
+    font-size: 3vh;
+    outline: none;
+    border: 0;
+}
 
 .cameraBlocks{
     width: 76vw;
     height: 68vh;
-    padding-top: 1vh;
-    padding-left: 1vw;
-    padding-bottom: 1vh;
-    padding-right: 1vw;
+    padding: 1vh 1vw;
 }
 
 .cameraBlock{
@@ -139,7 +145,7 @@ li{
 
 .amountCameras_1{
     width: 74vw;
-    height: 66vh;
+    height: 68vh;
     padding-left: 1vw;
     padding-right: 1vw;
 }
@@ -148,7 +154,7 @@ li{
     background-color: coral;
     display: table-cell;
     width: 74vw;
-    height: 64vh;
+    height: 66vh;
 }
 
 .amountCameras_2{
@@ -174,4 +180,54 @@ li{
 
 #newLineForAmount_2{
     display: table-cell;
+}
+
+#mapScreen, #camerasScreen ,#cameraSettingsScreen ,#aboutProjectScreen{
+    position: absolute;
+    z-index: 1;
+    width: inherit;
+    height: inherit;
+    background-color: darkkhaki;
+    border-radius: 1vmin;
+}
+
+.topLine, .cameraBlocks, .placeHolder_333 {
+    position: relative;
+}
+
+#uniSet, #streamSet{
+    position: absolute;
+    z-index: 0;
+}
+
+#uniSet, #streamSet, .settingsBackground{
+    width: inherit;
+    height: 70vh;
+}
+
+.settingsBackground{
+    position: absolute;
+    z-index: 1;
+    background-color: darkkhaki;
+    border-radius: 1vmin;
+}
+
+#streamSetFirstPage, #streamSetSecondPage{
+    width: inherit;
+    height: inherit;
+    background-color: darkkhaki;
+}
+
+#streamSetFirstPage{
+    position: absolute;
+    z-index: 2;
+}
+
+#streamSetSecondPage{
+    position: absolute;
+    z-index: 0;
+}
+
+.rightBut{
+    padding-left: 68vw;
 }
