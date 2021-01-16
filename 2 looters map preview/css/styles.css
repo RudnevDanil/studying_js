@@ -101,7 +101,11 @@ li{
     border-spacing: 1.5vw;
 }
 
-.text, .button, .inputVal{
+#staffScreen .topLine{
+    display: inline-table;
+}
+
+.text, .button, .inputVal, .choiceVal{
     display: table-cell;
     vertical-align: middle;
     margin-left: 3vw;
@@ -120,16 +124,21 @@ li{
     text-align: center;
 }
 
-.inputVal{
+.inputVal, .choiceVal{
     width: 20vw;
     height: 5vh;
     background-color:beige;
     border-radius: 3vmin;
     text-align: center;
     color: black;
-    font-size: 3vh;
+    font-size: 2vh;
     outline: none;
     border: 0;
+}
+
+.choiceVal{
+    margin-left: 0;
+    text-align-last: center;
 }
 
 .cameraBlocks{
@@ -186,7 +195,7 @@ li{
     display: table-cell;
 }
 
-#mapScreen, #camerasScreen ,#cameraSettingsScreen ,#aboutProjectScreen{
+#mapScreen, #camerasScreen ,#cameraSettingsScreen ,#aboutProjectScreen ,#facesScreen ,#staffScreen{
     position: absolute;
     z-index: 1;
     width: inherit;
@@ -235,3 +244,4 @@ li{
 .rightBut{
     padding-left: 68vw;
 }
+

@@ -5,6 +5,8 @@ function initZIndexForDisplay()
     document.getElementById("camerasScreen").style.zIndex = "1";
     document.getElementById("cameraSettingsScreen").style.zIndex = "1";
     document.getElementById("aboutProjectScreen").style.zIndex = "1";
+    document.getElementById("facesScreen").style.zIndex = "1";
+    document.getElementById("staffScreen").style.zIndex = "1";
 }
 
 function initializeFontColorForDisplay()
@@ -13,6 +15,8 @@ function initializeFontColorForDisplay()
     document.getElementById("menuCameras").style.color = "honeydew";
     document.getElementById("menuCameraSettings").style.color = "honeydew";
     document.getElementById("menuAboutProject").style.color = "honeydew";
+    document.getElementById("menuFaces").style.color = "honeydew";
+    document.getElementById("menuStaff").style.color = "honeydew";
 }
 
 function mapClicked()
@@ -45,6 +49,22 @@ function aboutProjectClicked()
     document.getElementById("aboutProjectScreen").style.zIndex = "2";
     initializeFontColorForDisplay()
     document.getElementById("menuAboutProject").style.color = "black";
+}
+
+function facesClicked()
+{
+    initZIndexForDisplay()
+    document.getElementById("facesScreen").style.zIndex = "2";
+    initializeFontColorForDisplay()
+    document.getElementById("menuFaces").style.color = "black";
+}
+
+function staffClicked()
+{
+    initZIndexForDisplay()
+    document.getElementById("staffScreen").style.zIndex = "2";
+    initializeFontColorForDisplay()
+    document.getElementById("menuStaff").style.color = "black";
 }
 
 /*---------------------------- MAP --------------------------------------------*/

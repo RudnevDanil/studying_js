@@ -16,15 +16,18 @@
                 <li id="menuCameras" onclick="camerasClicked()">CAMERAS</li>
                 <li id="menuCameraSettings" onclick="cameraSettingsClicked()">CAMERA SETTINGS</li>
                 <li id="menuAboutProject" onclick="aboutProjectClicked()">ABOUT PROJECT</li>
+                <li id="menuFaces" onclick="facesClicked()">FACES</li>
+                <li id="menuStaff" onclick="staffClicked()">STAFF</li>
             </ul>
         </div></div>
 
         <div id="blackboard"><div class="content" id="blackboardSize">
-
+            <!-- ------------------------------------ mapScreen ------------------------------------------------ -->
             <div id="mapScreen">
 
             </div>
 
+            <!-- ------------------------------------ camerasScreen ------------------------------------------------ -->
             <div id="camerasScreen">
                 <div class="topLine">
                     <div class="text">Amount Displayed Cameras:</div>
@@ -42,6 +45,7 @@
                 </div>
             </div>
 
+            <!-- ------------------------------------ cameraSettingsScreen ------------------------------------------------ -->
             <div id="cameraSettingsScreen">
                 <div class="topLine">
                     <div class="button" id="inpCamSetUpUniversal" onclick="switchDisplayToUniSet()">Universal</div>
@@ -102,18 +106,42 @@
                             <div class="button" id="settingsPrevPage" onclick="switchDisplaySettingsToPrevPage()"><</div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
 
+            <!-- ------------------------------------ aboutProjectScreen ------------------------------------------------ -->
             <div id="aboutProjectScreen">
 
             </div>
 
+            <!-- ------------------------------------ facesScreen ------------------------------------------------ -->
+            <div id="facesScreen">
+
+            </div>
+
+            <!-- ------------------------------------ staffScreen ------------------------------------------------ -->
+            <div id="staffScreen">
+                <div class="topLine">
+                    <div class="button">+</div>
+                    <select class="choiceVal">
+                        <optgroup label="Marketing dept">
+                            <option>Gates M</option>
+                            <option>Ford G</option>
+                            <option>Trump D</option>
+                        </optgroup>
+                        <optgroup label="IT dept">
+                            <option>Lane J</option>
+                            <option>Richardson M</option>
+                            <option>Obama B</option>
+                        </optgroup>
+                    </select>
+
+                </div>
+
+            </div>
 
 
+            <!-- -------------------------------------------------------------------------------------- -->
         </div></div>
 
         <div id="footer"><div class="content textHF" id="footerContent"><div class="textCenter">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
@@ -124,7 +152,7 @@
 <script src="js/scripts.js"></script>
 
 <script>
-    document.getElementById("cameraSettingsScreen").style.zIndex = "2"
+    document.getElementById("staffScreen").style.zIndex = "2"
 </script>
 
 <script>
