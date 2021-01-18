@@ -105,7 +105,7 @@ li{
     display: inline-table;
 }
 
-.text, .button, .inputVal, .choiceVal{
+.text, .button, .inputVal, .choiceVal, .freeSpace{
     display: table-cell;
     vertical-align: middle;
     margin-left: 3vw;
@@ -116,12 +116,28 @@ li{
     display: inline-block;
 }
 
+.staffPageText{
+    vertical-align: middle;
+    margin-left: 3vw;
+    white-space: nowrap;
+    display: inline-block;
+    width: 15.6vw;
+    max-width: 15.6vw;
+    height: 3vh;
+    max-height: 3vh;
+    font-size: 3vh;
+}
+
 .button{
     width: fit-content;
     height: 5vh;
     background-color:black;
     border-radius: 3vmin;
     text-align: center;
+}
+
+.staffInputVal{
+    width: 10vw;
 }
 
 .inputVal, .choiceVal{
@@ -213,12 +229,12 @@ li{
     z-index: 0;
 }
 
-#uniSet, #streamSet, .settingsBackground{
+#uniSet, #streamSet, .settingsBackground, .staffPage{
     width: inherit;
     height: 70vh;
 }
 
-.settingsBackground{
+.settingsBackground, .staffPage{
     position: absolute;
     z-index: 1;
     background-color: darkkhaki;
@@ -229,6 +245,7 @@ li{
     width: inherit;
     height: inherit;
     background-color: darkkhaki;
+    border-radius: 1vmin;
 }
 
 #streamSetFirstPage{
@@ -236,7 +253,7 @@ li{
     z-index: 2;
 }
 
-#streamSetSecondPage{
+#streamSetSecondPage, #staffAddPage, #staffListPage{
     position: absolute;
     z-index: 0;
 }
@@ -245,3 +262,134 @@ li{
     padding-left: 68vw;
 }
 
+.photoLine{
+    width: inherit;
+    height: 31vh;
+}
+
+.photoAddBlock{
+    width: 19.5vw;
+    height: 31vh;
+    display: table-cell;
+    position: absolute;
+    z-index: 0;
+}
+
+.photoAddBlock2{
+    left: 19.5vw;
+}
+
+.photoAddBlock3{
+    left: 39vw;
+}
+
+.photoAddBlock4{
+    left: 58.5vw;
+}
+
+.photoAddBlockPlaceHolder{
+    z-index: 1;
+    background: darkkhaki;
+}
+
+.photo_80, .photo_60{
+    width: 15.6vw;
+    border-radius: 1vmin;
+    display: block;
+    margin: auto;
+}
+
+.photo_80{
+    height: 24vh;
+}
+
+.photo_60{
+    height: 18vh;
+}
+
+.photoPlusMinus{
+    width: 5vw;
+    height: 5vh;
+    border-radius: 1vmin;
+    padding-top: 1vh;
+}
+
+.photoPlus{
+    padding-left: 3.81vw;
+}
+
+.photoMinus{
+     padding-left: 1.86vw;
+}
+
+.staffAddPageText{
+    display: inline-block;
+    width: 12vw;
+    margin-left: 1vw;
+}
+
+.staffInputVal{
+    width: 58vw;
+}
+
+#staffAddSaveButt{
+    width: 15vw;
+    display: inline-block;
+}
+
+#staffScreenListBut, #staffScreenAddBut{
+    width: 13vw;
+    display: inline-block;
+}
+
+#staffScreenChoiceVal{
+    width: 25vw;
+    position: absolute;
+}
+
+#staffAddRemoveUserButt{
+    width: 25vw;
+    z-index: 0;
+    position: absolute;
+}
+#staffAddRemoveUserButtPlaceHolder{
+    width: 25vw;
+    z-index: 1;
+    position: absolute;
+}
+#staffAddRemoveUserButtBackground{
+    background-color: darkkhaki;
+    border-radius: 0;
+}
+
+#staffListPrevButt{
+    width: 10vw;
+    z-index: 0;
+    position: absolute;
+}
+#staffListPrevButtPlaceHolder{
+    width: 10vw;
+    z-index: 1;
+    position: absolute;
+}
+#staffListPrevButtBackground{
+    background-color: darkkhaki;
+    border-radius: 0;
+}
+
+#staffListNextButt{
+    left: 68vw;
+    width: 10vw;
+    z-index: 0;
+    position: absolute;
+}
+#staffListNextButtPlaceHolder{
+    left: 68vw;
+    width: 10vw;
+    z-index: 1;
+    position: absolute;
+}
+#staffListNextButtBackground{
+    background-color: darkkhaki;
+    border-radius: 0;
+}

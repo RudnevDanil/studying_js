@@ -6,18 +6,18 @@
         <meta name="author" content="RudnevDanil">
         <link rel="stylesheet" href="css/styles.css?v=1.0">
     </head>
-
+    <script src="js/actionFunctions.js"></script>
     <body>
         <div id="header"><div class="content textHF" id="headerContent"><div class="textCenter">Looters Map</div></div></div>
 
         <div id="menu"><div class="content" id="menuSize">
             <ul class="menu">
-                <li id="menuMap" onclick="mapClicked()">MAP</li>
-                <li id="menuCameras" onclick="camerasClicked()">CAMERAS</li>
-                <li id="menuCameraSettings" onclick="cameraSettingsClicked()">CAMERA SETTINGS</li>
-                <li id="menuAboutProject" onclick="aboutProjectClicked()">ABOUT PROJECT</li>
-                <li id="menuFaces" onclick="facesClicked()">FACES</li>
-                <li id="menuStaff" onclick="staffClicked()">STAFF</li>
+                <li id="menuMap" onclick="menuClicked(1)">MAP</li>
+                <li id="menuCameras" onclick="menuClicked(2)">CAMERAS</li>
+                <li id="menuCameraSettings" onclick="menuClicked(3)">CAMERA SETTINGS</li>
+                <li id="menuAboutProject" onclick="menuClicked(4)">ABOUT PROJECT</li>
+                <li id="menuFaces" onclick="menuClicked(5)">FACES</li>
+                <li id="menuStaff" onclick="menuClicked(6)">STAFF</li>
             </ul>
         </div></div>
 
@@ -121,8 +121,13 @@
 
             <!-- ------------------------------------ staffScreen ------------------------------------------------ -->
             <div id="staffScreen">
-                <div class="topLine">
-                    <div class="button">+</div>
+                <div class="topLine" id="staffScreenListBut">
+                    <div class="button" onclick="actions_staff.listShow()">List</div>
+                </div>
+                <div class="topLine" id="staffScreenAddBut">
+                    <div class="button" onclick="actions_staff.addShow()">Add</div>
+                </div>
+                <div class="topLine" id="staffScreenChoiceVal">
                     <select class="choiceVal">
                         <optgroup label="Marketing dept">
                             <option>Gates M</option>
@@ -135,7 +140,145 @@
                             <option>Obama B</option>
                         </optgroup>
                     </select>
+                </div>
 
+                <div class="staffPage" id="staffBackground"></div>
+
+                <div class="staffPage" id="staffAddPage">
+                    <div class="photoLine">
+                        <div class="photoAddBlock">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_1'>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_1'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_1'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock2">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_2'>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_2'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_2'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock3">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_3'>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_3'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_3'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock4">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_4'>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_4'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_4'>
+                        </div>
+                    </div>
+
+                    <div class="topLine">
+                        <div class="text staffAddPageText">Full name</div>
+                        <input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="...">
+                    </div>
+                    <div class="topLine">
+                        <div class="text staffAddPageText">Position</div>
+                        <input class="inputVal staffInputVal"  id="staffAddPagePosition" type="text" placeholder="...">
+                    </div>
+
+                    <div class="topLine" id="staffAddSaveButt">
+                        <div class="button" onclick="">Save</div>
+                    </div>
+
+                    <div class="topLine" id="staffAddRemoveUserButt">
+                        <div class="button" onclick="">Remove user</div>
+                    </div>
+                    <div class="topLine" id="staffAddRemoveUserButtPlaceHolder">
+                        <div class="button" id="staffAddRemoveUserButtBackground"></div>
+                    </div>
+                </div>
+
+                <div class="staffPage" id="staffListPage">
+                    <div class="photoLine">
+                        <div class="photoAddBlock" id="photoAddBlock_1">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_1'>
+                            <div class="staffPageText" id="staffListPersonName_1">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_1">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_1'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_1'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_1"></div>
+
+                        <div class="photoAddBlock photoAddBlock2" id="photoAddBlock_2">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_2'>
+                            <div class="staffPageText" id="staffListPersonName_2">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_2">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_2'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_2'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock2 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_2"></div>
+
+                        <div class="photoAddBlock photoAddBlock3" id="photoAddBlock_3">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_3'>
+                            <div class="staffPageText" id="staffListPersonName_3">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_3">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_3'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_3'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock3 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_3"></div>
+
+                        <div class="photoAddBlock photoAddBlock4" id="photoAddBlock_4">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_4'>
+                            <div class="staffPageText" id="staffListPersonName_4">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_4">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_4'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_4'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock4 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_4"></div>
+                    </div>
+
+                    <div class="photoLine">
+                        <div class="photoAddBlock" id="photoAddBlock_5">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_5'>
+                            <div class="staffPageText" id="staffListPersonName_5">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_5">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_5'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_5'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_5"></div>
+
+                        <div class="photoAddBlock photoAddBlock2" id="photoAddBlock_6">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_6'>
+                            <div class="staffPageText" id="staffListPersonName_6">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_6">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_6'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_6'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock2 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_6"></div>
+
+                        <div class="photoAddBlock photoAddBlock3" id="photoAddBlock_7">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_7'>
+                            <div class="staffPageText" id="staffListPersonName_7">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_7">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_7'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_7'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock3 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_7"></div>
+
+                        <div class="photoAddBlock photoAddBlock4" id="photoAddBlock_8">
+                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_8'>
+                            <div class="staffPageText" id="staffListPersonName_8">Gates .M</div>
+                            <div class="staffPageText" id="staffListPersonPosition_8">SEO</div>
+                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_8'>
+                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_8'>
+                        </div>
+                        <div class="photoAddBlock photoAddBlock4 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_8"></div>
+                    </div>
+
+                    <div class="topLine" id="staffListPrevButt">
+                        <div class="button" onclick=""><</div>
+                    </div>
+                    <div class="topLine" id="staffListPrevButtPlaceHolder">
+                        <div class="button" id="staffListPrevButtBackground"></div>
+                    </div>
+
+                    <div class="topLine" id="staffListNextButt">
+                        <div class="button" onclick="">></div>
+                    </div>
+                    <div class="topLine" id="staffListNextButtPlaceHolder">
+                        <div class="button" id="staffListNextButtBackground"></div>
+                    </div>
                 </div>
 
             </div>
@@ -149,7 +292,7 @@
     </body>
 </html>
 
-<script src="js/scripts.js"></script>
+
 
 <script>
     document.getElementById("staffScreen").style.zIndex = "2"
@@ -184,5 +327,20 @@
             page2List.push(blocks[i].offsetWidth)
         for (let i = 0; i < blocks.length; i++)
             blocks[i].style.width = Math.max.apply(null, page2List);
+    }
+
+    // debug show list faces
+    {
+        let blocks = document.getElementsByClassName("photoAddBlock");
+        for (let i = 0; i < blocks.length; i++)
+            blocks[i].style.zIndex = "2";
+
+        let blocks_2 = document.getElementsByClassName("photoAddBlockPlaceHolder");
+        for (let i = 0; i < blocks_2.length; i++)
+            blocks_2[i].style.zIndex = "1";
+
+        document.getElementById("staffListNextButt").style.zIndex = "2";
+        document.getElementById("staffListPrevButt").style.zIndex = "2";
+
     }
 </script>
