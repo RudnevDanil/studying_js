@@ -161,10 +161,19 @@ let actions_staff = {
         document.getElementById("staffListPage").style.zIndex = "2";
     },
 
-    nextShow() {document.getElementById("staffListNextButt").style.zIndex = "2";},
-    nextHide() {document.getElementById("staffListNextButt").style.zIndex = "0";},
-    prevShow() {document.getElementById("staffListPrevButt").style.zIndex = "2";},
-    prevHide() {document.getElementById("staffListPrevButt").style.zIndex = "0";},
+    nextListShow() {document.getElementById("staffListNextButt").style.zIndex = "2";},
+    nextListHide() {document.getElementById("staffListNextButt").style.zIndex = "0";},
+    prevListShow() {document.getElementById("staffListPrevButt").style.zIndex = "2";},
+    prevListHide() {document.getElementById("staffListPrevButt").style.zIndex = "0";},
+
+    nextAddShow() {document.getElementById("staffAddNextButt").style.zIndex = "2";},
+    nextAddHide() {document.getElementById("staffAddNextButt").style.zIndex = "0";},
+    prevAddShow() {document.getElementById("staffAddPrevButt").style.zIndex = "2";},
+    prevAddHide() {document.getElementById("staffAddPrevButt").style.zIndex = "0";},
+
+    removeAddShow() {document.getElementById("staffAddRemoveUserButt").style.zIndex = "2";},
+    removeAddHide() {document.getElementById("staffAddRemoveUserButt").style.zIndex = "0";},
+
 
 }
 

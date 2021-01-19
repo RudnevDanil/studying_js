@@ -118,14 +118,14 @@ li{
 
 .staffPageText{
     vertical-align: middle;
-    margin-left: 3vw;
     white-space: nowrap;
     display: inline-block;
+    margin-left: 1.3vw;
     width: 15.6vw;
     max-width: 15.6vw;
-    height: 3vh;
+    height: 2vh;
     max-height: 3vh;
-    font-size: 3vh;
+    font-size: 2vh;
 }
 
 .button{
@@ -239,6 +239,7 @@ li{
     z-index: 1;
     background-color: darkkhaki;
     border-radius: 1vmin;
+    height: 68vh;
 }
 
 #streamSetFirstPage, #streamSetSecondPage{
@@ -264,36 +265,35 @@ li{
 
 .photoLine{
     width: inherit;
-    height: 31vh;
+    height: 15vh;
+}
+
+.photoLineWithBut{
+    width: inherit;
+    height: 17vh;
 }
 
 .photoAddBlock{
-    width: 19.5vw;
-    height: 31vh;
+    width: 13vw;
+    height: 15vh;
     display: table-cell;
     position: absolute;
     z-index: 0;
 }
 
-.photoAddBlock2{
-    left: 19.5vw;
-}
-
-.photoAddBlock3{
-    left: 39vw;
-}
-
-.photoAddBlock4{
-    left: 58.5vw;
-}
+.photoAddBlock2{left: 13vw;}
+.photoAddBlock3{left: 26vw;}
+.photoAddBlock4{left: 39vw;}
+.photoAddBlock5{left: 52vw;}
+.photoAddBlock6{left: 65vw;}
 
 .photoAddBlockPlaceHolder{
     z-index: 1;
     background: darkkhaki;
 }
 
-.photo_80, .photo_60{
-    width: 15.6vw;
+.photo_80, .photo_60, .photo_30{
+    width: 10.4vw;
     border-radius: 1vmin;
     display: block;
     margin: auto;
@@ -304,7 +304,11 @@ li{
 }
 
 .photo_60{
-    height: 18vh;
+    height: 19vh;
+}
+
+.photo_30{
+    height: 10vh;
 }
 
 .photoPlusMinus{
@@ -315,11 +319,11 @@ li{
 }
 
 .photoPlus{
-    padding-left: 3.81vw;
+    padding-left: 1.5vw;
 }
 
 .photoMinus{
-     padding-left: 1.86vw;
+     padding-left: 0.2vw;
 }
 
 .staffAddPageText{
@@ -362,34 +366,38 @@ li{
     border-radius: 0;
 }
 
-#staffListPrevButt{
+#staffListPrevButt, #staffAddPrevButt{
     width: 10vw;
     z-index: 0;
     position: absolute;
 }
-#staffListPrevButtPlaceHolder{
+#staffListPrevButtPlaceHolder, #staffAddPrevButtPlaceHolder{
     width: 10vw;
     z-index: 1;
     position: absolute;
 }
-#staffListPrevButtBackground{
+#staffListPrevButtBackground, #staffAddPrevButtBackground{
     background-color: darkkhaki;
     border-radius: 0;
 }
 
-#staffListNextButt{
+#staffListNextButt, #staffAddNextButt{
     left: 68vw;
     width: 10vw;
     z-index: 0;
     position: absolute;
 }
-#staffListNextButtPlaceHolder{
+#staffListNextButtPlaceHolder, #staffAddNextButtPlaceHolder{
     left: 68vw;
     width: 10vw;
     z-index: 1;
     position: absolute;
 }
-#staffListNextButtBackground{
+#staffListNextButtBackground, #staffAddNextButtBackground{
     background-color: darkkhaki;
     border-radius: 0;
+}
+
+#staffAddFullNameBlock{
+    margin-top: 8vh;
 }

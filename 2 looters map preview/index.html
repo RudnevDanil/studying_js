@@ -121,6 +121,7 @@
 
             <!-- ------------------------------------ staffScreen ------------------------------------------------ -->
             <div id="staffScreen">
+
                 <div class="topLine" id="staffScreenListBut">
                     <div class="button" onclick="actions_staff.listShow()">List</div>
                 </div>
@@ -145,30 +146,22 @@
                 <div class="staffPage" id="staffBackground"></div>
 
                 <div class="staffPage" id="staffAddPage">
-                    <div class="photoLine">
-                        <div class="photoAddBlock">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_1'>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_1'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_1'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock2">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_2'>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_2'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_2'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock3">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_3'>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_3'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_3'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock4">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_80" id='staffAddPhoto_4'>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='AddPhotoButtPlus_4'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='AddPhotoButtMinus_4'>
-                        </div>
+
+                    <div class="topLine" id="staffAddPrevButt">
+                        <div class="button" onclick=""><</div>
+                    </div>
+                    <div class="topLine" id="staffAddPrevButtPlaceHolder">
+                        <div class="button" id="staffAddPrevButtBackground"></div>
                     </div>
 
-                    <div class="topLine">
+                    <div class="topLine" id="staffAddNextButt">
+                        <div class="button" onclick="">></div>
+                    </div>
+                    <div class="topLine" id="staffAddNextButtPlaceHolder">
+                        <div class="button" id="staffAddNextButtBackground"></div>
+                    </div>
+
+                    <div class="topLine" id="staffAddFullNameBlock">
                         <div class="text staffAddPageText">Full name</div>
                         <input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="...">
                     </div>
@@ -190,82 +183,7 @@
                 </div>
 
                 <div class="staffPage" id="staffListPage">
-                    <div class="photoLine">
-                        <div class="photoAddBlock" id="photoAddBlock_1">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_1'>
-                            <div class="staffPageText" id="staffListPersonName_1">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_1">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_1'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_1'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_1"></div>
-
-                        <div class="photoAddBlock photoAddBlock2" id="photoAddBlock_2">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_2'>
-                            <div class="staffPageText" id="staffListPersonName_2">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_2">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_2'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_2'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock2 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_2"></div>
-
-                        <div class="photoAddBlock photoAddBlock3" id="photoAddBlock_3">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_3'>
-                            <div class="staffPageText" id="staffListPersonName_3">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_3">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_3'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_3'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock3 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_3"></div>
-
-                        <div class="photoAddBlock photoAddBlock4" id="photoAddBlock_4">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_4'>
-                            <div class="staffPageText" id="staffListPersonName_4">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_4">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_4'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_4'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock4 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_4"></div>
-                    </div>
-
-                    <div class="photoLine">
-                        <div class="photoAddBlock" id="photoAddBlock_5">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_5'>
-                            <div class="staffPageText" id="staffListPersonName_5">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_5">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_5'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_5'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_5"></div>
-
-                        <div class="photoAddBlock photoAddBlock2" id="photoAddBlock_6">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_6'>
-                            <div class="staffPageText" id="staffListPersonName_6">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_6">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_6'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_6'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock2 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_6"></div>
-
-                        <div class="photoAddBlock photoAddBlock3" id="photoAddBlock_7">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_7'>
-                            <div class="staffPageText" id="staffListPersonName_7">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_7">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_7'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_7'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock3 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_7"></div>
-
-                        <div class="photoAddBlock photoAddBlock4" id="photoAddBlock_8">
-                            <img src="./data/photoPlaceholder.jpg" alt='photo' class="photo_60" id='staffListPhoto_8'>
-                            <div class="staffPageText" id="staffListPersonName_8">Gates .M</div>
-                            <div class="staffPageText" id="staffListPersonPosition_8">SEO</div>
-                            <img src="./data/plus.png" alt='+' class="photoPlusMinus photoPlus" id='ListPhotoButtPlus_8'>
-                            <img src="./data/minus.png" alt='-' class="photoPlusMinus photoMinus" id='ListPhotoButtMinus_8'>
-                        </div>
-                        <div class="photoAddBlock photoAddBlock4 photoAddBlockPlaceHolder" id="photoAddBlockPlaceHolder_8"></div>
-                    </div>
-
+                    <!-- Here js will add faces card template -->
                     <div class="topLine" id="staffListPrevButt">
                         <div class="button" onclick=""><</div>
                     </div>
@@ -282,8 +200,6 @@
                 </div>
 
             </div>
-
-
             <!-- -------------------------------------------------------------------------------------- -->
         </div></div>
 
@@ -329,6 +245,52 @@
             blocks[i].style.width = Math.max.apply(null, page2List);
     }
 
+    // add faces card template to staff list page
+    {
+        let str = "";
+        let counter = 0;
+        for(let i = 0; i < 4; i++)
+        {
+            str += "<div class='photoLine'>";
+            for(let j = 0; j < 6; j++)
+            {
+                str += "<div class='photoAddBlock photoAddBlock" + ""+((counter%6)+1)+"' id='photoAddBlock_"+counter+"'>";
+                str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffListPhoto_"+counter+"'>";
+                str += "<div class='staffPageText' id='staffListPersonName_"+counter+"'>Gates .M</div>";
+                str += "<div class='staffPageText' id='staffListPersonPosition_"+counter+"'>SEO</div>";
+                //str += "<img src='./data/pencil.png' alt='edit' class='photoPlusMinus photoPlus' id='ListPhotoButtPlus_"+counter+"'>";
+                //str += "<img src='./data/minus.png' alt='-' class='photoPlusMinus photoMinus' id='ListPhotoButtMinus_"+counter+"'>";
+                str += "</div>";
+                str += "<div class='photoAddBlock photoAddBlock"+((counter%6)+1)+" photoAddBlockPlaceHolder' id='photoAddBlockPlaceHolder_"+counter+"'></div>";
+
+                counter += 1;
+            }
+            str += "</div>";
+        }
+        document.getElementById("staffListPage").innerHTML = str + document.getElementById("staffListPage").innerHTML;
+    }
+
+    // add faces card template to staff add page
+    {
+        let str = "";
+        let counter = 0;
+        for(let i = 0; i < 2; i++)
+        {
+            str += "<div class='photoLine photoLineWithBut'>";
+            for(let j = 0; j < 6; j++)
+            {
+                str += "<div class='photoAddBlock photoAddBlock"+((counter%6)+1)+"'>";
+                str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffAddPhoto_"+counter+"'>";
+                str += "<img src='./data/plus.png' alt='+' class='photoPlusMinus photoPlus' id='AddPhotoButtPlus_"+counter+"'>";
+                str += "<img src='./data/minus.png' alt='-' class='photoPlusMinus photoMinus' id='AddPhotoButtMinus_"+counter+"'>";
+                str += "</div>";
+                counter += 1;
+            }
+            str += "</div>";
+        }
+        document.getElementById("staffAddPage").innerHTML = str + document.getElementById("staffAddPage").innerHTML;
+    }
+
     // debug show list faces
     {
         let blocks = document.getElementsByClassName("photoAddBlock");
@@ -342,5 +304,8 @@
         document.getElementById("staffListNextButt").style.zIndex = "2";
         document.getElementById("staffListPrevButt").style.zIndex = "2";
 
+        document.getElementById("staffAddNextButt").style.zIndex = "2";
+        document.getElementById("staffAddPrevButt").style.zIndex = "2";
+        document.getElementById("staffAddRemoveUserButt").style.zIndex = "2";
     }
 </script>
