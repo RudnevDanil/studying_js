@@ -98,7 +98,7 @@ li{
     width: 100%;
     height: 8vh;
     font-size: 3vh;
-    border-spacing: 1.5vw;
+    border-spacing: 1.5vw 1.5vh;
 }
 
 #staffScreen .topLine{
@@ -155,6 +155,7 @@ li{
 .choiceVal{
     margin-left: 0;
     text-align-last: center;
+    height: 6vmin;
 }
 
 .cameraBlocks{
@@ -281,6 +282,10 @@ li{
     z-index: 0;
 }
 
+.photoAddBlockBut{
+    height: 17vh;
+}
+
 .photoAddBlock2{left: 13vw;}
 .photoAddBlock3{left: 26vw;}
 .photoAddBlock4{left: 39vw;}
@@ -311,21 +316,6 @@ li{
     height: 10vh;
 }
 
-.photoPlusMinus{
-    width: 5vw;
-    height: 5vh;
-    border-radius: 1vmin;
-    padding-top: 1vh;
-}
-
-.photoPlus{
-    padding-left: 1.5vw;
-}
-
-.photoMinus{
-     padding-left: 0.2vw;
-}
-
 .staffAddPageText{
     display: inline-block;
     width: 12vw;
@@ -340,11 +330,11 @@ li{
     width: 15vw;
     display: inline-block;
 }
-
+/*
 #staffScreenListBut, #staffScreenAddBut{
     width: 13vw;
     display: inline-block;
-}
+}*/
 
 #staffScreenChoiceVal{
     width: 25vw;
@@ -400,4 +390,67 @@ li{
 
 #staffAddFullNameBlock{
     margin-top: 8vh;
+}
+
+#aboutProjectText{
+    padding: 5vh 5vw;
+    font-size: 2vh;
+}
+
+.topLineForImg{
+    width: 8vw;
+    height: 8vh;
+    border-spacing: 1vw 1vh;
+}
+
+.topLineForSelect{
+    height: 8vh;
+    border-spacing: 1vw 1vh;
+}
+
+.imgTopLine{
+    width: 4vmin;
+    height: 4vmin;
+    padding-left: 0.5vmin;
+    padding-top: 0.5vmin;
+}
+
+.butBackground{
+    background-color: beige;
+    border-radius: 6vmin;
+    width: 5vmin;
+    height: 5vmin;
+}
+
+.butBackgroundBigSize{
+    width: 6vmin;
+    height: 6vmin;
+}
+
+.butImgBigSize{
+    width: 5vmin;
+    height: 5vmin;
+}
+
+.photoPlusMinus{
+    padding-top: 1vh;
+    display: inline-block;
+}
+
+.photoPlus{
+    padding-left: calc(1.3vw + (10.4vw - 2 * 4vmin)/3);
+}
+
+.photoMinus{
+    padding-left: calc((10.4vw - 2 * 4vmin)/3);
+}
+
+.butBackgroundSmallSize{
+    width: 4vmin;
+    height: 4vmin;
+}
+
+.butImgSmallSize{
+    width: 3vmin;
+    height: 3vmin;
 }

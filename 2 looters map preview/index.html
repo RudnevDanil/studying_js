@@ -111,24 +111,29 @@
 
             <!-- ------------------------------------ aboutProjectScreen ------------------------------------------------ -->
             <div id="aboutProjectScreen">
-
+                <div id="aboutProjectText">This project uses connected IP cameras to mark employees visits to premises, as well as to signal unauthorized visitors.</div>
             </div>
 
             <!-- ------------------------------------ facesScreen ------------------------------------------------ -->
             <div id="facesScreen">
-
+                <div class="topLine" id="facesScreenRefresh">
+                    <div>R</div>
+                </div>
+                <div class="topLine" id="facesScreenLast">
+                    <div class="button">Last</div>
+                </div>
             </div>
 
             <!-- ------------------------------------ staffScreen ------------------------------------------------ -->
             <div id="staffScreen">
 
-                <div class="topLine" id="staffScreenListBut">
-                    <div class="button" onclick="actions_staff.listShow()">List</div>
+                <div class="topLine topLineForImg ">
+                    <div class="butBackground butBackgroundBigSize"><img src='./data/loupe.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.listShow()"></div>
                 </div>
-                <div class="topLine" id="staffScreenAddBut">
-                    <div class="button" onclick="actions_staff.addShow()">Add</div>
+                <div class="topLine topLineForImg">
+                    <div class="butBackground butBackgroundBigSize"><img src='./data/plus.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.addShow()"></div>
                 </div>
-                <div class="topLine" id="staffScreenChoiceVal">
+                <div class="topLine topLineForSelect" id="staffScreenChoiceVal">
                     <select class="choiceVal">
                         <optgroup label="Marketing dept">
                             <option>Gates M</option>
@@ -148,14 +153,14 @@
                 <div class="staffPage" id="staffAddPage">
 
                     <div class="topLine" id="staffAddPrevButt">
-                        <div class="button" onclick=""><</div>
+                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div>
                     </div>
                     <div class="topLine" id="staffAddPrevButtPlaceHolder">
                         <div class="button" id="staffAddPrevButtBackground"></div>
                     </div>
 
                     <div class="topLine" id="staffAddNextButt">
-                        <div class="button" onclick="">></div>
+                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div>
                     </div>
                     <div class="topLine" id="staffAddNextButtPlaceHolder">
                         <div class="button" id="staffAddNextButtBackground"></div>
@@ -171,11 +176,13 @@
                     </div>
 
                     <div class="topLine" id="staffAddSaveButt">
-                        <div class="button" onclick="">Save</div>
+                        <!--<div class="button" onclick="">Save</div>-->
+                        <div class='butBackground butBackgroundBigSize'><img src='./data/checked.png' alt='save' class='imgTopLine butImgBigSize'></div>
                     </div>
 
                     <div class="topLine" id="staffAddRemoveUserButt">
-                        <div class="button" onclick="">Remove user</div>
+                        <!--<div class="button" onclick="">Remove user</div>-->
+                        <div class='butBackground butBackgroundBigSize'><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div>
                     </div>
                     <div class="topLine" id="staffAddRemoveUserButtPlaceHolder">
                         <div class="button" id="staffAddRemoveUserButtBackground"></div>
@@ -185,14 +192,15 @@
                 <div class="staffPage" id="staffListPage">
                     <!-- Here js will add faces card template -->
                     <div class="topLine" id="staffListPrevButt">
-                        <div class="button" onclick=""><</div>
+                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div>
                     </div>
                     <div class="topLine" id="staffListPrevButtPlaceHolder">
                         <div class="button" id="staffListPrevButtBackground"></div>
                     </div>
 
                     <div class="topLine" id="staffListNextButt">
-                        <div class="button" onclick="">></div>
+                        <!--<div class="button" onclick="">></div>-->
+                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div>
                     </div>
                     <div class="topLine" id="staffListNextButtPlaceHolder">
                         <div class="button" id="staffListNextButtBackground"></div>
@@ -258,8 +266,6 @@
                 str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffListPhoto_"+counter+"'>";
                 str += "<div class='staffPageText' id='staffListPersonName_"+counter+"'>Gates .M</div>";
                 str += "<div class='staffPageText' id='staffListPersonPosition_"+counter+"'>SEO</div>";
-                //str += "<img src='./data/pencil.png' alt='edit' class='photoPlusMinus photoPlus' id='ListPhotoButtPlus_"+counter+"'>";
-                //str += "<img src='./data/minus.png' alt='-' class='photoPlusMinus photoMinus' id='ListPhotoButtMinus_"+counter+"'>";
                 str += "</div>";
                 str += "<div class='photoAddBlock photoAddBlock"+((counter%6)+1)+" photoAddBlockPlaceHolder' id='photoAddBlockPlaceHolder_"+counter+"'></div>";
 
@@ -279,10 +285,12 @@
             str += "<div class='photoLine photoLineWithBut'>";
             for(let j = 0; j < 6; j++)
             {
-                str += "<div class='photoAddBlock photoAddBlock"+((counter%6)+1)+"'>";
+                str += "<div class='photoAddBlock photoAddBlockBut photoAddBlock"+((counter%6)+1)+"'>";
                 str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffAddPhoto_"+counter+"'>";
-                str += "<img src='./data/plus.png' alt='+' class='photoPlusMinus photoPlus' id='AddPhotoButtPlus_"+counter+"'>";
-                str += "<img src='./data/minus.png' alt='-' class='photoPlusMinus photoMinus' id='AddPhotoButtMinus_"+counter+"'>";
+                str += "<div class='photoPlusMinus photoPlus'><div class='butBackground butBackgroundSmallSize'><img src='./data/plus.png' alt='plus' class='imgTopLine butImgSmallSize'></div></div>";
+                str += "<div class='photoPlusMinus photoMinus'><div class='butBackground butBackgroundSmallSize'><img src='./data/minus.png' alt='minus' class='imgTopLine butImgSmallSize'></div></div>";
+                //<div class='butBackground'><img src='./data/plus.png' alt='plus' class='imgTopLine'></div>
+
                 str += "</div>";
                 counter += 1;
             }
