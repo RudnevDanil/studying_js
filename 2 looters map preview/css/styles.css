@@ -273,7 +273,11 @@ li{
     height: 17vh;
 }
 
-.photoAddBlock{
+.photoLineWithButAndDescription{
+    height: 20vh;
+}
+
+.photoCard{
     width: 7.8vw;
     height: 15vh;
     display: table-cell;
@@ -281,25 +285,33 @@ li{
     z-index: 0;
 }
 
-.photoAddBlockBut{
+.photoCardBut{
     height: 17vh;
 }
 
-.photoAddBlock2{left: 7.8vw;}
-.photoAddBlock3{left: 15.6vw;}
-.photoAddBlock4{left: 23.4vw;}
-.photoAddBlock5{left: 31.2vw;}
-.photoAddBlock6{left: 39.0vw;}
-.photoAddBlock7{left: 46.8vw;}
-.photoAddBlock8{left: 54.6vw;}
-.photoAddBlock9{left: 62.4vw;}
-.photoAddBlock10{left: 70.2vw;}
+.photoCardButAndDescription{
+    height: 20vh;
+}
+
+.photoCard2{left: 7.8vw;}
+.photoCard3{left: 15.6vw;}
+.photoCard4{left: 23.4vw;}
+.photoCard5{left: 31.2vw;}
+.photoCard6{left: 39.0vw;}
+.photoCard7{left: 46.8vw;}
+.photoCard8{left: 54.6vw;}
+.photoCard9{left: 62.4vw;}
+.photoCard10{left: 70.2vw;}
 
 
-.photoAddBlockPlaceHolder{
+.photoCardPlaceHolderList, .photoCardPlaceHolderAdd, .photoCardPlaceHolderFaces{
     z-index: 1;
     background: darkkhaki;
 }
+
+.photoCardPlaceHolderList{height: 15vh;}
+.photoCardPlaceHolderAdd{height: 17vh;}
+.photoCardPlaceHolderFaces{height: 20vh;}
 
 .photo_80, .photo_60, .photo_30{
     width: 6.24vw;
@@ -320,7 +332,13 @@ li{
     height: 10vh;
 }
 
-.staffAddPageText{
+.resultClassification{
+    margin-left: calc(0.78vw + (6.24vw - 4vmin)/2);
+    width: 4vmin;
+    max-width: 4vmin;
+}
+
+.staffAddPageText {
     display: inline-block;
     width: 12vw;
     margin-left: 1vw;
@@ -331,7 +349,6 @@ li{
 }
 
 #staffAddSaveButt{
-    width: 15vw;
     display: inline-block;
 }
 
@@ -385,52 +402,56 @@ li{
 }
 
 #staffAddRemoveUserButt{
-    width: 25vw;
     z-index: 0;
     position: absolute;
 }
 #staffAddRemoveUserButtPlaceHolder{
-    width: 25vw;
     z-index: 1;
     position: absolute;
 }
 #staffAddRemoveUserButtBackground{
     background-color: darkkhaki;
     border-radius: 0;
+    height: 6vmin;
 }
 
-#staffListPrevButt, #staffAddPrevButt{
+#staffListPrevButt, #staffAddPrevButt, #facesPrevButt{
     width: 10vw;
     z-index: 0;
     position: absolute;
 }
-#staffListPrevButtPlaceHolder, #staffAddPrevButtPlaceHolder{
+#staffListPrevButtPlaceHolder, #staffAddPrevButtPlaceHolder, #facesPrevButtPlaceHolder{
     width: 10vw;
     z-index: 1;
     position: absolute;
 }
-#staffListPrevButtBackground, #staffAddPrevButtBackground{
+#staffListPrevButtBackground, #staffAddPrevButtBackground, #facesPrevButtBackground{
     background-color: darkkhaki;
     border-radius: 0;
+    height: 6vmin;
 }
 
-#staffListNextButt, #staffAddNextButt{
+#staffListNextButt, #staffAddNextButt, #facesNextButt{
     left: 68vw;
     width: 10vw;
     z-index: 0;
     position: absolute;
 }
-#staffListNextButtPlaceHolder, #staffAddNextButtPlaceHolder{
+#staffListNextButtPlaceHolder, #staffAddNextButtPlaceHolder, #facesNextButtPlaceHolder{
     left: 68vw;
     width: 10vw;
     z-index: 1;
     position: absolute;
 }
-#staffListNextButtBackground, #staffAddNextButtBackground{
+#staffListNextButtBackground, #staffAddNextButtBackground, #facesNextButtBackground{
     background-color: darkkhaki;
     border-radius: 0;
+    height: 6vmin;
 }
 
+.topLineForButBig{
+    width: 10vw;
+}
 #staffAddFullNameBlock{
     margin-top: 8vh;
 }
@@ -521,3 +542,45 @@ li{
 #facesScreenDate_1{top: 1vh;}
 #facesScreenDate_2{top: calc(1vh + 2.5vmin + 1vmin);}
 
+#facesPage{top:8vmin;}
+
+.butResultClassification{
+    margin: auto;
+    width: 4vmin;
+    height: 4vmin;
+}
+.butResultClassificationOk{
+    background-color: green;
+    z-index: 0;
+}
+.butResultClassificationWarn{
+    background-color: yellow;
+    z-index: 0;
+}
+.butResultClassificationAlert{
+    background-color: red;
+    z-index: 0;
+}
+.butResultClassificationBackground{
+    background-color: darkkhaki;
+    z-index: 1;
+    border-radius: 0;
+}
+
+.staffPageTextPosition{
+    margin-bottom: 1vh;
+}
+
+.butResultClassification img{
+    width: 3vmin;
+    height: 3vmin;
+}
+
+.resultClassification{
+    padding-top: 0;
+
+}
+
+.butResultClassification{
+    position: absolute;
+}
