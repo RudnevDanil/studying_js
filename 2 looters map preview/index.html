@@ -116,24 +116,54 @@
 
             <!-- ------------------------------------ facesScreen ------------------------------------------------ -->
             <div id="facesScreen">
-                <div class="topLine" id="facesScreenRefresh">
-                    <div>R</div>
+                <div class="topLine topLineForImg" id="facesScreenRefresh"><div class="butBackground butBackgroundBigSize"><img src='./data/refresh.png' alt='refresh' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenLast"><div class="butBackground butBackgroundBigSize"><img src='./data/speedometr.png' alt='last' class='imgTopLine butImgBigSize'></div></div>
+
+                <div class="topLine topLineForDate" id="facesScreenDate_1"><input type="date" name="calendar"></div>
+                <div class="topLine topLineForDate" id="facesScreenDate_2"><input type="date" name="calendar"></div>
+
+                <div class="topLine topLineForImg" id="facesScreenArrowForward"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='search' class='imgTopLine butImgBigSize'></div></div>
+
+                <div class="topLine topLineForSelect topLineForChoiceVal" id="facesScreenChoiceVal">
+                    <select class="choiceVal" id="choiceValFacesScreen">
+                        <optgroup label="Marketing dept">
+                            <option>Gates M</option>
+                            <option>Ford G</option>
+                            <option>Trump D</option>
+                        </optgroup>
+                        <optgroup label="IT dept">
+                            <option>Lane J</option>
+                            <option>Richardson M</option>
+                            <option>Obama B</option>
+                        </optgroup>
+                    </select>
                 </div>
-                <div class="topLine" id="facesScreenLast">
-                    <div class="button">Last</div>
-                </div>
+                <div class="topLine topLineForSelect topLineForChoiceVal" id="facesScreenChoiceValBackground"><select class="choiceVal" id="choiceValFacesScreenBackground"></select></div>
+
+                <div class="topLine topLineForImg" id="facesScreenArrowOutR"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_out_right.png' alt='add_to_staff' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenPoo"><div class="butBackground butBackgroundBigSize"><img src='./data/poo.png' alt='make_bad_man' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
 
             <!-- ------------------------------------ staffScreen ------------------------------------------------ -->
             <div id="staffScreen">
 
-                <div class="topLine topLineForImg ">
-                    <div class="butBackground butBackgroundBigSize"><img src='./data/loupe.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.listShow()"></div>
-                </div>
-                <div class="topLine topLineForImg">
-                    <div class="butBackground butBackgroundBigSize"><img src='./data/plus.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.addShow()"></div>
-                </div>
-                <div class="topLine topLineForSelect" id="staffScreenChoiceVal">
+                <div class="topLine topLineForImg" id="staffScreenLoupe"><div class="butBackground butBackgroundBigSize"><img src='./data/loupe.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.listShow()"></div></div>
+                <div class="topLine topLineForImg" id="staffScreenPlus"><div class="butBackground butBackgroundBigSize"><img src='./data/plus.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.addShow()"></div></div>
+                <div class="topLine topLineForSelect topLineForChoiceVal" id="staffScreenChoiceVal">
                     <select class="choiceVal">
                         <optgroup label="Marketing dept">
                             <option>Gates M</option>
@@ -151,60 +181,24 @@
                 <div class="staffPage" id="staffBackground"></div>
 
                 <div class="staffPage" id="staffAddPage">
+                    <div class="topLine" id="staffAddPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="staffAddPrevButtPlaceHolder"><div class="button" id="staffAddPrevButtBackground"></div></div>
+                    <div class="topLine" id="staffAddNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="staffAddNextButtPlaceHolder"><div class="button" id="staffAddNextButtBackground"></div></div>
 
-                    <div class="topLine" id="staffAddPrevButt">
-                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div>
-                    </div>
-                    <div class="topLine" id="staffAddPrevButtPlaceHolder">
-                        <div class="button" id="staffAddPrevButtBackground"></div>
-                    </div>
+                    <div class="topLine" id="staffAddFullNameBlock"><div class="text staffAddPageText">Full name</div><input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="..."></div>
+                    <div class="topLine"><div class="text staffAddPageText">Position</div><input class="inputVal staffInputVal"  id="staffAddPagePosition" type="text" placeholder="..."></div>
 
-                    <div class="topLine" id="staffAddNextButt">
-                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div>
-                    </div>
-                    <div class="topLine" id="staffAddNextButtPlaceHolder">
-                        <div class="button" id="staffAddNextButtBackground"></div>
-                    </div>
-
-                    <div class="topLine" id="staffAddFullNameBlock">
-                        <div class="text staffAddPageText">Full name</div>
-                        <input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="...">
-                    </div>
-                    <div class="topLine">
-                        <div class="text staffAddPageText">Position</div>
-                        <input class="inputVal staffInputVal"  id="staffAddPagePosition" type="text" placeholder="...">
-                    </div>
-
-                    <div class="topLine" id="staffAddSaveButt">
-                        <!--<div class="button" onclick="">Save</div>-->
-                        <div class='butBackground butBackgroundBigSize'><img src='./data/checked.png' alt='save' class='imgTopLine butImgBigSize'></div>
-                    </div>
-
-                    <div class="topLine" id="staffAddRemoveUserButt">
-                        <!--<div class="button" onclick="">Remove user</div>-->
-                        <div class='butBackground butBackgroundBigSize'><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div>
-                    </div>
-                    <div class="topLine" id="staffAddRemoveUserButtPlaceHolder">
-                        <div class="button" id="staffAddRemoveUserButtBackground"></div>
-                    </div>
+                    <div class="topLine" id="staffAddSaveButt"><div class='butBackground butBackgroundBigSize'><img src='./data/checked.png' alt='save' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="staffAddRemoveUserButt"><div class='butBackground butBackgroundBigSize'><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="staffAddRemoveUserButtPlaceHolder"><div class="button" id="staffAddRemoveUserButtBackground"></div></div>
                 </div>
 
                 <div class="staffPage" id="staffListPage">
-                    <!-- Here js will add faces card template -->
-                    <div class="topLine" id="staffListPrevButt">
-                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div>
-                    </div>
-                    <div class="topLine" id="staffListPrevButtPlaceHolder">
-                        <div class="button" id="staffListPrevButtBackground"></div>
-                    </div>
-
-                    <div class="topLine" id="staffListNextButt">
-                        <!--<div class="button" onclick="">></div>-->
-                        <div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div>
-                    </div>
-                    <div class="topLine" id="staffListNextButtPlaceHolder">
-                        <div class="button" id="staffListNextButtBackground"></div>
-                    </div>
+                    <div class="topLine" id="staffListPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="staffListPrevButtPlaceHolder"><div class="button" id="staffListPrevButtBackground"></div></div>
+                    <div class="topLine" id="staffListNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="staffListNextButtPlaceHolder"><div class="button" id="staffListNextButtBackground"></div></div>
                 </div>
 
             </div>
@@ -219,7 +213,7 @@
 
 
 <script>
-    document.getElementById("staffScreen").style.zIndex = "2"
+    document.getElementById("facesScreen").style.zIndex = "2"
 </script>
 
 <script>
@@ -253,21 +247,21 @@
             blocks[i].style.width = Math.max.apply(null, page2List);
     }
 
-    // add faces card template to staff list page
+    // add faces card template to staff LIST page
     {
         let str = "";
         let counter = 0;
         for(let i = 0; i < 4; i++)
         {
             str += "<div class='photoLine'>";
-            for(let j = 0; j < 6; j++)
+            for(let j = 0; j < 10; j++)
             {
-                str += "<div class='photoAddBlock photoAddBlock" + ""+((counter%6)+1)+"' id='photoAddBlock_"+counter+"'>";
+                str += "<div class='photoAddBlock photoAddBlock" + ""+((counter%10)+1)+"' id='photoAddBlock_"+counter+"'>";
                 str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffListPhoto_"+counter+"'>";
                 str += "<div class='staffPageText' id='staffListPersonName_"+counter+"'>Gates .M</div>";
                 str += "<div class='staffPageText' id='staffListPersonPosition_"+counter+"'>SEO</div>";
                 str += "</div>";
-                str += "<div class='photoAddBlock photoAddBlock"+((counter%6)+1)+" photoAddBlockPlaceHolder' id='photoAddBlockPlaceHolder_"+counter+"'></div>";
+                str += "<div class='photoAddBlock photoAddBlock"+((counter%10)+1)+" photoAddBlockPlaceHolder' id='photoAddBlockPlaceHolder_"+counter+"'></div>";
 
                 counter += 1;
             }
@@ -276,21 +270,19 @@
         document.getElementById("staffListPage").innerHTML = str + document.getElementById("staffListPage").innerHTML;
     }
 
-    // add faces card template to staff add page
+    // add faces card template to staff ADD page
     {
         let str = "";
         let counter = 0;
         for(let i = 0; i < 2; i++)
         {
             str += "<div class='photoLine photoLineWithBut'>";
-            for(let j = 0; j < 6; j++)
+            for(let j = 0; j < 10; j++)
             {
-                str += "<div class='photoAddBlock photoAddBlockBut photoAddBlock"+((counter%6)+1)+"'>";
+                str += "<div class='photoAddBlock photoAddBlockBut photoAddBlock"+((counter%10)+1)+"'>";
                 str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffAddPhoto_"+counter+"'>";
                 str += "<div class='photoPlusMinus photoPlus'><div class='butBackground butBackgroundSmallSize'><img src='./data/plus.png' alt='plus' class='imgTopLine butImgSmallSize'></div></div>";
                 str += "<div class='photoPlusMinus photoMinus'><div class='butBackground butBackgroundSmallSize'><img src='./data/minus.png' alt='minus' class='imgTopLine butImgSmallSize'></div></div>";
-                //<div class='butBackground'><img src='./data/plus.png' alt='plus' class='imgTopLine'></div>
-
                 str += "</div>";
                 counter += 1;
             }

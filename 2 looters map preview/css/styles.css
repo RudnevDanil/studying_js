@@ -32,10 +32,7 @@ body{
 
 #header, #footer, #blackboard, #menu{
     position: relative;
-    padding-top: 1vh;
-    padding-left: 1vw;
-    padding-bottom: 1vh;
-    padding-right: 1vw;
+    padding: 1vh 1vw;
 }
 
 #blackboard{
@@ -56,7 +53,7 @@ body{
 
 #menu{
     /*background-color: forestgreen;*/
-    width: 17vw;
+    width: 18vw;
     height: 80vh;
 }
 
@@ -75,10 +72,11 @@ body{
 
 li{
     padding-top: 2vh;
+    overflow: hidden;
 }
 
 .textHF{
-    width: 97vw;
+    width: 98vw;
     height: 8vh;
     display: flex;
 }
@@ -101,7 +99,7 @@ li{
     border-spacing: 1.5vw 1.5vh;
 }
 
-#staffScreen .topLine{
+#staffScreen .topLine, #facesScreen .topLine{
     display: inline-table;
 }
 
@@ -120,12 +118,13 @@ li{
     vertical-align: middle;
     white-space: nowrap;
     display: inline-block;
-    margin-left: 1.3vw;
-    width: 15.6vw;
-    max-width: 15.6vw;
+    margin-left: 0.78vw;
+    width: 6.24vw;
+    max-width: 6.24vw;
     height: 2vh;
     max-height: 3vh;
     font-size: 2vh;
+    overflow: hidden;
 }
 
 .button{
@@ -141,7 +140,7 @@ li{
 }
 
 .inputVal, .choiceVal{
-    width: 20vw;
+    width: 20vmin;
     height: 5vh;
     background-color:beige;
     border-radius: 3vmin;
@@ -275,7 +274,7 @@ li{
 }
 
 .photoAddBlock{
-    width: 13vw;
+    width: 7.8vw;
     height: 15vh;
     display: table-cell;
     position: absolute;
@@ -286,11 +285,16 @@ li{
     height: 17vh;
 }
 
-.photoAddBlock2{left: 13vw;}
-.photoAddBlock3{left: 26vw;}
-.photoAddBlock4{left: 39vw;}
-.photoAddBlock5{left: 52vw;}
-.photoAddBlock6{left: 65vw;}
+.photoAddBlock2{left: 7.8vw;}
+.photoAddBlock3{left: 15.6vw;}
+.photoAddBlock4{left: 23.4vw;}
+.photoAddBlock5{left: 31.2vw;}
+.photoAddBlock6{left: 39.0vw;}
+.photoAddBlock7{left: 46.8vw;}
+.photoAddBlock8{left: 54.6vw;}
+.photoAddBlock9{left: 62.4vw;}
+.photoAddBlock10{left: 70.2vw;}
+
 
 .photoAddBlockPlaceHolder{
     z-index: 1;
@@ -298,7 +302,7 @@ li{
 }
 
 .photo_80, .photo_60, .photo_30{
-    width: 10.4vw;
+    width: 6.24vw;
     border-radius: 1vmin;
     display: block;
     margin: auto;
@@ -330,15 +334,54 @@ li{
     width: 15vw;
     display: inline-block;
 }
-/*
-#staffScreenListBut, #staffScreenAddBut{
-    width: 13vw;
-    display: inline-block;
-}*/
 
-#staffScreenChoiceVal{
-    width: 25vw;
+.topLineForChoiceVal{
+    width: calc(17vmin + 5vw);
     position: absolute;
+}
+
+#facesScreenChoiceVal{
+    z-index: 0;
+    left: 44vmin;
+}
+#choiceValFacesScreen, #choiceValFacesScreenBackground{
+    width: calc(17vmin + 5vw);
+}
+#facesScreenChoiceValBackground{
+    width: calc(17vmin + 5vw);
+    background-color: darkkhaki;
+    position: absolute;
+    z-index: 1;
+    left: 44vmin;
+}
+#choiceValFacesScreenBackground{
+    visibility: hidden;
+}
+
+#facesScreenArrowOutR, #facesScreenPoo, #facesScreenRemove, #facesScreenRefresh, #facesScreenLast, #facesScreenDate_1, #facesScreenDate_2, #facesScreenArrowForward{
+    position: absolute;
+    z-index: 2;
+}
+#facesScreenRefresh{left: 0vmin;}
+#facesScreenLast{left: 8vmin;}
+#facesScreenDate_1{left: 16vmin;}
+#facesScreenDate_2{left: 16vmin;}
+#facesScreenArrowForward{left: 36vmin;}
+#facesScreenArrowOutR{left: 44vmin;}
+#facesScreenPoo{left: 52vmin;}
+#facesScreenRemove{left: 60vmin;}
+
+#staffScreenLoupe, #staffScreenPlus, #staffScreenChoiceVal{
+    position: absolute;
+    z-index: 2;
+}
+
+#staffScreenLoupe{left: 0vmin;}
+#staffScreenPlus{left: 8vmin;}
+#staffScreenChoiceVal{left: 16vmin;}
+
+#staffBackground, #staffAddPage, #staffListPage{
+    top: 8vmin;
 }
 
 #staffAddRemoveUserButt{
@@ -438,19 +481,43 @@ li{
 }
 
 .photoPlus{
-    padding-left: calc(1.3vw + (10.4vw - 2 * 4vmin)/3);
+    padding-left: calc(0.78vw + (6.24vw - 2 * 3vmin)/3);
 }
 
 .photoMinus{
-    padding-left: calc((10.4vw - 2 * 4vmin)/3);
+    padding-left: calc((6.24vw - 2 * 3vmin)/3);
 }
 
 .butBackgroundSmallSize{
-    width: 4vmin;
-    height: 4vmin;
-}
-
-.butImgSmallSize{
     width: 3vmin;
     height: 3vmin;
 }
+
+.butImgSmallSize{
+    width: 2vmin;
+    height: 2vmin;
+}
+
+.topLineForDate{
+    height: 2.5vh;
+    width: 20vw;
+    position: absolute;
+    border-spacing: 0;
+}
+
+.topLineForDate input{
+    height: 2.5vmin;
+    width: 20vmin;
+    background-color:beige;
+    border-radius: 3vmin;
+    text-align: center;
+    color: black;
+    font-size: 1.9vmin;
+    outline: none;
+    border: 0;
+    text-align-last: center;
+}
+
+#facesScreenDate_1{top: 1vh;}
+#facesScreenDate_2{top: calc(1vh + 2.5vmin + 1vmin);}
+
