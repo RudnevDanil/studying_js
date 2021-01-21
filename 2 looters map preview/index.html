@@ -29,35 +29,29 @@
 
             <!-- ------------------------------------ camerasScreen ------------------------------------------------ -->
             <div id="camerasScreen">
-                <div class="topLine">
-                    <div class="text">Amount Displayed Cameras:</div>
-                    <div class="button" id="inpCamAmountVal_1" onclick="switchDisplayAmountCamerasTo_1()">1</div>
-                    <div class="button" id="inpCamAmountVal_2" onclick="switchDisplayAmountCamerasTo_2()">2</div>
-                    <div class="button" id="inpCamAmountVal_4" onclick="switchDisplayAmountCamerasTo_4()">4</div>
-                </div>
+                <div class="topLine topLineForImg" id="cameraScreenAmount_1"><div class="butBackground butBackgroundBigSize"><img src='./data/number_1_v2.png' alt='1' class='imgTopLine butImgBigSize' onclick="switchDisplayAmountCamerasTo_1()"></div></div>
+                <div class="topLine topLineForImg" id="cameraScreenAmount_2"><div class="butBackground butBackgroundBigSize"><img src='./data/number_2_v2.png' alt='1' class='imgTopLine butImgBigSize' onclick="switchDisplayAmountCamerasTo_2()"></div></div>
+                <div class="topLine topLineForImg" id="cameraScreenAmount_4"><div class="butBackground butBackgroundBigSize"><img src='./data/number_4_v2.png' alt='1' class='imgTopLine butImgBigSize' onclick="switchDisplayAmountCamerasTo_4()"></div></div>
+
+
                 <div class="cameraBlocks">
                     <div class="cameraBlock amountCameras_4" id="cameraBlock_1"><div class="testInside_2_4" id="placeholder_1"></div></div>
                     <div class="cameraBlock amountCameras_4" id="cameraBlock_2"><div class="testInside_2_4" id="placeholder_2"></div></div>
                     <div id="newLineForAmount_4"></div>
                     <div class="cameraBlock amountCameras_4" id="cameraBlock_3"><div class="testInside_2_4" id="placeholder_3"></div></div>
                     <div class="cameraBlock amountCameras_4" id="cameraBlock_4"><div class="testInside_2_4" id="placeholder_4"></div></div>
-
                 </div>
             </div>
 
             <!-- ------------------------------------ cameraSettingsScreen ------------------------------------------------ -->
             <div id="cameraSettingsScreen">
-                <div class="topLine">
-                    <div class="button" id="inpCamSetUpUniversal" onclick="switchDisplayToUniSet()">Universal</div>
-                    <div class="button" id="inpCamSetUpStream" onclick="switchDisplayToStreamSet()">Stream</div>
-                </div>
+                <div class="topLine topLineForImg" id="cameraSettingsUniversal"><div class="butBackground butBackgroundBigSize"><img src='./data/plug.png' alt='universal' class='imgTopLine butImgBigSize' onclick="switchDisplayToUniSet()"></div></div>
+                <div class="topLine topLineForImg" id="cameraSettingsStream"><div class="butBackground butBackgroundBigSize"><img src='./data/settings.png' alt='stream' class='imgTopLine butImgBigSize' onclick="switchDisplayToStreamSet()"></div></div>
 
                 <div class="settingsBackground"></div>
 
                 <div id="uniSet">
-                    <div class="topLine">
-                        <div class="text">Amount of cameras:<input class="inputVal" type="text"placeholder="1...16"></div>
-                    </div>
+                    <div class="topLine"><div class="text">Amount of cameras:<input class="inputVal" type="text"placeholder="1...16"></div></div>
                 </div>
 
                 <div id="streamSet">
@@ -75,11 +69,10 @@
                             <div class="text streamSetPage1Text">Connecting line</div>
                             <input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="...">
                         </div>
-                        <div class="topLine">
-                            <div class="rightBut">
-                                <div class="button" id="settingsNextPage" onclick="switchDisplaySettingsToNextPage()">></div>
-                            </div>
-                        </div>
+
+                        <div class="topLine topLineForButBig topLineNextBut" id="camSetNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize' onclick="switchDisplaySettingsToNextPage()"></div></div>
+                        <div class="topLine topLineForButBig topLineNextButPlaceholder" id="camSetNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="camSetNextButtBackground"></div></div>
+
                     </div>
                     <div id="streamSetSecondPage">
                         <div class="topLine">
@@ -102,9 +95,10 @@
                             <div class="text streamSetPage2Text">Scaling</div>
                             <input class="inputVal"  id="streamSetScaling" type="text"placeholder="...">
                         </div>
-                        <div class="topLine">
-                            <div class="button" id="settingsPrevPage" onclick="switchDisplaySettingsToPrevPage()"><</div>
-                        </div>
+
+                        <div class="topLine topLineForButBig topLinePrevBut" id="camSetPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize' onclick="switchDisplaySettingsToPrevPage()"></div></div>
+                        <div class="topLine topLineForButBig topLinePrevButPlaceholder" id="camSetPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="camSetPrevButtBackground"></div></div>
+
                     </div>
                 </div>
             </div>
@@ -145,19 +139,11 @@
                 <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
 
                 <div class="staffPage" id="facesPage">
-                    <div class="topLine topLineForButBig" id="facesPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
-                    <div class="topLine topLineForButBig" id="facesPrevButtPlaceHolder"><div class="button" id="facesPrevButtBackground"></div></div>
-                    <div class="topLine topLineForButBig" id="facesNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
-                    <div class="topLine topLineForButBig" id="facesNextButtPlaceHolder"><div class="button" id="facesNextButtBackground"></div></div>
+                    <div class="topLine topLineForButBig topLinePrevBut" id="facesPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig topLinePrevButPlaceholder" id="facesPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="facesPrevButtBackground"></div></div>
+                    <div class="topLine topLineForButBig topLineNextBut" id="facesNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig topLineNextButPlaceholder" id="facesNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="facesNextButtBackground"></div></div>
                 </div>
-
-
-
-
-
-
-
-
 
             </div>
 
@@ -184,10 +170,10 @@
                 <div class="staffPage" id="staffBackground"></div>
 
                 <div class="staffPage" id="staffAddPage">
-                    <div class="topLine" id="staffAddPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
-                    <div class="topLine" id="staffAddPrevButtPlaceHolder"><div class="button" id="staffAddPrevButtBackground"></div></div>
-                    <div class="topLine" id="staffAddNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
-                    <div class="topLine" id="staffAddNextButtPlaceHolder"><div class="button" id="staffAddNextButtBackground"></div></div>
+                    <div class="topLine topLinePrevBut" id="staffAddPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLinePrevButPlaceholder" id="staffAddPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="staffAddPrevButtBackground"></div></div>
+                    <div class="topLine topLineNextBut" id="staffAddNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineNextButPlaceholder" id="staffAddNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="staffAddNextButtBackground"></div></div>
 
                     <div class="topLine" id="staffAddFullNameBlock"><div class="text staffAddPageText">Full name</div><input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="..."></div>
                     <div class="topLine"><div class="text staffAddPageText">Position</div><input class="inputVal staffInputVal"  id="staffAddPagePosition" type="text" placeholder="..."></div>
@@ -198,10 +184,10 @@
                 </div>
 
                 <div class="staffPage" id="staffListPage">
-                    <div class="topLine topLineForButBig" id="staffListPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
-                    <div class="topLine topLineForButBig" id="staffListPrevButtPlaceHolder"><div class="button" id="staffListPrevButtBackground"></div></div>
-                    <div class="topLine topLineForButBig" id="staffListNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
-                    <div class="topLine topLineForButBig" id="staffListNextButtPlaceHolder"><div class="button" id="staffListNextButtBackground"></div></div>
+                    <div class="topLine topLineForButBig topLinePrevBut" id="staffListPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig topLinePrevButPlaceholder" id="staffListPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="staffListPrevButtBackground"></div></div>
+                    <div class="topLine topLineForButBig topLineNextBut" id="staffListNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig topLineNextButPlaceholder" id="staffListNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="staffListNextButtBackground"></div></div>
                 </div>
 
             </div>
@@ -217,15 +203,6 @@
 
 <script>
     document.getElementById("facesScreen").style.zIndex = "2"
-</script>
-
-<script>
-    // make buttons better
-    {
-        let blocks = document.getElementsByClassName("button");
-        for (let i = 0; i < blocks.length; i++)
-            blocks[i].style.width = "calc(" + blocks[i].offsetWidth + "px + 5vw)";
-    }
 </script>
 
 <script>
@@ -354,7 +331,8 @@
             blocks_6[i].style.zIndex = "2";
         }
 
-
+        document.getElementById("camSetNextButt").style.zIndex = "2";
+        document.getElementById("camSetPrevButt").style.zIndex = "2";
 
         document.getElementById("staffListNextButt").style.zIndex = "2";
         document.getElementById("staffListPrevButt").style.zIndex = "2";

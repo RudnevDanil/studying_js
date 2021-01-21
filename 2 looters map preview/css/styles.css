@@ -96,10 +96,11 @@ li{
     width: 100%;
     height: 8vh;
     font-size: 3vh;
-    border-spacing: 1.5vw 1.5vh;
+    border-spacing: 1.5vmin;
 }
 
-#staffScreen .topLine, #facesScreen .topLine{
+/*#staffScreen .topLine, #facesScreen .topLine, #cameraSettingsScreen .topLine{*/
+.topLine{
     display: inline-table;
 }
 
@@ -349,7 +350,10 @@ li{
 }
 
 #staffAddSaveButt{
-    display: inline-block;
+    z-index: 0;
+    position: absolute;
+    top: 58vh;
+    left: 0;
 }
 
 .topLineForChoiceVal{
@@ -404,10 +408,15 @@ li{
 #staffAddRemoveUserButt{
     z-index: 0;
     position: absolute;
+    top: 58vh;
+    left: 9vmin;
 }
 #staffAddRemoveUserButtPlaceHolder{
     z-index: 1;
     position: absolute;
+    top: 58vh;
+    left: 9vmin;
+    border-spacing: 0;
 }
 #staffAddRemoveUserButtBackground{
     background-color: darkkhaki;
@@ -415,42 +424,54 @@ li{
     height: 6vmin;
 }
 
-#staffListPrevButt, #staffAddPrevButt, #facesPrevButt{
-    width: 10vw;
+.topLinePrevBut{
     z-index: 0;
+    width: 9vmin;
     position: absolute;
 }
-#staffListPrevButtPlaceHolder, #staffAddPrevButtPlaceHolder, #facesPrevButtPlaceHolder{
-    width: 10vw;
+.topLinePrevButPlaceholder{
+    width: 9vmin;
     z-index: 1;
     position: absolute;
+    left: 0vh;
+    border-spacing: 0;
 }
-#staffListPrevButtBackground, #staffAddPrevButtBackground, #facesPrevButtBackground{
+.prevButtPlaceHolder{
     background-color: darkkhaki;
     border-radius: 0;
     height: 6vmin;
 }
 
-#staffListNextButt, #staffAddNextButt, #facesNextButt{
-    left: 68vw;
-    width: 10vw;
+.topLineNextBut{
+    left: calc(78vw - 9vmin);
+    width: 9vmin;
     z-index: 0;
     position: absolute;
 }
-#staffListNextButtPlaceHolder, #staffAddNextButtPlaceHolder, #facesNextButtPlaceHolder{
-    left: 68vw;
-    width: 10vw;
+.topLineNextButPlaceholder{
+    left: calc(78vw - 9vmin);
+    width: 9vmin;
     z-index: 1;
+    border-spacing: 0;
     position: absolute;
 }
-#staffListNextButtBackground, #staffAddNextButtBackground, #facesNextButtBackground{
+.nextButtPlaceHolder{
     background-color: darkkhaki;
     border-radius: 0;
     height: 6vmin;
 }
+
+#camSetPrevButt{
+    top: 40vh;
+    left: 0;
+}
+#camSetNextButt{
+    top: 40vh;
+}
+
 
 .topLineForButBig{
-    width: 10vw;
+    width: 9vmin;
 }
 #staffAddFullNameBlock{
     margin-top: 8vh;
@@ -462,9 +483,9 @@ li{
 }
 
 .topLineForImg{
-    width: 8vw;
-    height: 8vh;
-    border-spacing: 1vw 1vh;
+    width: 8vmin;
+    height: 8vmin;
+    border-spacing: 1vmin;
 }
 
 .topLineForSelect{
