@@ -25,13 +25,42 @@
             <!-- ------------------------------------ mapScreen ------------------------------------------------ -->
             <div id="mapScreen">
 
+
+
+                <div class="topLine topLineForImg" id="mapScreenEdit"><div class="butBackground butBackgroundBigSize notChecked" id="mapScreenEditBackground" onclick="actions_map.editClicked()"><img src='./data/pencil_2.png' alt='edit' class='tooBigImg'></div></div>
+                <div class="topLine topLineForImg" id="mapScreenSave"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenSaveBackground" onclick="actions_map.saveClicked()"><img src='./data/save.png' alt='last' class='tooBigImg'></div></div>
+
+                <div class="topLine topLineForImg" id="mapScreenToolWall"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenToolWallBackground" onclick="actions_map.wallClicked()"><img src='./data/wall.png' alt='last' class='tooBigImg'></div></div>
+                <div class="topLine topLineForImg" id="mapScreenToolCam"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenToolCamBackground" onclick="actions_map.cameraClicked()"><img src='./data/camera.png' alt='last' class='tooBigImg'></div></div>
+                <div class="topLine topLineForImg" id="mapScreenToolDoor"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenToolDoorBackground" onclick="actions_map.doorClicked()"><img src='./data/door_2.png' alt='last' class='tooBigImg'></div></div>
+                <div class="topLine topLineForImg" id="mapScreenToolWindow"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenToolWindowBackground" onclick="actions_map.windowsillClicked()"><img src='./data/windowsill.png' alt='last' class='tooBigImg'></div></div>
+
+                <div class="topLine topLineForImg" id="mapScreenHand"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenHandBackground"><img src='./data/pickUpHand.png' alt='last' class='tooBigImg'></div></div>
+                <div class="topLine topLineForImg" id="mapScreenSettings"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenSettingsBackground"><img src='./data/settings.png' alt='last' class='tooBigImg'></div></div>
+
+                <div class="sliderBlock" id="wallSliders">
+                    <div class="slider sliderPosition_1" id="slider_1"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                    <div class="slider sliderPosition_2" id="slider_2"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                    <div class="slider sliderPosition_3" id="slider_3"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                </div>
+
+                <div class="sliderBlock slidersBackground">
+
+                </div>
+
+                <div class="sliderBlock" id="cameraSliders">
+                    <div class="inputCamNumb"><div class="inputLine"></div></div>
+                    <div class="slider sliderPosition_4" id="slider_4"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                    <div class="slider sliderPosition_5" id="slider_5"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                </div>
+                <!--<canvas id="map"></canvas>-->
             </div>
 
             <!-- ------------------------------------ camerasScreen ------------------------------------------------ -->
             <div id="camerasScreen">
-                <div class="topLine topLineForImg" id="cameraScreenAmount_1"><div class="butBackground butBackgroundBigSize"><img src='./data/number_1_v2.png' alt='1' class='imgTopLine butImgBigSize' onclick="switchDisplayAmountCamerasTo_1()"></div></div>
-                <div class="topLine topLineForImg" id="cameraScreenAmount_2"><div class="butBackground butBackgroundBigSize"><img src='./data/number_2_v2.png' alt='1' class='imgTopLine butImgBigSize' onclick="switchDisplayAmountCamerasTo_2()"></div></div>
-                <div class="topLine topLineForImg" id="cameraScreenAmount_4"><div class="butBackground butBackgroundBigSize"><img src='./data/number_4_v2.png' alt='1' class='imgTopLine butImgBigSize' onclick="switchDisplayAmountCamerasTo_4()"></div></div>
+                <div class="topLine topLineForImg" id="cameraScreenAmount_1"><div class="butBackground butBackgroundBigSize"><img src='./data/number_1_v2.png' alt='1' class='imgTopLine butImgBigSize tooSmallImg' onclick="switchDisplayAmountCamerasTo_1()"></div></div>
+                <div class="topLine topLineForImg" id="cameraScreenAmount_2"><div class="butBackground butBackgroundBigSize"><img src='./data/number_2_v2.png' alt='1' class='imgTopLine butImgBigSize tooSmallImg' onclick="switchDisplayAmountCamerasTo_2()"></div></div>
+                <div class="topLine topLineForImg" id="cameraScreenAmount_4"><div class="butBackground butBackgroundBigSize"><img src='./data/number_4_v2.png' alt='1' class='imgTopLine butImgBigSize tooSmallImg' onclick="switchDisplayAmountCamerasTo_4()"></div></div>
 
 
                 <div class="cameraBlocks">
@@ -202,7 +231,7 @@
 
 
 <script>
-    document.getElementById("facesScreen").style.zIndex = "2"
+    document.getElementById("mapScreen").style.zIndex = "2"
 </script>
 
 <script>
@@ -343,7 +372,15 @@
 
         document.getElementById("facesNextButt").style.zIndex = "2";
         document.getElementById("facesPrevButt").style.zIndex = "2";
+
+        document.getElementById("wallSliders").style.zIndex = "0";
+        //document.getElementById("cameraSliders").style.zIndex = "0";
+
+
+
+
     }
 
-
 </script>
+
+<script src="js/mapControl.js"></script>

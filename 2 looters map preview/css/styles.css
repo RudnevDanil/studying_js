@@ -502,9 +502,27 @@ li{
 
 .butBackground{
     background-color: beige;
-    border-radius: 6vmin;
+    border-radius: 1vmin;
     width: 5vmin;
     height: 5vmin;
+}
+
+.notChecked{
+    border: 0.3vmin solid beige;
+    border-spacing: 0.7vmin;
+}
+
+.checked{
+    border: 0.3vmin solid black;
+    border-spacing: 0.7vmin;
+}
+
+.notAllowedToTouch{
+    opacity: 0.5;
+}
+
+.allowedToTouch{
+    opacity: 1;
 }
 
 .butBackgroundBigSize{
@@ -605,3 +623,89 @@ li{
 .butResultClassification{
     position: absolute;
 }
+
+#map{
+    width: inherit;
+    height: inherit;
+}
+
+.tooSmallImg{
+    width: 6vmin;
+    height: 6vmin;
+    padding-left: 0;
+    padding-top: 0;
+}
+
+.tooBigImg{
+    width: 4vmin;
+    height: 4vmin;
+    padding-left: 1vmin;
+    padding-top: 1vmin;
+}
+
+.sliderBlock{
+    position: absolute;
+    top: 8.6vmin;
+    left: 0vmin;
+    border-spacing: 1vmin;
+    display: inline-flex;
+    z-index: 2;
+}
+.slider{
+    background-color: darkkhaki;
+    width: 16vmin;
+    height: 4vmin;
+    padding: 1vmin;
+    position: absolute;
+}
+.sliderLine{
+    background-color: beige;
+    border-radius: 3vmin;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+}
+.sliderBall{
+    background-color: beige;
+    border-radius: 3vmin;
+    border: 0.5vmin solid black;
+    width: 3vmin;
+    height: 3vmin;
+    position: absolute;
+}
+.sliderPosition_1{left: 0vmin}
+.sliderPosition_2{left: 18vmin}
+.sliderPosition_3{left: 36vmin}
+
+.sliderPosition_4{left: 27vmin}
+.sliderPosition_5{left: 45vmin}
+
+.sliderBackground{
+    z-index: 1;
+}
+.sliderLineBackground{
+    background-color: darkkhaki;
+}
+
+.inputCamNumb{
+    background-color: darkkhaki;
+    width: 25vmin;
+    height: 4vmin;
+    padding: 1vmin;
+    position: absolute;
+}
+.inputLine{
+    background-color: beige;
+    border-radius: 3vmin;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+}
+
+.slidersBackground{
+    width: inherit;
+    height: 6vmin;
+    background-color: darkkhaki;
+    z-index: 1;
+}
+

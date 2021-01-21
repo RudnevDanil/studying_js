@@ -74,6 +74,152 @@ function menuClicked(i)
 }
 
 /*---------------------------- MAP --------------------------------------------*/
+let mapToolBarState = {
+    isEditMode: false,
+    isWall: false,
+    isCamera: false,
+    isDoor: false,
+    isWindowsill: false,
+}
+
+let actions_map = {
+
+    mapBackgroundIds: [
+        "mapScreenEditBackground",
+        "mapScreenSaveBackground",
+        "mapScreenToolWallBackground",
+        "mapScreenToolCamBackground",
+        "mapScreenToolDoorBackground",
+        "mapScreenToolWindowBackground",
+        "mapScreenHandBackground",
+        "mapScreenSettingsBackground",
+    ],
+
+    changeCheckState(id,toChecked){document.getElementById(id).classList.replace(!toChecked?'checked':'notChecked', toChecked?'checked':'notChecked');},
+    changeOpacity(id,toAllowed){document.getElementById(id).classList.replace(!toAllowed?'allowedToTouch':'notAllowedToTouch', toAllowed?'allowedToTouch':'notAllowedToTouch');},
+
+    saveClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            // сохранение плана
+            // ..
+        }
+    },
+
+    wallClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            mapToolBarState.isWall = true;
+            mapToolBarState.isCamera = false;
+            mapToolBarState.isDoor = false;
+            mapToolBarState.isWindowsill = false;
+
+            this.changeCheckState(this.mapBackgroundIds[2], true);
+            this.changeOpacity(this.mapBackgroundIds[2], true);
+            this.changeCheckState(this.mapBackgroundIds[3], false);
+            this.changeOpacity(this.mapBackgroundIds[3], false);
+            this.changeCheckState(this.mapBackgroundIds[4], false);
+            this.changeOpacity(this.mapBackgroundIds[4], false);
+            this.changeCheckState(this.mapBackgroundIds[5], false);
+            this.changeOpacity(this.mapBackgroundIds[5], false);
+        }
+    },
+
+    cameraClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            mapToolBarState.isWall = false;
+            mapToolBarState.isCamera = true;
+            mapToolBarState.isDoor = false;
+            mapToolBarState.isWindowsill = false;
+
+            this.changeCheckState(this.mapBackgroundIds[2], false);
+            this.changeOpacity(this.mapBackgroundIds[2], false);
+            this.changeCheckState(this.mapBackgroundIds[3], true);
+            this.changeOpacity(this.mapBackgroundIds[3], true);
+            this.changeCheckState(this.mapBackgroundIds[4], false);
+            this.changeOpacity(this.mapBackgroundIds[4], false);
+            this.changeCheckState(this.mapBackgroundIds[5], false);
+            this.changeOpacity(this.mapBackgroundIds[5], false);
+        }
+    },
+
+    doorClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            mapToolBarState.isWall = false;
+            mapToolBarState.isCamera = false;
+            mapToolBarState.isDoor = true;
+            mapToolBarState.isWindowsill = false;
+
+            this.changeCheckState(this.mapBackgroundIds[2], false);
+            this.changeOpacity(this.mapBackgroundIds[2], false);
+            this.changeCheckState(this.mapBackgroundIds[3], false);
+            this.changeOpacity(this.mapBackgroundIds[3], false);
+            this.changeCheckState(this.mapBackgroundIds[4], true);
+            this.changeOpacity(this.mapBackgroundIds[4], true);
+            this.changeCheckState(this.mapBackgroundIds[5], false);
+            this.changeOpacity(this.mapBackgroundIds[5], false);
+        }
+    },
+
+    windowsillClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            mapToolBarState.isWall = false;
+            mapToolBarState.isCamera = false;
+            mapToolBarState.isDoor = false;
+            mapToolBarState.isWindowsill = true;
+
+            this.changeCheckState(this.mapBackgroundIds[2], false);
+            this.changeOpacity(this.mapBackgroundIds[2], false);
+            this.changeCheckState(this.mapBackgroundIds[3], false);
+            this.changeOpacity(this.mapBackgroundIds[3], false);
+            this.changeCheckState(this.mapBackgroundIds[4], false);
+            this.changeOpacity(this.mapBackgroundIds[4], false);
+            this.changeCheckState(this.mapBackgroundIds[5], true);
+            this.changeOpacity(this.mapBackgroundIds[5], true);
+        }
+    },
+
+    editClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            mapToolBarState.isEditMode = false;
+
+            this.changeCheckState(this.mapBackgroundIds[0], false);
+            for(let i = 1; i < this.mapBackgroundIds.length; i++)
+            {
+                this.changeCheckState(this.mapBackgroundIds[i], false);
+                this.changeOpacity(this.mapBackgroundIds[i], false);
+            }
+
+        }
+        else
+        {
+            this.changeOpacity(this.mapBackgroundIds[1], true);
+            this.changeOpacity(this.mapBackgroundIds[2], true);
+            this.changeOpacity(this.mapBackgroundIds[3], true);
+            this.changeOpacity(this.mapBackgroundIds[4], true);
+            this.changeOpacity(this.mapBackgroundIds[5], true);
+            this.changeOpacity(this.mapBackgroundIds[6], true);
+
+            mapToolBarState.isEditMode = true;
+
+            this.changeCheckState("mapScreenEditBackground", true);
+
+            // Активация режима редактирования. Стоп обновления и удаление точек с карты
+            // ...
+        }
+    }
+}
+
 
 /*---------------------------- CAMERA --------------------------------------------*/
 function initCameraBlocks()
