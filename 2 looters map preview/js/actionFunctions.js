@@ -74,12 +74,14 @@ function menuClicked(i)
 }
 
 /*---------------------------- MAP --------------------------------------------*/
+
 let mapToolBarState = {
     isEditMode: false,
     isWall: false,
     isCamera: false,
     isDoor: false,
     isWindowsill: false,
+    sliderPosition: [0.0, 0.0, 0.0, 0.0, 0.0]
 }
 
 let actions_map = {
@@ -217,7 +219,73 @@ let actions_map = {
             // Активация режима редактирования. Стоп обновления и удаление точек с карты
             // ...
         }
-    }
+    },
+
+    startFollowSlider(index)
+    {
+
+    },
+
+    updateFollowingSlider(index)
+    {
+
+    },
+
+    stopFollowSlider(index)
+    {
+
+    },
+
+    addActionToSlider(index)
+    {
+        let ball = document.getElementById("ball_" + index);
+        let slide = document.getElementById("sliderLine_" + index);
+        let start_x = slide.getBoundingClientRect().x;
+        let maxLeftOffset = slide.getBoundingClientRect().width - ball.getBoundingClientRect().width;
+
+        // init ball position
+        let currentPosition = mapToolBarState.sliderPosition[index-1] * maxLeftOffset;
+        // 1vmin is a padding of slider
+        ball.style.left = "calc(1vmin + "+ currentPosition +"px)";
+
+        ball.onmousedown = function(e)
+        {
+            let ball_w = ball.getBoundingClientRect().width;
+            let ball_x = ball.getBoundingClientRect().x;
+
+            moveAt(e);
+
+            function moveAt(e) {
+                // 1vmin is a padding of slider
+                let value = e.pageX - ball_x - ball_w/2 + ball_x-start_x;
+                if(value < 0)
+                    value = 0;
+                if(value > maxLeftOffset)
+                    value = maxLeftOffset;
+
+                mapToolBarState.sliderPosition[index-1] = value / maxLeftOffset;
+
+                ball.style.left = "calc(1vmin + "+ value +"px)";
+            }
+
+            document.onmousemove = function(e)
+            {
+                moveAt(e);
+            };
+
+            document.onmouseup = function()
+            {
+                document.onmousemove = null;
+                ball.onmouseup = null;
+            };
+
+        }
+
+        ball.ondragstart = function()
+        {
+            return false;
+        };
+    },
 }
 
 

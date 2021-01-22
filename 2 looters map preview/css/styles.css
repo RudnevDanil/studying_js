@@ -8,6 +8,7 @@ html{
 *{
     margin:0;
     padding:0;
+    user-select: none;
 }
 
 body{
@@ -144,10 +145,10 @@ li{
     width: 20vmin;
     height: 5vh;
     background-color:beige;
-    border-radius: 3vmin;
+    border-radius: 1vmin;
     text-align: center;
     color: black;
-    font-size: 2vh;
+    font-size: 3vmin;
     outline: none;
     border: 0;
 }
@@ -171,6 +172,7 @@ li{
     /*padding-right: 1vw;*/
     background-color:bisque;
     display: table-cell;
+    border-radius: 1vmin;
 }
 
 .amountCameras_1{
@@ -569,7 +571,7 @@ li{
     height: 2.5vmin;
     width: 20vmin;
     background-color:beige;
-    border-radius: 3vmin;
+    border-radius: 1vmin;
     text-align: center;
     color: black;
     font-size: 1.9vmin;
@@ -673,33 +675,27 @@ li{
     height: 3vmin;
     position: absolute;
 }
+.sliderDescription{
+    width: inherit;
+    height: inherit;
+    position: absolute;
+
+    font-size: 2vmin;
+    color: black;
+    text-align: center;
+    outline: none;
+    padding-top: 1vmin;
+    opacity: 0.5;
+}
 .sliderPosition_1{left: 0vmin}
 .sliderPosition_2{left: 18vmin}
 .sliderPosition_3{left: 36vmin}
-
-.sliderPosition_4{left: 27vmin}
-.sliderPosition_5{left: 45vmin}
 
 .sliderBackground{
     z-index: 1;
 }
 .sliderLineBackground{
     background-color: darkkhaki;
-}
-
-.inputCamNumb{
-    background-color: darkkhaki;
-    width: 25vmin;
-    height: 4vmin;
-    padding: 1vmin;
-    position: absolute;
-}
-.inputLine{
-    background-color: beige;
-    border-radius: 3vmin;
-    width: inherit;
-    height: inherit;
-    position: absolute;
 }
 
 .slidersBackground{
@@ -709,3 +705,30 @@ li{
     z-index: 1;
 }
 
+.cameraChoice{
+    background-color: darkkhaki;
+    width: 16vmin;
+    height: 4vmin;
+    padding: 1vmin;
+    position: absolute;
+
+    left: 0vmin
+}
+
+.cameraChoice select{
+    background-color: beige;
+    border-radius: 1vmin;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align-last: center;
+    text-align: center;
+    color: black;
+    font-size: 2vmin;
+    outline: none;
+    border: 0;
+}

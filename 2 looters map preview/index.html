@@ -39,19 +39,25 @@
                 <div class="topLine topLineForImg" id="mapScreenSettings"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenSettingsBackground"><img src='./data/settings.png' alt='last' class='tooBigImg'></div></div>
 
                 <div class="sliderBlock" id="wallSliders">
-                    <div class="slider sliderPosition_1" id="slider_1"><div class="sliderLine"></div><div class="sliderBall"></div></div>
-                    <div class="slider sliderPosition_2" id="slider_2"><div class="sliderLine"></div><div class="sliderBall"></div></div>
-                    <div class="slider sliderPosition_3" id="slider_3"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                    <div class="slider sliderPosition_1" id="slider_1"><div class="sliderLine" id="sliderLine_1"></div><div class="sliderDescription">Width</div><div class="sliderBall" id="ball_1"></div></div>
+                    <div class="slider sliderPosition_2" id="slider_2"><div class="sliderLine" id="sliderLine_2"></div><div class="sliderDescription">Height</div><div class="sliderBall" id="ball_2"></div></div>
+                    <div class="slider sliderPosition_3" id="slider_3"><div class="sliderLine" id="sliderLine_3"></div><div class="sliderDescription">Rotation</div><div class="sliderBall" id="ball_3"></div></div>
                 </div>
 
-                <div class="sliderBlock slidersBackground">
-
-                </div>
+                <div class="sliderBlock slidersBackground"></div>
 
                 <div class="sliderBlock" id="cameraSliders">
-                    <div class="inputCamNumb"><div class="inputLine"></div></div>
-                    <div class="slider sliderPosition_4" id="slider_4"><div class="sliderLine"></div><div class="sliderBall"></div></div>
-                    <div class="slider sliderPosition_5" id="slider_5"><div class="sliderLine"></div><div class="sliderBall"></div></div>
+                    <div class="cameraChoice">
+                        <select id="mapCameraChoice">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+
+                    <div class="slider sliderPosition_2" id="slider_4"><div class="sliderLine" id="sliderLine_4"></div><div class="sliderDescription">Distance</div><div class="sliderBall" id="ball_4"></div></div>
+                    <div class="slider sliderPosition_3" id="slider_5"><div class="sliderLine" id="sliderLine_5"></div><div class="sliderDescription">Rotation</div><div class="sliderBall" id="ball_5"></div></div>
                 </div>
                 <!--<canvas id="map"></canvas>-->
             </div>
@@ -327,6 +333,24 @@
         }
         document.getElementById("facesPage").innerHTML = str + document.getElementById("facesPage").innerHTML;
     }
+
+    // add slider action
+    function addActionsToSlider()
+    {
+        for(let i = 1; i <= 5; i++)
+            actions_map.addActionToSlider(i);
+    }
+    addActionsToSlider();
+
+    // in case of changed window size
+    document.addEventListener("DOMContentLoaded", function(event)
+    {
+        window.onresize = function()
+        {
+            addActionsToSlider();
+        };
+    });
+
 
     // debug show list faces and buttons
     {
