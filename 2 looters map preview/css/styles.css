@@ -626,10 +626,20 @@ li{
     position: absolute;
 }
 
-#map{
-    width: inherit;
-    height: inherit;
+#mapPage{
+    width: calc(78vw - 2vmin);
+    height: calc(78vh - 14.6vmin - 2vmin);
+    top: 15.6vmin;
+    left: 1vmin;
+    position: absolute;
+    border-spacing: 1vmin;
+    border-radius: 1vmin;
+    background-color: beige;
 }
+/*#map{
+    width: 100%;
+    height: 100%;
+}*/
 
 .tooSmallImg{
     width: 6vmin;

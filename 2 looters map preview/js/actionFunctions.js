@@ -221,18 +221,137 @@ let actions_map = {
         }
     },
 
-    startFollowSlider(index)
+    drawWall(cnvs, newWall){
+        let ctx = cnvs.getContext('2d');
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.fillRect(newWall.x,newWall.y,newWall.w,newWall.h);
+    },
+
+    drawCamera(cnvs, newCam){
+        let ctx = cnvs.getContext('2d');
+        ctx.beginPath();
+        ctx.fillStyle = "blue";
+        ctx.moveTo(newCam.x,newCam.y);
+        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y);
+        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y + newCam.h / 3);
+        ctx.lineTo(newCam.x + newCam.w ,newCam.y);
+        ctx.lineTo(newCam.x + newCam.w ,newCam.y + newCam.h);
+        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y + newCam.h / 3 * 2);
+        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y + newCam.h);
+        ctx.lineTo(newCam.x,newCam.y + newCam.h );
+        ctx.lineTo(newCam.x,newCam.y);
+        ctx.fill();
+    },
+
+    drawDoor(cnvs, newDoor){
+        let ctx = cnvs.getContext('2d');
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.lineWidth = 5;
+        ctx.moveTo(newDoor.x,newDoor.y);
+        ctx.lineTo(newDoor.x + newDoor.w / 5 ,newDoor.y);
+        ctx.stroke();
+
+        ctx.moveTo(newDoor.x + newDoor.w / 5,newDoor.y + newDoor.h);
+        ctx.lineTo(newDoor.x + newDoor.w / 5 * 4,newDoor.y);
+        ctx.lineTo(newDoor.x + newDoor.w ,newDoor.y);
+        ctx.stroke();
+    },
+
+    drawWindowsill(cnvs, newWindow)
     {
+        let ctx = cnvs.getContext('2d');
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.lineWidth = 5;
+        ctx.moveTo(newWindow.x,newWindow.y);
+        ctx.lineTo(newWindow.x + newWindow.w ,newWindow.y);
+        ctx.stroke();
+
+        ctx.moveTo(newWindow.x + newWindow.w / 10 * 2,newWindow.y);
+        ctx.lineTo(newWindow.x + newWindow.w / 10 * 2,newWindow.y + newWindow.h);
+        ctx.lineTo(newWindow.x + newWindow.w / 10 * 8,newWindow.y + newWindow.h);
+        ctx.lineTo(newWindow.x + newWindow.w / 10 * 8,newWindow.y);
+        ctx.stroke();
 
     },
 
-    updateFollowingSlider(index)
+    addActionToCanvas()
     {
+        let cnvs = document.getElementById("map");
+        let cnvsOffsetL = cnvs.getBoundingClientRect().x;
+        let cnvsOffsetT = cnvs.getBoundingClientRect().y;
 
-    },
+        let cnvsW = cnvs.getBoundingClientRect().width;
+        let cnvsH = cnvs.getBoundingClientRect().height;
 
-    stopFollowSlider(index)
-    {
+        let start_elem_size = {w: cnvsW/100, h: cnvsH/100};
+
+        cnvs.addEventListener('click', function (e)
+        {
+            let x = e.pageX - cnvsOffsetL, y = e.pageY - cnvsOffsetT;
+
+            //console.log(x,y)
+
+            // EDITING
+            if(mapToolBarState.isEditMode)
+            {
+                if(mapToolBarState.isWall)
+                {
+                    let newWall = {x: x, y: y, w: start_elem_size.w * 10, h: start_elem_size.h}
+
+                    if(newWall.x + newWall.w > cnvsW)
+                        newWall.x = cnvsW - newWall.w;
+                    if(newWall.y + newWall.h > cnvsH)
+                        newWall.y = cnvsH - newWall.h;
+
+                    actions_map.drawWall(cnvs, newWall)
+                }
+
+                if(mapToolBarState.isCamera)
+                {
+                    let newCam = {x: x, y: y, w: start_elem_size.w * 6, h: start_elem_size.h * 3}
+
+                    if(newCam.x + newCam.w > cnvsW)
+                        newCam.x = cnvsW - newCam.w;
+                    if(newCam.y + newCam.h > cnvsH)
+                        newCam.y = cnvsH - newCam.h;
+
+                    actions_map.drawCamera(cnvs, newCam)
+                }
+
+                if(mapToolBarState.isDoor)
+                {
+                    let newDoor = {x: x, y: y, w: start_elem_size.w * 10, h: start_elem_size.h * 2}
+
+                    if(newDoor.x + newDoor.w > cnvsW)
+                        newDoor.x = cnvsW - newDoor.w;
+                    if(newDoor.y + newDoor.h > cnvsH)
+                        newDoor.y = cnvsH - newDoor.h;
+
+                    actions_map.drawDoor(cnvs, newDoor)
+                }
+
+                if(mapToolBarState.isWindowsill)
+                {
+                    let newWindow = {x: x, y: y, w: start_elem_size.w * 10, h: start_elem_size.h * 2}
+
+                    if(newWindow.x + newWindow.w > cnvsW)
+                        newWindow.x = cnvsW - newWindow.w;
+                    if(newWindow.y + newWindow.h > cnvsH)
+                        newWindow.y = cnvsH - newWindow.h;
+
+                    actions_map.drawWindowsill(cnvs, newWindow)
+                }
+            }
+
+
+
+
+
+
+        });
 
     },
 
