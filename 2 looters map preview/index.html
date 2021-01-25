@@ -25,8 +25,6 @@
             <!-- ------------------------------------ mapScreen ------------------------------------------------ -->
             <div id="mapScreen">
 
-
-
                 <div class="topLine topLineForImg" id="mapScreenEdit"><div class="butBackground butBackgroundBigSize notChecked" id="mapScreenEditBackground" onclick="actions_map.editClicked()"><img src='./data/pencil_2.png' alt='edit' class='tooBigImg'></div></div>
                 <div class="topLine topLineForImg" id="mapScreenSave"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenSaveBackground" onclick="actions_map.saveClicked()"><img src='./data/save.png' alt='last' class='tooBigImg'></div></div>
 
@@ -35,18 +33,18 @@
                 <div class="topLine topLineForImg" id="mapScreenToolDoor"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenToolDoorBackground" onclick="actions_map.doorClicked()"><img src='./data/door_2.png' alt='last' class='tooBigImg'></div></div>
                 <div class="topLine topLineForImg" id="mapScreenToolWindow"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenToolWindowBackground" onclick="actions_map.windowsillClicked()"><img src='./data/windowsill.png' alt='last' class='tooBigImg'></div></div>
 
-                <div class="topLine topLineForImg" id="mapScreenHand"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenHandBackground"><img src='./data/pickUpHand.png' alt='last' class='tooBigImg'></div></div>
+                <div class="topLine topLineForImg" id="mapScreenHand"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenHandBackground" onclick="actions_map.handClicked()"><img src='./data/pickUpHand.png' alt='last' class='tooBigImg'></div></div>
                 <div class="topLine topLineForImg" id="mapScreenSettings"><div class="butBackground butBackgroundBigSize notChecked notAllowedToTouch" id="mapScreenSettingsBackground"><img src='./data/settings.png' alt='last' class='tooBigImg'></div></div>
 
-                <div class="sliderBlock notAllowedToTouch" id="wallSliders">
+                <div class="sliderBlock notAllowedToTouch hidden" id="wallSliders">
                     <div class="slider sliderPosition_1" id="slider_1"><div class="sliderLine" id="sliderLine_1"></div><div class="sliderDescription">Width</div><div class="sliderBall" id="ball_1"></div></div>
                     <div class="slider sliderPosition_2" id="slider_2"><div class="sliderLine" id="sliderLine_2"></div><div class="sliderDescription">Height</div><div class="sliderBall" id="ball_2"></div></div>
                     <div class="slider sliderPosition_3" id="slider_3"><div class="sliderLine" id="sliderLine_3"></div><div class="sliderDescription">Rotation</div><div class="sliderBall" id="ball_3"></div></div>
                 </div>
 
-                <div class="sliderBlock slidersBackground"></div>
+                <div class="sliderBlock slidersBackground background"></div>
 
-                <div class="sliderBlock notAllowedToTouch" id="cameraSliders">
+                <div class="sliderBlock notAllowedToTouch hidden" id="cameraSliders">
                     <div class="cameraChoice">
                         <select id="mapCameraChoice">
                             <option>1</option>
@@ -59,7 +57,7 @@
                     <div class="slider sliderPosition_2" id="slider_4"><div class="sliderLine" id="sliderLine_4"></div><div class="sliderDescription">Distance</div><div class="sliderBall" id="ball_4"></div></div>
                     <div class="slider sliderPosition_3" id="slider_5"><div class="sliderLine" id="sliderLine_5"></div><div class="sliderDescription">Rotation</div><div class="sliderBall" id="ball_5"></div></div>
                 </div>
-                <div id="mapPage"><canvas id="map"></canvas></div>
+                <div class="mapPage mapPageViewMode" id="mapPage"><canvas id="map"></canvas></div>
             </div>
 
             <!-- ------------------------------------ camerasScreen ------------------------------------------------ -->
@@ -352,9 +350,13 @@
     // in case of changed window size
     document.addEventListener("DOMContentLoaded", function(event)
     {
+        //actions_map.reloadCNVS();
         window.onresize = function()
         {
+            document.getElementById("map").width = document.getElementById("mapPage").getBoundingClientRect().width;
+            document.getElementById("map").height = document.getElementById("mapPage").getBoundingClientRect().height;
             addActionsToSlider();
+            actions_map.reDrawCNVS();
         };
     });
 
@@ -404,7 +406,7 @@
         document.getElementById("facesNextButt").style.zIndex = "2";
         document.getElementById("facesPrevButt").style.zIndex = "2";
 
-        document.getElementById("wallSliders").style.zIndex = "0";
+        //document.getElementById("wallSliders").style.zIndex = "0";
         //document.getElementById("cameraSliders").style.zIndex = "0";
 
 

@@ -463,11 +463,11 @@ li{
     height: 6vmin;
 }
 
-#camSetPrevButt{
+#camSetPrevButt,#camSetPrevButtPlaceHolder{
     top: 40vh;
     left: 0;
 }
-#camSetNextButt{
+#camSetNextButt, #camSetNextButtPlaceHolder{
     top: 40vh;
 }
 
@@ -626,20 +626,26 @@ li{
     position: absolute;
 }
 
-#mapPage{
+.mapPage{
     width: calc(78vw - 2vmin);
-    height: calc(78vh - 14.6vmin - 2vmin);
-    top: 15.6vmin;
+    /*height: calc(78vh - 14.6vmin - 2vmin);*/
+    /*top: 15.6vmin;*/
     left: 1vmin;
     position: absolute;
     border-spacing: 1vmin;
     border-radius: 1vmin;
     background-color: beige;
+    z-index: 2;
 }
-/*#map{
-    width: 100%;
-    height: 100%;
-}*/
+
+.mapPageViewMode{
+    top: 9.6vmin;
+    height: calc(78vh - 8.6vmin - 2vmin);
+}
+.mapPageEditingMode{
+    top: 15.6vmin;
+    height: calc(78vh - 14.6vmin - 2vmin);
+}
 
 .tooSmallImg{
     width: 6vmin;
@@ -661,7 +667,6 @@ li{
     left: 0vmin;
     border-spacing: 1vmin;
     display: inline-flex;
-    z-index: 2;
 }
 .slider{
     background-color: darkkhaki;
@@ -712,7 +717,6 @@ li{
     width: inherit;
     height: 6vmin;
     background-color: darkkhaki;
-    z-index: 1;
 }
 
 .cameraChoice{
@@ -742,3 +746,7 @@ li{
     outline: none;
     border: 0;
 }
+
+.visible{z-index: 2}
+.background{z-index: 1}
+.hidden{z-index: 0}
