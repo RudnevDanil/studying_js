@@ -103,6 +103,9 @@ let actions_map = {
             this.changeMapToolBarStateIs([true, true, false, false, false, false, false]);
             this.changeCheckStateArr([true, false, true, false, false, false, false, false]);
             this.slidersAction(1,true);
+            actions_map.setSliderToPosition(1,0.1);
+            actions_map.setSliderToPosition(2,0.01);
+            actions_map.setSliderToPosition(3,0.0);
         }
     },
 
@@ -113,6 +116,8 @@ let actions_map = {
             this.changeMapToolBarStateIs([true, false, true, false, false, false, false]);
             this.changeCheckStateArr([true, false, false, true, false, false, false, false]);
             this.slidersAction(2,true);
+            actions_map.setSliderToPosition(4,0.00);
+            actions_map.setSliderToPosition(5,0.00);
         }
     },
 
@@ -123,6 +128,9 @@ let actions_map = {
             this.changeMapToolBarStateIs([true, false, false, true, false, false, false]);
             this.changeCheckStateArr([true, false, false, false, true, false, false, false]);
             this.slidersAction(1,true);
+            actions_map.setSliderToPosition(1,0.1);
+            actions_map.setSliderToPosition(2,0.02);
+            actions_map.setSliderToPosition(3,0.0);
         }
     },
 
@@ -133,6 +141,9 @@ let actions_map = {
             this.changeMapToolBarStateIs([true, false, false, false, true, false, false]);
             this.changeCheckStateArr([true, false, false, false, false, true, false, false]);
             this.slidersAction(1,true);
+            actions_map.setSliderToPosition(1,0.1);
+            actions_map.setSliderToPosition(2,0.02);
+            actions_map.setSliderToPosition(3,0.0);
         }
     },
 
@@ -189,6 +200,7 @@ let actions_map = {
             y: obj.y / cnvsH,
             w: obj.w / cnvsW,
             h: obj.h / cnvsH,
+            r: 0,
             type: mapObjType,
         }
         mapObjects.push(newVal);
@@ -210,6 +222,7 @@ let actions_map = {
                 y: mapObjects[i].y * cnvsH,
                 w: mapObjects[i].w * cnvsW,
                 h: mapObjects[i].h * cnvsH,
+                r: mapObjects[i].r,
             }
 
             if(mapObjects[i].type === mapObjTypes[0]) actions_map.drawWall(cnvs, newVal);
@@ -219,63 +232,109 @@ let actions_map = {
         }
     },
 
-    drawWall(cnvs, newWall)
+    rotatePoint(point, angle, offset)
     {
-        let ctx = cnvs.getContext('2d');
-        ctx.beginPath();
-        ctx.fillStyle = mapObjectsColours[0];
-        ctx.fillRect(newWall.x,newWall.y,newWall.w,newWall.h);
+        point = {x: point.x - offset.x, y: point.y - offset.y}
+        let b_cos = Math.cos(angle)
+        let b_sin = Math.sin(angle)
+        return {x: (b_cos) * (- point.x) + (-b_sin) * (- point.y) + offset.x, y: (b_sin) * (- point.x) + (b_cos) * (- point.y) + offset.y}
     },
 
-    drawCamera(cnvs, newCam)
+    rotatePoints(arr, angle, w, h, rotationZero)
     {
-        let ctx = cnvs.getContext('2d');
-        ctx.beginPath();
-        ctx.fillStyle = mapObjectsColours[1];
-        ctx.moveTo(newCam.x,newCam.y);
-        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y);
-        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y + newCam.h / 3);
-        ctx.lineTo(newCam.x + newCam.w ,newCam.y);
-        ctx.lineTo(newCam.x + newCam.w ,newCam.y + newCam.h);
-        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y + newCam.h / 3 * 2);
-        ctx.lineTo(newCam.x + newCam.w / 6 * 4 ,newCam.y + newCam.h);
-        ctx.lineTo(newCam.x,newCam.y + newCam.h );
-        ctx.lineTo(newCam.x,newCam.y);
-        ctx.fill();
+        let offset = {x: rotationZero.x + w / 2, y: rotationZero.y + h / 2}
+        for(let i = 0; i < arr.length; i++)
+        {
+            arr[i] = actions_map.rotatePoint(arr[i], angle, offset);
+        }
     },
 
-    drawDoor(cnvs, newDoor)
+    drawFigure(cnvs, points, isLine, color)
     {
         let ctx = cnvs.getContext('2d');
         ctx.beginPath();
-        ctx.fillStyle = mapObjectsColours[2];
-        ctx.lineWidth = 5;
-        ctx.moveTo(newDoor.x,newDoor.y);
-        ctx.lineTo(newDoor.x + newDoor.w / 5 ,newDoor.y);
-        ctx.stroke();
-
-        ctx.moveTo(newDoor.x + newDoor.w / 5,newDoor.y + newDoor.h);
-        ctx.lineTo(newDoor.x + newDoor.w / 5 * 4,newDoor.y);
-        ctx.lineTo(newDoor.x + newDoor.w ,newDoor.y);
-        ctx.stroke();
+        ctx.fillStyle = color;
+        ctx.moveTo(points[0].x, points[0].y);
+        for(let i = 1; i < points.length; i++)
+            ctx.lineTo(points[i].x, points[i].y);
+        if(isLine)
+        {
+            ctx.lineWidth = 5;
+            ctx.stroke()
+        }
+        else
+        {
+            ctx.lineTo(points[0].x, points[0].y);
+            ctx.fill()
+        }
     },
 
-    drawWindowsill(cnvs, newWindow)
+    drawWall(cnvs, fig)
     {
-        let ctx = cnvs.getContext('2d');
-        ctx.beginPath();
-        ctx.fillStyle = mapObjectsColours[3];
-        ctx.lineWidth = 5;
-        ctx.moveTo(newWindow.x,newWindow.y);
-        ctx.lineTo(newWindow.x + newWindow.w ,newWindow.y);
-        ctx.stroke();
+        let points = [
+            {x: fig.x, y: fig.y},
+            {x: fig.x + fig.w, y: fig.y},
+            {x: fig.x + fig.w, y: fig.y + fig.h},
+            {x: fig.x, y: fig.y + fig.h}
+        ];
+        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, points[0])
+        actions_map.drawFigure(cnvs, points, false, mapObjectsColours[0]);
+    },
 
-        ctx.moveTo(newWindow.x + newWindow.w / 10 * 2,newWindow.y);
-        ctx.lineTo(newWindow.x + newWindow.w / 10 * 2,newWindow.y + newWindow.h);
-        ctx.lineTo(newWindow.x + newWindow.w / 10 * 8,newWindow.y + newWindow.h);
-        ctx.lineTo(newWindow.x + newWindow.w / 10 * 8,newWindow.y);
-        ctx.stroke();
+    drawCamera(cnvs, fig)
+    {
+        let points = [
+            {x: fig.x, y: fig.y},
+            {x: fig.x + fig.w / 6 * 4, y: fig.y},
+            {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 3},
+            {x: fig.x + fig.w , y: fig.y},
+            {x: fig.x + fig.w , y: fig.y + fig.h},
+            {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 3*2},
+            {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h},
+            {x: fig.x, y: fig.y + fig.h},
+        ];
+        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, points[0])
+        actions_map.drawFigure(cnvs, points, false, mapObjectsColours[1]);
+    },
 
+    drawDoor(cnvs, fig)
+    {
+        let points = [
+            {x: fig.x, y: fig.y},
+            {x: fig.x + fig.w / 5, y: fig.y},
+        ];
+        let rotationZero = points[0];
+        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.drawFigure(cnvs, points, true, mapObjectsColours[2]);
+
+        points = [
+            {x: fig.x + fig.w / 5, y: fig.y + fig.h},
+            {x: fig.x + fig.w / 5 * 4, y: fig.y},
+            {x: fig.x + fig.w, y: fig.y},
+        ];
+        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.drawFigure(cnvs, points, true, mapObjectsColours[2]);
+    },
+
+    drawWindowsill(cnvs, fig)
+    {
+        let points = [
+            {x: fig.x, y: fig.y},
+            {x: fig.x + fig.w, y: fig.y},
+        ];
+        let rotationZero = points[0];
+        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.drawFigure(cnvs, points, true, mapObjectsColours[3]);
+
+        points = [
+
+            {x: fig.x + fig.w / 10 * 2, y: fig.y},
+            {x: fig.x + fig.w / 10 * 2, y: fig.y + fig.h},
+            {x: fig.x + fig.w / 10 * 8, y: fig.y + fig.h},
+            {x: fig.x + fig.w / 10 * 8, y: fig.y},
+        ];
+        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.drawFigure(cnvs, points, false, mapObjectsColours[3]);
     },
 
     addActionToCanvas()
@@ -298,7 +357,6 @@ let actions_map = {
                 for(let i = 0; i < mapObjects.length && mapToolBarState.draggingI === null; i++)
                     if(x > mapObjects[i].x && x < (mapObjects[i].x + mapObjects[i].w) && y > mapObjects[i].y && y < (mapObjects[i].y + mapObjects[i].h))
                         mapToolBarState.draggingI = i;
-
 
                 if(mapToolBarState.draggingI != null)
                 {
@@ -346,7 +404,7 @@ let actions_map = {
             let cnvsOffsetT = cnvs.getBoundingClientRect().y;
             let cnvsW = cnvs.getBoundingClientRect().width;
             let cnvsH = cnvs.getBoundingClientRect().height;
-            let start_elem_size = {w: cnvsW/100, h: cnvsH/100};
+            let start_elem_size = {w: cnvsW, h: cnvsH};
             let x = e.pageX - cnvsOffsetL, y = e.pageY - cnvsOffsetT;
 
             // EDITING
@@ -357,55 +415,36 @@ let actions_map = {
 
                 if(mapToolBarState.isWall)
                 {
-                    let newWall = {x: x, y: y, w: start_elem_size.w * 10, h: start_elem_size.h}
-                    actions_map.setSliderToPosition(1,0.1);
-                    actions_map.setSliderToPosition(2,0.01);
-                    actions_map.setSliderToPosition(3,0.0);
-
+                    let newWall = {x: x, y: y, w: start_elem_size.w * mapToolBarState.sliderPosition[0], h: start_elem_size.h * mapToolBarState.sliderPosition[1], r: mapToolBarState.sliderPosition[2]}
                     if(newWall.x + newWall.w > cnvsW) newWall.x = cnvsW - newWall.w;
                     if(newWall.y + newWall.h > cnvsH) newWall.y = cnvsH - newWall.h;
-
                     actions_map.drawWall(cnvs, newWall)
                     actions_map.addMapObject(newWall, mapObjTypes[0], cnvsW, cnvsH)
                 }
 
                 if(mapToolBarState.isCamera)
                 {
-                    let newCam = {x: x, y: y, w: start_elem_size.w * 6, h: start_elem_size.h * 3}
-                    actions_map.setSliderToPosition(4,0.06);
-                    actions_map.setSliderToPosition(5,0.03);
-
+                    let newCam = {x: x, y: y, w: start_elem_size.w * 0.06, h: start_elem_size.h * 0.03, r: mapToolBarState.sliderPosition[4]}
                     if(newCam.x + newCam.w > cnvsW) newCam.x = cnvsW - newCam.w;
                     if(newCam.y + newCam.h > cnvsH) newCam.y = cnvsH - newCam.h;
-
                     actions_map.drawCamera(cnvs, newCam)
                     actions_map.addMapObject(newCam, mapObjTypes[1], cnvsW, cnvsH)
                 }
 
                 if(mapToolBarState.isDoor)
                 {
-                    let newDoor = {x: x, y: y, w: start_elem_size.w * 10, h: start_elem_size.h * 2}
-                    actions_map.setSliderToPosition(1,0.1);
-                    actions_map.setSliderToPosition(2,0.02);
-                    actions_map.setSliderToPosition(3,0.0);
-
+                    let newDoor = {x: x, y: y, w: start_elem_size.w * mapToolBarState.sliderPosition[0], h: start_elem_size.h * mapToolBarState.sliderPosition[1], r: mapToolBarState.sliderPosition[2]}
                     if(newDoor.x + newDoor.w > cnvsW) newDoor.x = cnvsW - newDoor.w;
                     if(newDoor.y + newDoor.h > cnvsH) newDoor.y = cnvsH - newDoor.h;
-
                     actions_map.drawDoor(cnvs, newDoor)
                     actions_map.addMapObject(newDoor, mapObjTypes[2], cnvsW, cnvsH)
                 }
 
                 if(mapToolBarState.isWindowsill)
                 {
-                    let newWindow = {x: x, y: y, w: start_elem_size.w * 10, h: start_elem_size.h * 2}
-                    actions_map.setSliderToPosition(1,0.1);
-                    actions_map.setSliderToPosition(2,0.02);
-                    actions_map.setSliderToPosition(3,0.0);
-
+                    let newWindow = {x: x, y: y, w: start_elem_size.w * mapToolBarState.sliderPosition[0], h: start_elem_size.h * mapToolBarState.sliderPosition[1], r: mapToolBarState.sliderPosition[2]}
                     if(newWindow.x + newWindow.w > cnvsW) newWindow.x = cnvsW - newWindow.w;
                     if(newWindow.y + newWindow.h > cnvsH) newWindow.y = cnvsH - newWindow.h;
-
                     actions_map.drawWindowsill(cnvs, newWindow)
                     actions_map.addMapObject(newWindow, mapObjTypes[3], cnvsW, cnvsH)
                 }
@@ -420,6 +459,7 @@ let actions_map = {
 
     setSliderToPosition(index,position)
     {
+        mapToolBarState.sliderPosition[index-1] = position;
         let ball = document.getElementById("ball_" + index);
         let slide = document.getElementById("sliderLine_" + index);
         let maxLeftOffset = slide.getBoundingClientRect().width - ball.getBoundingClientRect().width;
@@ -462,7 +502,11 @@ let actions_map = {
                         mapObjects[mapObjects.length - 1].w = mapToolBarState.sliderPosition[index-1];
                     if(index === 2 && mapObjects[mapObjects.length - 1].type !== 'cam')
                         mapObjects[mapObjects.length - 1].h = mapToolBarState.sliderPosition[index-1];
-                    if(index === 3 || index === 5)
+                    /*if(index === 3 || index === 5)
+                        mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];*/
+                    if(index == 3 && mapObjects[mapObjects.length - 1].type !=='cam')
+                        mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];
+                    if(index == 5 && mapObjects[mapObjects.length - 1].type ==='cam')
                         mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];
                     actions_map.reDrawCNVS();
                 }
