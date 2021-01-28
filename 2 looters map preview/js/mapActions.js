@@ -166,22 +166,20 @@ let actions_map = {
     {
         if(mapToolBarState.isEditMode)
         {
-            mapToolBarState.isWall = false;
-            mapToolBarState.isCamera = false;
-            mapToolBarState.isDoor = false;
-            mapToolBarState.isWindowsill = false;
-            mapToolBarState.isHand = true;
-            mapToolBarState.isRemove = false;
-
+            this.changeMapToolBarStateIs([true, false, false, false, false, true, false]);
             this.changeCheckStateArr([true, false, false, false, false, false, true, false]);
+            this.changeOpacityArr([true, true, true, true, true, true, true, false]);
+            this.slidersAction(0,false);
+        }
+    },
 
-            this.changeOpacity(this.mapBackgroundIds[7], false);
-
-            this.changeVisibleType(this.mapSlidersIds[0], false)
-            this.changeVisibleType(this.mapSlidersIds[1], false)
-
-            this.changeOpacity(this.mapSlidersIds[0], false);
-            this.changeOpacity(this.mapSlidersIds[1], false);
+    removeClicked()
+    {
+        if(mapToolBarState.isEditMode)
+        {
+            mapObjects.splice(mapObjects.length - 1, 1);
+            actions_map.reDrawCNVS();
+            actions_map.changeOpacity(actions_map.mapBackgroundIds[7], false);
         }
     },
 
@@ -214,15 +212,10 @@ let actions_map = {
                 h: mapObjects[i].h * cnvsH,
             }
 
-            if(mapObjects[i].type === mapObjTypes[0])
-                actions_map.drawWall(cnvs, newVal);
-            else if(mapObjects[i].type === mapObjTypes[1])
-                actions_map.drawCamera(cnvs, newVal);
-            else if(mapObjects[i].type === mapObjTypes[2])
-                actions_map.drawDoor(cnvs, newVal);
-            else if(mapObjects[i].type === mapObjTypes[3])
-                actions_map.drawWindowsill(cnvs, newVal);
-
+            if(mapObjects[i].type === mapObjTypes[0]) actions_map.drawWall(cnvs, newVal);
+            else if(mapObjects[i].type === mapObjTypes[1]) actions_map.drawCamera(cnvs, newVal);
+            else if(mapObjects[i].type === mapObjTypes[2]) actions_map.drawDoor(cnvs, newVal);
+            else if(mapObjects[i].type === mapObjTypes[3]) actions_map.drawWindowsill(cnvs, newVal);
         }
     },
 
@@ -338,10 +331,8 @@ let actions_map = {
 
                 if(x < 0) x = 0;
                 if(y < 0) y = 0;
-                if(x + mapObjects[mapToolBarState.draggingI].w > 1)
-                    x = 1 - mapObjects[mapToolBarState.draggingI].w;
-                if(y + mapObjects[mapToolBarState.draggingI].h > 1)
-                    y = 1 - mapObjects[mapToolBarState.draggingI].h;
+                if(x + mapObjects[mapToolBarState.draggingI].w > 1) x = 1 - mapObjects[mapToolBarState.draggingI].w;
+                if(y + mapObjects[mapToolBarState.draggingI].h > 1) y = 1 - mapObjects[mapToolBarState.draggingI].h;
 
                 mapObjects[mapToolBarState.draggingI].x = x;
                 mapObjects[mapToolBarState.draggingI].y = y;
