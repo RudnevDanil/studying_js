@@ -14,6 +14,7 @@ let mapToolBarState = {
 }
 
 let mapObjTypes = ['wall', 'cam', 'door', 'window'];
+let mapObjRotationsConst = [6.28/2 , 6.28 , 6.28, 6.28]
 let mapObjects = [];
 let mapObjectsColours = ['#000000', '#281cab', '#000002', '#000003'];
 
@@ -34,6 +35,9 @@ let actions_map = {
         "wallSliders",
         "cameraSliders",
     ],
+
+    elementMoveStartPosition: {x:null, y:null},
+
 
     changeCheckState(id,toChecked){document.getElementById(id).classList.replace(!toChecked?'checked':'notChecked', toChecked?'checked':'notChecked');},
     changeOpacity(id,toAllowed){document.getElementById(id).classList.replace(!toAllowed?'allowedToTouch':'notAllowedToTouch', toAllowed?'allowedToTouch':'notAllowedToTouch');},
@@ -277,7 +281,7 @@ let actions_map = {
             {x: fig.x + fig.w, y: fig.y + fig.h},
             {x: fig.x, y: fig.y + fig.h}
         ];
-        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, points[0])
+        actions_map.rotatePoints(points, mapObjRotationsConst[0] * fig.r, fig.w, fig.h, points[0])
         actions_map.drawFigure(cnvs, points, false, mapObjectsColours[0]);
     },
 
@@ -293,7 +297,7 @@ let actions_map = {
             {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h},
             {x: fig.x, y: fig.y + fig.h},
         ];
-        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, points[0])
+        actions_map.rotatePoints(points, mapObjRotationsConst[1] * fig.r, fig.w, fig.h, points[0])
         actions_map.drawFigure(cnvs, points, false, mapObjectsColours[1]);
     },
 
@@ -304,7 +308,7 @@ let actions_map = {
             {x: fig.x + fig.w / 5, y: fig.y},
         ];
         let rotationZero = points[0];
-        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.rotatePoints(points, mapObjRotationsConst[2] * fig.r, fig.w, fig.h, rotationZero)
         actions_map.drawFigure(cnvs, points, true, mapObjectsColours[2]);
 
         points = [
@@ -312,7 +316,7 @@ let actions_map = {
             {x: fig.x + fig.w / 5 * 4, y: fig.y},
             {x: fig.x + fig.w, y: fig.y},
         ];
-        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.rotatePoints(points, mapObjRotationsConst[2] * fig.r, fig.w, fig.h, rotationZero)
         actions_map.drawFigure(cnvs, points, true, mapObjectsColours[2]);
     },
 
@@ -323,7 +327,7 @@ let actions_map = {
             {x: fig.x + fig.w, y: fig.y},
         ];
         let rotationZero = points[0];
-        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.rotatePoints(points, mapObjRotationsConst[3] * fig.r, fig.w, fig.h, rotationZero)
         actions_map.drawFigure(cnvs, points, true, mapObjectsColours[3]);
 
         points = [
@@ -333,8 +337,13 @@ let actions_map = {
             {x: fig.x + fig.w / 10 * 8, y: fig.y + fig.h},
             {x: fig.x + fig.w / 10 * 8, y: fig.y},
         ];
-        actions_map.rotatePoints(points, 6.28 * fig.r, fig.w, fig.h, rotationZero)
+        actions_map.rotatePoints(points, mapObjRotationsConst[3] * fig.r, fig.w, fig.h, rotationZero)
         actions_map.drawFigure(cnvs, points, false, mapObjectsColours[3]);
+    },
+
+    sidePointRelativelyLine(point, a, b)
+    {
+        return Math.sign(point.x * (a.y - b.y) + point.y * (b.x - a.x) + a.x * b.y - b.x * a.y);
     },
 
     addActionToCanvas()
@@ -351,15 +360,35 @@ let actions_map = {
                 let cnvsOffsetT = cnvs.getBoundingClientRect().y;
                 let cnvsW = cnvs.getBoundingClientRect().width;
                 let cnvsH = cnvs.getBoundingClientRect().height;
-                let x = (e.pageX - cnvsOffsetL) / cnvsW, y = (e.pageY - cnvsOffsetT) / cnvsH;
+                let x = (e.pageX - cnvsOffsetL);
+                let y = (e.pageY - cnvsOffsetT);
 
                 // finding obj
-                for(let i = 0; i < mapObjects.length && mapToolBarState.draggingI === null; i++)
-                    if(x > mapObjects[i].x && x < (mapObjects[i].x + mapObjects[i].w) && y > mapObjects[i].y && y < (mapObjects[i].y + mapObjects[i].h))
+                for(let i = mapObjects.length - 1; i >= 0 && mapToolBarState.draggingI === null; i--)
+                {
+                    let fig = {x: mapObjects[i].x * cnvsW, y: mapObjects[i].y * cnvsH, w: mapObjects[i].w * cnvsW, h: mapObjects[i].h * cnvsH, r: mapObjects[i].r};
+                    let points = [{x: fig.x, y: fig.y}, {x: fig.x + fig.w, y: fig.y}, {x: fig.x + fig.w, y: fig.y + fig.h}, {x: fig.x, y: fig.y + fig.h}];
+                    let objType = null;
+                    for(let j = 0; j < mapObjTypes.length && objType === null; j++)
+                        if(mapObjects[i].type === mapObjTypes[j])
+                            objType = j;
+
+                    actions_map.rotatePoints(points, mapObjRotationsConst[objType] * fig.r, fig.w, fig.h, points[0])
+
+                    // show bounding boxes
+                    //let cnvs = document.getElementById("map");
+                    //actions_map.drawFigure(cnvs, points, false, "red");
+
+                    if(actions_map.sidePointRelativelyLine({x:x,y:y}, points[0], points[1]) === actions_map.sidePointRelativelyLine({x:x,y:y}, points[2], points[3])
+                    && actions_map.sidePointRelativelyLine({x:x,y:y}, points[1], points[2]) === actions_map.sidePointRelativelyLine({x:x,y:y}, points[3], points[0]))
+                    {
                         mapToolBarState.draggingI = i;
+                    }
+                }
 
                 if(mapToolBarState.draggingI != null)
                 {
+                    actions_map.elementMoveStartPosition = {x: (e.pageX - cnvsOffsetL) / cnvsW - mapObjects[mapToolBarState.draggingI].x, y: (e.pageY - cnvsOffsetT) / cnvsH - mapObjects[mapToolBarState.draggingI].y};
                     mapObjects.push(mapObjects[mapToolBarState.draggingI]);
                     mapObjects.splice(mapToolBarState.draggingI, 1);
                     mapToolBarState.draggingI = mapObjects.length - 1;
@@ -367,6 +396,16 @@ let actions_map = {
                     actions_map.changeOpacity(actions_map.mapBackgroundIds[7], true);
                     let isCam = mapObjects[mapToolBarState.draggingI].type === 'cam';
                     actions_map.slidersAction(isCam ? 2 : 1,true);
+                    if(isCam)
+                    {
+                        actions_map.setSliderToPosition(5, mapObjects[mapToolBarState.draggingI].r)
+                    }
+                    else
+                    {
+                        actions_map.setSliderToPosition(1, mapObjects[mapToolBarState.draggingI].w)
+                        actions_map.setSliderToPosition(2, mapObjects[mapToolBarState.draggingI].h)
+                        actions_map.setSliderToPosition(3, mapObjects[mapToolBarState.draggingI].r)
+                    }
                 }
                 else
                 {
@@ -384,8 +423,8 @@ let actions_map = {
                 let cnvsW = cnvs.getBoundingClientRect().width
                 let cnvsH = cnvs.getBoundingClientRect().height
 
-                let x = (e.pageX - cnvs.getBoundingClientRect().x) / cnvsW - mapObjects[mapToolBarState.draggingI].w/2;
-                let y = (e.pageY - cnvs.getBoundingClientRect().y) / cnvsH - mapObjects[mapToolBarState.draggingI].h/2;
+                let x = (e.pageX - cnvs.getBoundingClientRect().x) / cnvsW - actions_map.elementMoveStartPosition.x;
+                let y = (e.pageY - cnvs.getBoundingClientRect().y) / cnvsH - actions_map.elementMoveStartPosition.y;
 
                 if(x < 0) x = 0;
                 if(y < 0) y = 0;
@@ -480,20 +519,19 @@ let actions_map = {
 
         ball.onmousedown = function(e)
         {
-            let ball_w = ball.getBoundingClientRect().width;
+            //let ball_w = ball.getBoundingClientRect().width;
+            let mousePosition = e.pageX - ball.getBoundingClientRect().x;
             moveAt(e);
 
             function moveAt(e)
             {
                 // 1vmin is a padding of slider
-                let value = e.pageX - ball_w/2 - start_x;
+                let value = e.pageX - start_x - mousePosition;
                 if(value < 0)
                     value = 0;
                 if(value > maxLeftOffset)
                     value = maxLeftOffset;
-
                 mapToolBarState.sliderPosition[index-1] = value / maxLeftOffset;
-
                 ball.style.left = "calc(1vmin + "+ value +"px)";
 
                 if(mapObjects.length !== 0)
@@ -502,8 +540,6 @@ let actions_map = {
                         mapObjects[mapObjects.length - 1].w = mapToolBarState.sliderPosition[index-1];
                     if(index === 2 && mapObjects[mapObjects.length - 1].type !== 'cam')
                         mapObjects[mapObjects.length - 1].h = mapToolBarState.sliderPosition[index-1];
-                    /*if(index === 3 || index === 5)
-                        mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];*/
                     if(index == 3 && mapObjects[mapObjects.length - 1].type !=='cam')
                         mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];
                     if(index == 5 && mapObjects[mapObjects.length - 1].type ==='cam')
