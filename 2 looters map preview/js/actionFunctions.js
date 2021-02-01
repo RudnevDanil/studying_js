@@ -73,8 +73,13 @@ function menuClicked(i)
     document.getElementById(menu).style.color = "black";
 }
 
+/*---------------------------- AUTH --------------------------------------------*/
 
-
+function newUserClicked()
+{
+    if(!document.getElementById("authNewUserButt").classList.replace('notChecked', 'checked'))
+        document.getElementById("authNewUserButt").classList.replace('checked', 'notChecked')
+}
 
 /*---------------------------- CAMERA --------------------------------------------*/
 function initCameraBlocks()

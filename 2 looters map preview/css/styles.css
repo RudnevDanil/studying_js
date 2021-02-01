@@ -214,7 +214,7 @@ li{
     display: table-cell;
 }
 
-#mapScreen, #camerasScreen ,#cameraSettingsScreen ,#aboutProjectScreen ,#facesScreen ,#staffScreen{
+#mapScreen, #authScreen, #camerasScreen ,#cameraSettingsScreen ,#aboutProjectScreen ,#facesScreen ,#staffScreen{
     position: absolute;
     z-index: 1;
     width: inherit;
@@ -750,3 +750,25 @@ li{
 .visible{z-index: 2}
 .background{z-index: 1}
 .hidden{z-index: 0}
+
+#authText{text-align: center;}
+#topLineForAuthText{margin-top: 8vmin;}
+
+#authScreen inputVal{width: 20vmin;}
+#authInputLogin{
+    margin-left: calc(39vw - 21.5vmin);
+    margin-right: 1.5vmin;
+}
+#authInputPass{margin-left: 1.5vmin;}
+
+#authNewUser{
+    width: 20vmin;
+    text-align: center;
+}
+#topLineForNewUser{
+    padding-left: calc((78vw - 27.5vmin)/2);
+    height: 8vmin;
+}
+
+#authTry{margin-left: calc((78vw - 6vmin)/2);}
+
