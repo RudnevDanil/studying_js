@@ -498,8 +498,8 @@ li{
 .imgTopLine{
     width: 4vmin;
     height: 4vmin;
-    padding-left: 0.5vmin;
-    padding-top: 0.5vmin;
+    margin-left: 0.5vmin;
+    margin-top: 0.5vmin;
 }
 
 .butBackground{
@@ -650,15 +650,15 @@ li{
 .tooSmallImg{
     width: 6vmin;
     height: 6vmin;
-    padding-left: 0;
-    padding-top: 0;
+    margin-left: 0;
+    margin-top: 0;
 }
 
 .tooBigImg{
     width: 4vmin;
     height: 4vmin;
-    padding-left: 1vmin;
-    padding-top: 1vmin;
+    margin-left: 1vmin;
+    margin-top: 1vmin;
 }
 
 .sliderBlock{
@@ -751,7 +751,7 @@ li{
 .background{z-index: 1}
 .hidden{z-index: 0}
 
-#authText{text-align: center;}
+.authText{text-align: center;}
 #topLineForAuthText{margin-top: 8vmin;}
 
 #authScreen inputVal{width: 20vmin;}
@@ -772,3 +772,10 @@ li{
 
 #authTry{margin-left: calc((78vw - 6vmin)/2);}
 
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+.redAuthErr{color: red;}
+.greenAuthErr{color: green;}

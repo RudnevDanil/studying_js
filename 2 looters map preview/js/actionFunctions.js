@@ -40,6 +40,8 @@ function initializeFontColorForDisplay()
 
 function menuClicked(i)
 {
+    if(!authFunct.isAuthorized)
+        return;
     let screen = "", menu = "";
     switch(i){
         case 1:

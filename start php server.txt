@@ -23,3 +23,13 @@ CREATE TABLE `test`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB N
 
 CREATE TABLE `test`.`lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
+
+// добавление пользователя
+INSERT INTO lm_auth (login, pass) VALUES ('admin', '111');
+
+// проверка логин пароль
+select count(id) from lm_auth where login='admin' and pass='111';
+
+// проверка занятости логина
+select count(id) from lm_auth where login='admin'
+

@@ -8,14 +8,9 @@
     </head>
     <script src="js/actionFunctions.js"></script>
     <body>
-	
-		<!--
 
-		first make .php instead .html
-		<?php include_once "php/test.php";?>
+		/*<?php include_once "php/test.php";?>*/
 
-		-->
-	
         <div id="header"><div class="content textHF" id="headerContent"><div class="textCenter">Looters Map</div></div></div>
 
         <div id="menu"><div class="content" id="menuSize">
@@ -33,12 +28,13 @@
 
             <!-- ------------------------------------ authScreen ------------------------------------------------ -->
             <div id="authScreen">
-                <div class="topLine" id="topLineForAuthText"><div class="text" id="authText">Authorization</div></div>
+                <div class="topLine" id="topLineForAuthText"><div class="text authText">Authorization</div></div>
+                <div class="topLine"><div class="text authText redAuthErr" id="authErrText"> </div></div>
                 <div class="topLine"><input class="inputVal" id="authInputLogin" type="text" placeholder="login"><input class="inputVal" id="authInputPass" type="text" placeholder="password"></div>
                 <div class="topLine" id="topLineForNewUser"><div class="text" id="authNewUser">New user ?</div><div class="butBackground butBackgroundBigSize notChecked" id="authNewUserButt" onclick="newUserClicked()"><img src='./data/poo_surprise.png' alt='newUser' class='imgTopLine butImgBigSize'></div></div>
                 <div class="topLine topLineForImg"></div>
                 <div></div>
-                <div class="topLine topLineForImg"><div class="butBackground butBackgroundBigSize" id="authTry"><img src='./data/checked.png' alt='tryAuth' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg"><div class="butBackground butBackgroundBigSize" id="authTry" onclick="authFunct.submitClicked()"><img src='./data/checked.png' alt='tryAuth' class='imgTopLine butImgBigSize' id="authTryButtImg"></div></div>
             </div>
             <!-- ------------------------------------ mapScreen ------------------------------------------------ -->
             <div id="mapScreen">
@@ -221,6 +217,8 @@
         </div></div>
 
         <div id="footer"><div class="content textHF" id="footerContent"><div class="textCenter">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
+
+        <script src="js/jquery-3.5.1.js"></script>
     </body>
 </html>
 
@@ -235,4 +233,8 @@
 <script src="js/mapActions.js"></script>
 
 <script src="js/initFunctions.js"></script>
+
+
+
+<script src="js/authFunct.js"></script>
 
