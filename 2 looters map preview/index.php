@@ -15,6 +15,7 @@
 
         <div id="menu"><div class="content" id="menuSize">
             <ul class="menu">
+                <li id="menuAuth" onclick="menuClicked(7)">AUTH</li>
                 <li id="menuMap" onclick="menuClicked(1)">MAP</li>
                 <li id="menuCameras" onclick="menuClicked(2)">CAMERAS</li>
                 <li id="menuCameraSettings" onclick="menuClicked(3)">CAMERA SETTINGS</li>
@@ -222,19 +223,14 @@
     </body>
 </html>
 
-
-
-<script>
-    // DEBUG set start page
-    let isUserAuthorized = true; // should be false if not debug
-    document.getElementById("authScreen").style.zIndex = "2"
-</script>
-
 <script src="js/mapActions.js"></script>
-
 <script src="js/initFunctions.js"></script>
-
-
-
 <script src="js/authFunct.js"></script>
 
+<script>
+    document.getElementById(ids.menu.auth).style.color = "black";
+
+    // DEBUG set start page
+    authFunct.isAuthorized = true; // should be false if not debug
+    document.getElementById("authScreen").style.zIndex = "2"
+</script>

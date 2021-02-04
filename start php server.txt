@@ -1,6 +1,7 @@
 php -S localhost:8000 -t C:\web
 php -S localhost:8000 -t "C:\web\studying_js\2 looters map preview"
 php -S localhost:8000 -t "C:\Users\User-\Desktop\studying_js\2 looters map preview"
+php -S localhost:8000 -t "C:\Users\rudnev\Desktop\studying_js\2 looters map preview"
 
 start SQL server:
 net start mysql

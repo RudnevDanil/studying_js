@@ -7,6 +7,7 @@ let ids = {
         aboutProject: "aboutProjectScreen",
         faces: "facesScreen",
         staff: "staffScreen",
+        auth: "authScreen",
     },
     menu: {
         map: "menuMap",
@@ -15,6 +16,7 @@ let ids = {
         aboutProject: "menuAboutProject",
         faces: "menuFaces",
         staff: "menuStaff",
+        auth: "menuAuth",
     },
 }
 
@@ -26,6 +28,7 @@ function initZIndexForDisplay()
     document.getElementById(ids.screen.aboutProject).style.zIndex = "1";
     document.getElementById(ids.screen.faces).style.zIndex = "1";
     document.getElementById(ids.screen.staff).style.zIndex = "1";
+    document.getElementById(ids.screen.auth).style.zIndex = "1";
 }
 
 function initializeFontColorForDisplay()
@@ -36,6 +39,7 @@ function initializeFontColorForDisplay()
     document.getElementById(ids.menu.aboutProject).style.color = "honeydew";
     document.getElementById(ids.menu.faces).style.color = "honeydew";
     document.getElementById(ids.menu.staff).style.color = "honeydew";
+    document.getElementById(ids.menu.auth).style.color = "honeydew";
 }
 
 function menuClicked(i)
@@ -67,6 +71,10 @@ function menuClicked(i)
         case 6:
             screen = ids.screen.staff;
             menu = ids.menu.staff;
+            break;
+        case 7:
+            screen = ids.screen.auth;
+            menu = ids.menu.auth;
             break;
     }
     initZIndexForDisplay()
