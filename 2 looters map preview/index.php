@@ -9,7 +9,7 @@
     <script src="js/actionFunctions.js"></script>
     <body>
 
-		/*<?php include_once "php/test.php";?>*/
+		<?php /*include_once "php/test.php";*/?>
 
         <div id="header"><div class="content textHF" id="headerContent"><div class="textCenter">Looters Map</div></div></div>
 
@@ -217,15 +217,16 @@
             <!-- -------------------------------------------------------------------------------------- -->
         </div></div>
 
-        <div id="footer"><div class="content textHF" id="footerContent"><div class="textCenter">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
+        <div id="footer"><div class="content textHF" id="footerContent"><div class="textCenter" id="footerText">Rudnev Danil. &emsp; &emsp; Support: https://github.com/RudnevDanil &emsp; &emsp; SFEDU MMCS 2021.</div></div></div>
 
         <script src="js/jquery-3.5.1.js"></script>
     </body>
 </html>
 
+<script src="js/authFunct.js"></script>
 <script src="js/mapActions.js"></script>
 <script src="js/initFunctions.js"></script>
-<script src="js/authFunct.js"></script>
+
 
 <script>
     document.getElementById(ids.menu.auth).style.color = "black";

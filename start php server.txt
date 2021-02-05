@@ -8,21 +8,22 @@ net start mysql
 
 
 SQL client usage:
-use test
+use lm
 
-CREATE TABLE `test`.`lm_auth` ( `id` INT NOT NULL AUTO_INCREMENT , `login` VARCHAR(255) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_auth` ( `id` INT NOT NULL AUTO_INCREMENT , `login` VARCHAR(255) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `test`.`lm_stream` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `cam_code` INT NOT NULL , `saving_skip_fr` INT NOT NULL , `class_skip_fr` INT NOT NULL , `cam_fps` INT NOT NULL , `fr_in_one_avi` INT NOT NULL , `scaling` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_stream` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `cam_code` INT NOT NULL , `saving_skip_fr` INT NOT NULL , `class_skip_fr` INT NOT NULL , `cam_fps` INT NOT NULL , `fr_in_one_avi` INT NOT NULL , `scaling` FLOAT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `test`.`lm_activity` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `rec_result` BOOLEAN NOT NULL , `time` TIMESTAMP NOT NULL , `cam_code` INT NOT NULL , `face_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_activity` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `rec_result` BOOLEAN NOT NULL , `time` TIMESTAMP NOT NULL , `cam_code` INT NOT NULL , `face_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `test`.`lm_cameras` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `cam_code` INT NOT NULL , `description` INT NOT NULL , `connecting_line` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_cameras` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `cam_code` INT NOT NULL , `description` INT NOT NULL , `connecting_line` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `test`.`lm_map_objects` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NULL , `user_id` INT NOT NULL , `w` FLOAT NOT NULL , `h` FLOAT NOT NULL , `r` FLOAT NOT NULL , `d` FLOAT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_map_objects` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NULL , `user_id` INT NOT NULL , `w` FLOAT NOT NULL , `h` FLOAT NOT NULL , `r` FLOAT NOT NULL , `d` FLOAT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+ALTER TABLE `lm_map_objects` ADD `x` FLOAT NOT NULL AFTER `user_id`, ADD `y` FLOAT NOT NULL AFTER `x`;
 
-CREATE TABLE `test`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT NULL , `staff_id` INT NULL DEFAULT NULL , `staff_id_rec` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT NULL , `staff_id` INT NULL DEFAULT NULL , `staff_id_rec` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `test`.`lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm`.`lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 
 // добавление пользователя

@@ -51,6 +51,34 @@ function menuClicked(i)
         case 1:
             screen = ids.screen.map;
             menu = ids.menu.map;
+
+            // loading objects if it's not loaded before
+            //...
+            mapObjects = [];
+            let login = 'admin', pass = '111'; // debug
+            $.get('php/loadMap.php', {login: login, pass: pass}, function (result) {
+                result = $.parseJSON(result);
+                if(result.answer === "done")
+                {
+                    for(let k = 0; k < result.arr.length; k++)
+                    {
+                        mapObjects.push({
+                            x: result.arr[k][1],
+                            y: result.arr[k][2],
+                            w: result.arr[k][3],
+                            h: result.arr[k][4],
+                            r: result.arr[k][5],
+                            //d: result.arr[k][6],
+                            type: mapObjTypes[result.arr[k][0]],
+                        });
+                    }
+                }
+                /**/
+
+
+                // repaint
+                actions_map.reDrawCNVS();
+            });
             break;
         case 2:
             screen = ids.screen.cameras;

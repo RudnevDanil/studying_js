@@ -48,7 +48,6 @@ let authFunct =
                 authFunct.tryRegister();
             else
                 authFunct.tryAuth();
-
         }
         else
         {

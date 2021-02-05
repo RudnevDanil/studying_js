@@ -48,8 +48,14 @@ let actions_map = {
     {
         if(mapToolBarState.isEditMode)
         {
-            // сохранение плана
-            // ..
+            // сохранение карты
+            //let login = document.getElementById(authFunct.ids.login).value.trim();
+            //let pass = document.getElementById(authFunct.ids.pass).value.trim();
+
+            let login = 'admin', pass = '111'; // debug
+            $.post('php/saveMap.php', {login: login, pass: pass, arr: mapObjects}, function (result) {
+                console.log(result)
+            });
         }
     },
 

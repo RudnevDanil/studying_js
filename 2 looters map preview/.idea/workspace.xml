@@ -19,16 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="444d57d2-3940-4a40-86e5-9305ba1e0aee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/actionFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/actionFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../start php server.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../start php server.txt" afterDir="false" />
-    </list>
+    <list default="true" id="444d57d2-3940-4a40-86e5-9305ba1e0aee" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -47,6 +45,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -59,7 +58,7 @@
       <recent name="C:\Users\User-\Desktop\studying_js\2 looters map preview\js" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -87,11 +86,12 @@
       <workItem from="1612444120111" duration="106000" />
       <workItem from="1612444238591" duration="29000" />
       <workItem from="1612444268504" duration="402000" />
+      <workItem from="1612492282329" duration="12329000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -104,24 +104,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="617" y="227" key="FileChooserDialogImpl" timestamp="1612444265356">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="617" y="227" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1612444265356" />
-    <state x="740" y="274" key="FileChooserDialogImpl/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1610596642986" />
-    <state x="228" y="142" width="1753" height="1015" key="dock-window-1" timestamp="1612172930200">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="228" y="142" width="1753" height="1015" key="dock-window-1/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1612172930200" />
-    <state x="616" y="235" key="run.anything.popup" timestamp="1611822736357">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="235" key="run.anything.popup/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1611822736357" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1611893029835">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1611893029835" />
   </component>
 </project>
