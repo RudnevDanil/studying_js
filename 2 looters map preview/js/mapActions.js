@@ -37,7 +37,7 @@ let actions_map = {
     ],
 
     elementMoveStartPosition: {x:null, y:null},
-
+    savingInProgress: false,
 
     changeCheckState(id,toChecked){document.getElementById(id).classList.replace(!toChecked?'checked':'notChecked', toChecked?'checked':'notChecked');},
     changeOpacity(id,toAllowed){document.getElementById(id).classList.replace(!toAllowed?'allowedToTouch':'notAllowedToTouch', toAllowed?'allowedToTouch':'notAllowedToTouch');},
@@ -53,8 +53,28 @@ let actions_map = {
             //let pass = document.getElementById(authFunct.ids.pass).value.trim();
 
             let login = 'admin', pass = '111'; // debug
-            $.post('php/saveMap.php', {login: login, pass: pass, arr: mapObjects}, function (result) {
-                console.log(result)
+
+            //#mapScreenSaveBackground
+            $('#' + actions_map.mapBackgroundIds[1]).removeClass('butRedBorder').removeClass('butGreenBorder').addClass('butYellowBorder');
+            actions_map.changeOpacity(actions_map.mapBackgroundIds[1], false);
+            actions_map.savingInProgress = true;
+            $.post('php/saveMap.php', {login: login, pass: pass, arr: mapObjects}, function (result)
+            {
+                if(result !== "")
+                {
+                    result = $.parseJSON(result);
+                    if(result.answer === "saving success")
+                        $('#' + actions_map.mapBackgroundIds[1]).removeClass('butRedBorder').removeClass('butYellowBorder').addClass('butGreenBorder');
+                    else
+                        $('#' + actions_map.mapBackgroundIds[1]).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
+                }
+                else
+                    $('#' + actions_map.mapBackgroundIds[1]).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
+                actions_map.changeOpacity(actions_map.mapBackgroundIds[1], true);
+                setTimeout(() => {
+                    $('#' + actions_map.mapBackgroundIds[1]).removeClass('butGreenBorder').removeClass('butYellowBorder').removeClass('butRedBorder');
+                    actions_map.savingInProgress = false;
+                }, 3000);
             });
         }
     },
@@ -169,6 +189,8 @@ let actions_map = {
         }
         else
         {
+
+
             this.changeMapToolBarStateIs([true, false, false, false, false, false, false]);
             this.changeCheckStateArr([true, false, false, false, false, false, false, false]);
             this.changeOpacityArr([true, true, true, true, true, true, true, false]);
@@ -177,6 +199,7 @@ let actions_map = {
 
             document.getElementById("map").width = document.getElementById("mapPage").getBoundingClientRect().width;
             document.getElementById("map").height = document.getElementById("mapPage").getBoundingClientRect().height;
+            actions_map.reDrawCNVS();
 
             // Активация режима редактирования. Стоп обновления и удаление точек с карты
             // ...

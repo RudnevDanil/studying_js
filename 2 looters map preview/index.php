@@ -93,32 +93,40 @@
 
             <!-- ------------------------------------ cameraSettingsScreen ------------------------------------------------ -->
             <div id="cameraSettingsScreen">
-                <div class="topLine topLineForImg" id="cameraSettingsUniversal"><div class="butBackground butBackgroundBigSize"><img src='./data/plug.png' alt='universal' class='imgTopLine butImgBigSize' onclick="switchDisplayToUniSet()"></div></div>
-                <div class="topLine topLineForImg" id="cameraSettingsStream"><div class="butBackground butBackgroundBigSize"><img src='./data/settings.png' alt='stream' class='imgTopLine butImgBigSize' onclick="switchDisplayToStreamSet()"></div></div>
-
+                <div class="topLine topLineForImg" id="cameraSettingsUniversal"><div class="butBackground butBackgroundBigSize butNoFrame" id="CamSetUniSetBut"><img src='./data/plug.png' alt='universal' class='imgTopLine butImgBigSize imgNoFrame' id="CamSetUniSetImg" onclick="switchDisplayToUniSet()"></div></div>
+                <div class="topLine topLineForImg" id="cameraSettingsStream"><div class="butBackground butBackgroundBigSize butNoFrame" id="CamSetStreamSetBut"><img src='./data/settings.png' alt='stream' class='imgTopLine butImgBigSize imgNoFrame' id="CamSetStreamSetImg" onclick="switchDisplayToStreamSet()"></div></div>
+                <div class="topLine topLineForImg" id="cameraSettingsStream"><div class="butBackground butBackgroundBigSize butNoFrame" id="CamSetSaveBut"><img src='./data/save.png' alt='save' class='imgTopLine butImgBigSize imgNoFrame' id="CamSetSaveImg" onclick="saveCamSettings()"></div></div>
                 <div class="settingsBackground"></div>
 
                 <div id="uniSet">
-                    <div class="topLine"><div class="text">Amount of cameras:<input class="inputVal" type="text"placeholder="1...16"></div></div>
+                    <div class="topLine"><div class="text">Amount of cameras:<input class="inputVal" id="uniSetAmountOfCam" type="text"placeholder="1...16" onchange="amountOfCamChanged()"></div></div>
                 </div>
 
                 <div id="streamSet">
                     <div class="settingsBackground"></div>
                     <div id="streamSetFirstPage">
-                        <div class="topLine"><div class="text streamSetPage1Text">Camera number</div><input class="inputVal" id="streamSetCamNumb" type="text"placeholder="..."></div>
-                        <div class="topLine"><div class="text streamSetPage1Text">Description</div><input class="inputVal"  id="streamSetDescription" type="text"placeholder="..."></div>
-                        <div class="topLine"><div class="text streamSetPage1Text">Connecting line</div><input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="..."></div>
+
+                        <div class="topLine"><div class="text streamSetPage1Text">Camera number</div>
+                            <select class="choiceVal" id="streamSetCamNumb" onchange="camSettingsStreamChanged(0)">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <div class="topLine"><div class="text streamSetPage1Text">Description</div><input class="inputVal"  id="streamSetDescription" type="text"placeholder="..." onchange="camSettingsStreamChanged(1)"></div>
+                        <div class="topLine"><div class="text streamSetPage1Text">Connecting line</div><input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="..." onchange="camSettingsStreamChanged(2)"></div>
 
                         <div class="topLine topLineForButBig topLineNextBut" id="camSetNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize' onclick="switchDisplaySettingsToNextPage()"></div></div>
                         <div class="topLine topLineForButBig topLineNextButPlaceholder" id="camSetNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="camSetNextButtBackground"></div></div>
 
                     </div>
                     <div id="streamSetSecondPage">
-                        <div class="topLine"><div class="text streamSetPage2Text">Saving skip frames</div><input class="inputVal"  id="streamSetSavingSkipFrames" type="text"placeholder="..."></div>
-                        <div class="topLine"><div class="text streamSetPage2Text">Classification skip frames</div><input class="inputVal"  id="streamSetClassificationSkipFrames" type="text"placeholder="..."></div>
-                        <div class="topLine"><div class="text streamSetPage2Text">Cam FPS</div><input class="inputVal"  id="streamSetFPS" type="text"placeholder="..."></div>
-                        <div class="topLine"><div class="text streamSetPage2Text">Frames in one video</div><input class="inputVal"  id="streamSetFramesInOneVideo" type="text"placeholder="..."></div>
-                        <div class="topLine"><div class="text streamSetPage2Text">Scaling</div><input class="inputVal"  id="streamSetScaling" type="text"placeholder="..."></div>
+                        <div class="topLine"><div class="text streamSetPage2Text">Saving skip frames</div><input class="inputVal"  id="streamSetSavingSkipFrames" type="text"placeholder="..." onchange="camSettingsStreamChanged(3)"></div>
+                        <div class="topLine"><div class="text streamSetPage2Text">Classification skip frames</div><input class="inputVal"  id="streamSetClassificationSkipFrames" type="text" placeholder="..." onchange="camSettingsStreamChanged(4)"></div>
+                        <div class="topLine"><div class="text streamSetPage2Text">Cam FPS</div><input class="inputVal"  id="streamSetFPS" type="text"placeholder="..." onchange="camSettingsStreamChanged(5)"></div>
+                        <div class="topLine"><div class="text streamSetPage2Text">Frames in one video</div><input class="inputVal"  id="streamSetFramesInOneVideo" type="text"placeholder="..." onchange="camSettingsStreamChanged(6)"></div>
+                        <div class="topLine"><div class="text streamSetPage2Text">Scaling</div><input class="inputVal"  id="streamSetScaling" type="text"placeholder="..." onchange="camSettingsStreamChanged(7)"></div>
 
                         <div class="topLine topLineForButBig topLinePrevBut" id="camSetPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize' onclick="switchDisplaySettingsToPrevPage()"></div></div>
                         <div class="topLine topLineForButBig topLinePrevButPlaceholder" id="camSetPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="camSetPrevButtBackground"></div></div>
@@ -201,7 +209,7 @@
                     <div class="topLine" id="staffAddFullNameBlock"><div class="text staffAddPageText">Full name</div><input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="..."></div>
                     <div class="topLine"><div class="text staffAddPageText">Position</div><input class="inputVal staffInputVal"  id="staffAddPagePosition" type="text" placeholder="..."></div>
 
-                    <div class="topLine topLineForButBig" id="staffAddSaveButt"><div class='butBackground butBackgroundBigSize'><img src='./data/checked.png' alt='save' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig" id="staffAddSaveButt"><div class='butBackground butBackgroundBigSize'><img src='./data/save.png' alt='save' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLineForButBig" id="staffAddRemoveUserButt"><div class='butBackground butBackgroundBigSize'><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLineForButBig" id="staffAddRemoveUserButtPlaceHolder"><div class="button" id="staffAddRemoveUserButtBackground"></div></div>
                 </div>

@@ -49,7 +49,7 @@ if ($result = $mysqli->query($query))
     }
     else
     {
-        echo json_encode(array("answer"=>"array error"));
+        echo json_encode(array("answer"=>"saving success"));
     }
 }
 else

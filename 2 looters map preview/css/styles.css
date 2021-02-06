@@ -779,3 +779,33 @@ li{
 
 .redAuthErr{color: red;}
 .greenAuthErr{color: green;}
+
+#streamSetCamNumb{
+    width: 20vmin;
+    height: 5vh;
+    margin-left: 3vw;
+}
+
+.butNoFrame{
+    width: 6vmin;
+    height: 6vmin;
+    border: none;
+}
+.imgNoFrame{
+    margin-left: 0.5vmin;
+    margin-top: 0.5vmin;
+}
+
+.butFrame{
+    width: 5.4vmin;
+    height: 5.4vmin;
+    border: 0.3vmin solid black;
+}
+.imgFrame{
+    margin-left: 0.2vmin;
+    margin-top: 0.2vmin;
+}
+
+.butYellowBorder{border: 0.3vmin solid yellow;}
+.butRedBorder{border: 0.3vmin solid red;}
+.butGreenBorder{border: 0.3vmin solid green;}

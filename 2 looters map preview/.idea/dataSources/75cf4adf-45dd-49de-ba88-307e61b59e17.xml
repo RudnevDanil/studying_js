@@ -669,239 +669,217 @@
     <table id="209" parent="3" name="lm_faces"/>
     <table id="210" parent="3" name="lm_map_objects"/>
     <table id="211" parent="3" name="lm_staff"/>
-    <table id="212" parent="3" name="lm_stream"/>
-    <column id="213" parent="206" name="id">
+    <column id="212" parent="206" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="214" parent="206" name="user_id">
+    <column id="213" parent="206" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="215" parent="206" name="rec_result">
+    <column id="214" parent="206" name="rec_result">
       <Position>3</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="216" parent="206" name="time">
+    <column id="215" parent="206" name="time">
       <Position>4</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <OnUpdate>CURRENT_TIMESTAMP</OnUpdate>
     </column>
-    <column id="217" parent="206" name="cam_code">
+    <column id="216" parent="206" name="cam_code">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="218" parent="206" name="face_id">
+    <column id="217" parent="206" name="face_id">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="219" parent="206" name="PRIMARY">
+    <key id="218" parent="206" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="220" parent="207" name="id">
+    <column id="219" parent="207" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="221" parent="207" name="login">
+    <column id="220" parent="207" name="login">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="222" parent="207" name="pass">
+    <column id="221" parent="207" name="pass">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="223" parent="207" name="PRIMARY">
+    <key id="222" parent="207" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="224" parent="208" name="id">
+    <column id="223" parent="208" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="225" parent="208" name="user_id">
+    <column id="224" parent="208" name="user_id">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="226" parent="208" name="cam_code">
+    <column id="225" parent="208" name="cam_code">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="227" parent="208" name="description">
+    <column id="226" parent="208" name="description">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="228" parent="208" name="connecting_line">
+    <column id="227" parent="208" name="connecting_line">
       <Position>5</Position>
       <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="229" parent="208" name="PRIMARY">
+    <column id="228" parent="208" name="saving_skip_fr">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="229" parent="208" name="class_skip_fr">
+      <Position>7</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="230" parent="208" name="cam_FPS">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="231" parent="208" name="fr_in_one_avi">
+      <Position>9</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="232" parent="208" name="scaling">
+      <Position>10</Position>
+      <DataType>float|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="233" parent="208" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="230" parent="209" name="id">
+    <column id="234" parent="209" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="231" parent="209" name="img">
+    <column id="235" parent="209" name="img">
       <Position>2</Position>
       <DataType>blob|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="232" parent="209" name="staff_id">
+    <column id="236" parent="209" name="staff_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="233" parent="209" name="staff_id_rec">
+    <column id="237" parent="209" name="staff_id_rec">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <key id="234" parent="209" name="PRIMARY">
+    <key id="238" parent="209" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="235" parent="210" name="id">
+    <column id="239" parent="210" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="236" parent="210" name="type">
+    <column id="240" parent="210" name="type">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="237" parent="210" name="user_id">
+    <column id="241" parent="210" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="238" parent="210" name="x">
+    <column id="242" parent="210" name="x">
       <Position>4</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="239" parent="210" name="y">
+    <column id="243" parent="210" name="y">
       <Position>5</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="240" parent="210" name="w">
+    <column id="244" parent="210" name="w">
       <Position>6</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="241" parent="210" name="h">
+    <column id="245" parent="210" name="h">
       <Position>7</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="242" parent="210" name="r">
+    <column id="246" parent="210" name="r">
       <Position>8</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="243" parent="210" name="d">
+    <column id="247" parent="210" name="d">
       <Position>9</Position>
       <DataType>float|0s</DataType>
     </column>
-    <key id="244" parent="210" name="PRIMARY">
+    <key id="248" parent="210" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="245" parent="211" name="id">
+    <column id="249" parent="211" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="246" parent="211" name="full_name">
+    <column id="250" parent="211" name="full_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="247" parent="211" name="position">
+    <column id="251" parent="211" name="position">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="248" parent="211" name="isBanned">
+    <column id="252" parent="211" name="isBanned">
       <Position>4</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="249" parent="211" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="250" parent="212" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="251" parent="212" name="user_id">
-      <Position>2</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="252" parent="212" name="cam_code">
-      <Position>3</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="253" parent="212" name="saving_skip_fr">
-      <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="254" parent="212" name="class_skip_fr">
-      <Position>5</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="255" parent="212" name="cam_fps">
-      <Position>6</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="256" parent="212" name="fr_in_one_avi">
-      <Position>7</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="257" parent="212" name="scaling">
-      <Position>8</Position>
-      <DataType>float|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <key id="258" parent="212" name="PRIMARY">
+    <key id="253" parent="211" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
