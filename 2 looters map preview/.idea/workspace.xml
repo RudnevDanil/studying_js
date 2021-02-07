@@ -20,12 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="444d57d2-3940-4a40-86e5-9305ba1e0aee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/75cf4adf-45dd-49de-ba88-307e61b59e17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/75cf4adf-45dd-49de-ba88-307e61b59e17.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/actionFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/actionFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/loadCamSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadCamSettings.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +100,7 @@
       <workItem from="1612492282329" duration="12329000" />
       <workItem from="1612588131213" duration="14232000" />
       <workItem from="1612637431848" duration="2422000" />
-      <workItem from="1612697669880" duration="2821000" />
+      <workItem from="1612697669880" duration="3252000" />
     </task>
     <servers />
   </component>

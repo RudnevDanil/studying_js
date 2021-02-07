@@ -271,10 +271,9 @@ function fillCamSetFields(arr /*[camN, description, connLine, savingSkipFr, clas
 function amountOfCamChanged()
 {
     let amountCam = $("#" + camSetIds.data.uni[0]).val();
-    // validation
-    // ...
 
     amountCam = parseInt(amountCam);
+    if(isNaN(amountCam)) return;
     camSetData.arr = [];
     let listId = "#" + camSetIds.data.stream[0];
     $(listId).empty();
@@ -297,8 +296,6 @@ function amountOfCamChanged()
 function camSettingsStreamChanged(i)
 {
     let val = $("#" + camSetIds.data.stream[i]).val();
-    // validation зависит от i
-    // ...
 
     let streamNumb = $("#" + camSetIds.data.stream[0]).val() - 1;
     if(i === 0)
@@ -311,10 +308,12 @@ function camSettingsStreamChanged(i)
     }
     else if (i <= 6)
     {
+        if(isNaN(parseInt(val))) return;
         camSetData.arr[streamNumb][i] = parseInt(val);
     }
     else if (i === 7)
     {
+        if(isNaN(parseFloat(val))) return;
         camSetData.arr[streamNumb][i] = parseFloat(val);
     }
 }
