@@ -4,8 +4,10 @@ $pass = $_GET['pass'];
 
 include "./checkAuth.php";
 include "./dbConnect.php";
-/*
-$query = "select type, x, y , w, h ,r, d from lm_map_objects where user_id='$userId';";
+
+//$query = "select count(id) as count from lm_cameras where "
+
+$query = "select cam_code, description, connecting_line, saving_skip_fr, class_skip_fr, cam_FPS, fr_in_one_avi, scaling from lm_cameras where user_id='$userId';";
 
 if ($result = $mysqli->query($query))
 {
@@ -17,6 +19,7 @@ if ($result = $mysqli->query($query))
 else
 {
     echo json_encode(array("answer"=>"query select error"));
-}*/
+}
+
 $mysqli->close();
 ?>

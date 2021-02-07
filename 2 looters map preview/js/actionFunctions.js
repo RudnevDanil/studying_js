@@ -47,6 +47,9 @@ function menuClicked(i)
     if(!authFunct.isAuthorized)
         return;
     let screen = "", menu = "";
+
+    let login = 'admin', pass = '111'; // debug
+
     switch(i){
         case 1:
             screen = ids.screen.map;
@@ -55,7 +58,7 @@ function menuClicked(i)
             // loading objects if it's not loaded before
             //...
             mapObjects = [];
-            let login = 'admin', pass = '111'; // debug
+
             $.get('php/loadMap.php', {login: login, pass: pass}, function (result) {
                 result = $.parseJSON(result);
                 if(result.answer === "done")
@@ -81,25 +84,75 @@ function menuClicked(i)
         case 2:
             screen = ids.screen.cameras;
             menu = ids.menu.cameras;
+            break;
+        case 3:
+            screen = ids.screen.cameraSettings;
+            menu = ids.menu.cameraSettings;
 
-            /*
+            console.log("----")
             $.get('php/loadCamSettings.php', {login: login, pass: pass}, function (result) {
                 result = $.parseJSON(result);
                 if(result.answer === "done")
                 {
-
                     console.log(result.arr)
+
+                    let amountCam = result.arr.length
+                    $("#" + camSetIds.data.uni[0]).val(amountCam)
+                    camSetData.arr = [];
+                    let listId = "#" + camSetIds.data.stream[0];
+                    $(listId).empty();
+                    if(amountCam > 0)
+                    {
+                        for(let i = 0; i < amountCam; i++)
+                        {
+                           let arr = [];
+                            arr.push(parseInt(result.arr[i][0]))
+                            arr.push(result.arr[i][1])
+                            arr.push(result.arr[i][2])
+                            for(let k = 3; k <= 6; k++)
+                                arr.push(parseInt(result.arr[i][k]))
+                            arr.push(parseFloat(result.arr[i][7]))
+                            camSetData.arr.push(arr)
+
+                            // сделать список для выбора камеры по cam_code
+                            $(listId).append('<option value="'+(i+1)+'">'+(i+1)+'</option>');
+                        }
+
+                        // вызов функции заполнения полей по первой камере
+                        fillCamSetFields(camSetData.arr[0])
+                    }
+                    /*
+                    camSetData.arr = [];
+                    let listId = "#" + camSetIds.data.stream[0];
+                    $(listId).empty();
+
+                    if(amountCam > 0)
+                    {
+                        for(let i = 0; i < amountCam; i++)
+                        {
+                            camSetData.arr.push([i, "", "", 0, 0, 25, 25000, 1.0])
+
+                            // сделать список для выбора камеры по i
+                            $(listId).append('<option value="'+(i+1)+'">'+(i+1)+'</option>');
+                        }
+
+                        // вызов функции заполнения полей по первой камере
+                        fillCamSetFields(camSetData.arr[0])
+                    }
+                    * */
+
+
+
+
+
+
+
                 }
                 else
                     console.log("Loading camera settings error")
                 actions_map.reDrawCNVS();
             });
-            */
 
-            break;
-        case 3:
-            screen = ids.screen.cameraSettings;
-            menu = ids.menu.cameraSettings;
             break;
         case 4:
             screen = ids.screen.aboutProject;
@@ -308,9 +361,9 @@ function saveCamSettings()
     let imgId = '#' + camSetIds.saveImg;
 
     // сохранение настроек камеры
-    //let login = document.getElementById(authFunct.ids.login).value.trim();
-    //let pass = document.getElementById(authFunct.ids.pass).value.trim();
-    let login = 'admin', pass = '111'; // debug
+    let login = document.getElementById(authFunct.ids.login).value.trim();
+    let pass = document.getElementById(authFunct.ids.pass).value.trim();
+    //let login = 'admin', pass = '111'; // debug
 
     $(butId).removeClass('butNoFrame').addClass('butFrame');
     $(imgId).removeClass('imgNoFrame').addClass('imgFrame');
