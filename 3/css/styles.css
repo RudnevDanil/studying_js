@@ -44,7 +44,7 @@ body{
 #cnvs{
     top: 20vh;
     height: 40vh;
-    background-color: darkblue;
+    /*background-color: darkblue;*/
 }
 #arm{
     top: calc(20vh + (40vh - 10vmin) / 2);
