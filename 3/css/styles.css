@@ -145,7 +145,7 @@ body{
 #butMinus{
     right: calc(10vw + 6vmax);
 }
-#betValue{
+#betValueLine{
     right: 6vmax;
     width: 10vw;
 }
