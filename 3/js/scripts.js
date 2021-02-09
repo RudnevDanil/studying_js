@@ -1,15 +1,15 @@
 let settings = {
     imgNames: ["./data/trophy.png", "./data/coins.png", "./data/brilliant.png", "./data/lemon.png", "./data/banana.png", "./data/cherry.png"],
-    multiplier: [-1, 100, 10, 5, 3, -2], // -1 is jackpot, -2 is a money back
-    boxLineW: 4,
-    addMaxSteps: 10,
-    minSteps: 10,
-    speed: 5,
-    oneElementMovingTime: 500, // ms
+    multiplier: [-1, 100, 10, 5, 3, -2], // -1 is jackpot, -2 is a money back/ . Use same order as imNames
+    boxLineW: 4, // box line width. Just don't touch
+    addMaxSteps: 10, // steps in one rotation = minSteps + rand(0...addMaxSteps)
+    minSteps: 10, // minimal steps in one rotation
+    speed: 5, // rotation speed. increase if it's too slow
+    oneElementMovingTime: 500, // ms. just amin const. Use speed value for change speed
 
-    startJackpot: 7777,
-    startPlayerCoins: 100,
-    startBet: 10,
+    startJackpot: 7777, //start jackpot value
+    startPlayerCoins: 100, //start player coins value
+    startBet: 10, //start bet value
 }
 
 let state = {
@@ -30,9 +30,9 @@ let state = {
     counterLoadedImages: 0, //
     animDuration: 2000, // changes in depend of steps
 
-    centralFrameColor: "#e2bd4a",
-    playerCoinsColor: "white",
-    jackpotColor: "white",
+    centralFrameColor: "#e2bd4a", // default central box color
+    playerCoinsColor: "white", // default player coins color
+    jackpotColor: "white", // default jackpot color
 }
 
 let ids = {
