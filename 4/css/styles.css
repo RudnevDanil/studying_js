@@ -1,0 +1,161 @@
+@import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans);
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #1A1A1A;
+	/*background: url(../data/background.jpg) no-repeat;
+	background-size: 100%;*/
+    font-family: "Bubblegum Sans", sans-serif;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.5); /* будет ли работать на мобильной платформе??? */
+}
+
+#bodyBackground{
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 100%;
+    height: 100%;
+	z-index: -1;
+	border: none;
+    border-radius: 0;
+}
+
+#blackboard{
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
+    width: 80vw;
+    height: 70vh;
+}
+
+.line{
+    position: absolute;
+    top: 2vh;
+    left: 10vw;
+    width: 60vw;
+    height: 6vh;
+    text-align: center;
+    font-size: 6vh;
+    color: white;
+}
+
+#jackpotTextLine{top: 2vh;}
+#jackpotValueLine{top: 12vh;}
+#cnvs{
+    top: 20vh;
+    height: 40vh;
+    /*background-color: darkblue;*/
+}
+#arm{
+    top: calc(20vh + (40vh - 10vmin) / 2);
+    left: 72vw;
+    width: 10vmin;
+    height: 10vmin;
+}
+
+#goBackground{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #e2bd4a;
+    border-radius: 5vmin;
+    z-index: 0;
+}
+
+#goText{
+    position: absolute;
+    top: 2.5vmin;
+    left: 0vmin;
+    width: inherit;
+    height: 6vmin;
+    text-align: center;
+    z-index: 1;
+    font-size: 5vmin;
+}
+
+.goBordered{
+    width: 9.4vmin;
+    height: 9.4vmin;
+    border: white 0.3vmin solid;
+    opacity: 0.5;
+}
+
+.goNotBordered{
+    width: 10vmin;
+    height: 10vmin;
+    border: none;
+    opacity: 1;
+}
+
+
+#betLine{top: 62vh;}
+
+.betBlock{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30vw;
+    height: inherit;
+}
+
+
+#creditImg{
+    width: 6vmax;
+    height: 6vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#creditValue{
+    width: 15vw;
+    height: 5vh;
+    position: absolute;
+    top: 1vh;
+    left: 7vmax;
+    font-size: 4vh;
+    text-align: left;
+}
+
+#betBlockChoice{
+    left: calc(15vw + 7vmax);
+    width: calc(60vw - 15vw - 7vmax);
+}
+
+.choiceSubBlock{
+    position: absolute;
+    top: 0vh;
+    right: 0;
+    width: 6vmax;
+    height: 6vh;
+
+    text-align: center;
+    font-size: 4vh;
+    color: white;
+
+    z-index: 1;
+}
+
+#choiceBackground{
+    width: calc(10vw + 2 * 6vmax);
+    background-color: black;
+    border-radius: 6vmax;
+    z-index: 0;
+}
+
+#butMinus{
+    right: calc(10vw + 6vmax);
+}
+#betValueLine{
+    right: 6vmax;
+    width: 10vw;
+}
+#butPlus{
+    right: 0vw;
+}
+
+.verticalTextAlign{
+    position: absolute;
+    top: 1vh;
+    width: inherit;
+    height: 5vh;
+}

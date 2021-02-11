@@ -1,0 +1,41 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>JS example 1</title>
+        <meta name="description" content="JS example 1">
+        <meta name="author" content="RudnevDanil">
+        <link rel="stylesheet" href="css/styles.css?v=1.0">
+    </head>
+
+    <body>	
+		<img id="bodyBackground" src="./data/background.jpg" alt="">
+
+        <div id="blackboard">
+            <div class="line" id="jackpotTextLine">Prize</div>
+            <div class="line" id="jackpotValueLine">279</div>
+            <canvas class="line" id="cnvs"></canvas>
+            <div class="line armBordered" id="arm" onclick="goClicked()">
+                <div id="goText">GO</div>
+                <div class="goNotBordered" id="goBackground"></div>
+            </div>
+            <div class="line" id="betLine">
+                <img src='./data/coin.png' alt='coin' id="creditImg">
+                <div class="betBlock" id="creditValue">7</div>
+                <div class="betBlock" id="betBlockChoice">
+                    <div class="choiceSubBlock" id="butMinus"><div class="verticalTextAlign" onclick="betMinusClicked()">-</div></div>
+                    <div class="choiceSubBlock" id="betValueLine"><div class="verticalTextAlign" id="betValue">5</div></div>
+                    <div class="choiceSubBlock" id="butPlus"><div class="verticalTextAlign" onclick="betPlusClicked()">+</div></div>
+                    <div class="choiceSubBlock" id="choiceBackground"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/jquery-3.5.1.js"></script>
+    </body>
+</html>
+
+<script src="js/scripts.js"></script>
+
+<script>
+    init();
+</script>
