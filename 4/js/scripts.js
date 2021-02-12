@@ -18,7 +18,7 @@ let settings = {
 
     //leafColors: ["green","bisque","red","bisque","blue"], //
     leafColors: ["gainsboro","burlywood","lightblue","palegreen","moccasin","plum"],
-    leafOneColorAmount: 2,
+    leafOneColorAmount: 3,
 }
 
 let state = {
@@ -162,7 +162,7 @@ function goClicked()
     state.animDuration = settings.oneRotationMovingTime * state.rotations / settings.speed;
     state.currentSpeed = settings.speed;
     state.animStart = performance.now();
-    let stopTFValue = 0.75 + Math.random() / 4
+    let stopTFValue = 0.75 + Math.random() / 10
     requestAnimationFrame(function animate(time)
     {
         let timeFraction = (time - state.animStart) / state.animDuration;
@@ -176,15 +176,13 @@ function goClicked()
             //state.currentPosition = (timeFraction % (1 / state.rotations)) * state.rotations
 
             // вращение с замедлением
-            state.currentPosition = (newTF % (1 / state.rotations)) * state.rotations
+            state.currentPosition = 1 - (newTF % (1 / state.rotations)) * state.rotations
             reDrawCNVS();
         }
         if (timeFraction < stopTFValue)
             requestAnimationFrame(animate);
         else
-        {
             checkResults()
-        }
     });
 }
 
@@ -234,8 +232,8 @@ function winAnimation(type)
 function checkResults()
 {
     let animationType = 0;
-    state.indexMultiplier = Math.floor((state.currentPosition / (1 / 18)) % settings.leafColors.length);
-    console.log(settings.imgNames[state.indexMultiplier])
+    state.indexMultiplier = 5 - Math.floor(((state.currentPosition + (state.currentPosition < 0.25 ? 0.75 : -0.25)) / (1 / 18)) % settings.leafColors.length);
+    //console.log(settings.imgNames[state.indexMultiplier])
     let multiplier = settings.multiplier[state.indexMultiplier]
     if(multiplier == -1) // jackpot
     {
@@ -290,6 +288,7 @@ function countBoxSizes()
     state.center = {x: Math.floor(w/2), y: Math.floor(h/2)}
     state.ringRO = Math.floor(Math.min(w,h)*4/10);
     state.ringRI = state.ringRO - Math.floor(Math.min(w,h)*3/100);
+    //state.ringRC = Math.floor(Math.min(w,h)*5/100);
     state.ringRC = Math.floor(Math.min(w,h)*5/100);
 }
 
@@ -299,6 +298,24 @@ function rotatePoint(point, angle, offset)
     let b_cos = Math.cos(angle)
     let b_sin = Math.sin(angle)
     return {x: (b_cos) * (- point.x) + (-b_sin) * (- point.y) + offset.x, y: (b_sin) * (- point.x) + (b_cos) * (- point.y) + offset.y}
+}
+
+function drawWinPos()
+{
+    let cnvs = document.getElementById("cnvs");
+    let ctx = cnvs.getContext('2d');
+
+    ctx.beginPath();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.moveTo(state.center.x, state.center.y)
+    let offset = 0//state.leafW * ((state.currentPosition);
+    console.log((state.currentPosition % 1), state.currentPosition)
+    ctx.arc(state.center.x, state.center.y, state.ringRI, -Math.PI / 2 - state.leafW / 2 - offset, -Math.PI / 2 + state.leafW / 2 - offset, true);
+    ctx.stroke();
+    ctx.fill();
+    ctx.closePath();
 }
 
 function reDrawCNVS()
