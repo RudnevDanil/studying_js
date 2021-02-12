@@ -5,11 +5,20 @@ let settings = {
     addMaxSteps: 10, // steps in one rotation = minSteps + rand(0...addMaxSteps)
     minSteps: 10, // minimal steps in one rotation
     speed: 5, // rotation speed. increase if it's too slow
-    oneElementMovingTime: 500, // ms. just amin const. Use speed value for change speed
+    oneRotationMovingTime: 500, // ms. just amin const. Use speed value for change speed
     */
+
+    addMaxRotations: 3, // steps in one rotation = minRotations + rand(0...addMaxRotations)
+    minRotations: 3, // minimal steps in one rotation
+    speed: 1, // rotation speed. increase if it's too slow
+    oneRotationMovingTime: 2000, // ms. One rotation time
     startJackpot: 7777, //start jackpot value
     startPlayerCoins: 100, //start player coins value
     startBet: 10, //start bet value
+
+    //leafColors: ["green","bisque","red","bisque","blue"], //
+    leafColors: ["gainsboro","burlywood","lightblue","palegreen","moccasin","plum"],
+    leafOneColorAmount: 2,
 }
 
 let state = {
@@ -27,13 +36,20 @@ let state = {
     stepsLeft: [0, 0, 0], // counter in animation
     stepsInStart: [0, 0, 0], // counter in animation
     lastStep: [0, 0, 0], // counter in animation
-    isImagesLoaded: false, // before this became true nothing will be painted
-    counterLoadedImages: 0, //
+
     animDuration: 2000, // changes in depend of steps
     */
+    rotations: 0, // counter in animation
+    isImagesLoaded: false, // before this became true nothing will be painted
+    counterLoadedImages: 0, //
     centralFrameColor: "#e2bd4a", // default central box color
     playerCoinsColor: "white", // default player coins color
     jackpotColor: "white", // default jackpot color
+
+    currentPosition: 0.0,
+    currentSpeed: 1,
+    indexMultiplier: 0,
+    leafW: null,
 }
 
 let ids = {
@@ -61,8 +77,8 @@ function init()
     state.playerCoins = settings.startPlayerCoins;
     state.bet = settings.startBet;
 
-    countBoxSizes();
-    reDrawCNVS();
+    /*countBoxSizes();
+    reDrawCNVS();*/
 
     for(let i = 0; i < settings.imgNames.length; i++)
     {
@@ -74,17 +90,8 @@ function init()
             if(state.counterLoadedImages === settings.imgNames.length)
             {
                 state.isImagesLoaded = true;
-                // init cnvs
-                /*for(let i = 0; i < 3; i++)
-                {
-                    for(let j = 0; j < 4; j++)
-                    {
-                        state.inBoxNow[i][j] = findNextImg(i)
-                    }
-                }
-
                 countBoxSizes();
-                reDrawCNVS();*/
+                reDrawCNVS();
             }
         }
     }
@@ -151,66 +158,34 @@ function goClicked()
     state.isAnimationStarted = true;
     $("#" + ids.go).removeClass('goNotBordered').addClass('goBordered');
 
-
-    /*
-    for(let i = 0; i < 3; i++)
-        state.steps[i] = Math.floor(Math.random() * settings.addMaxSteps) + settings.minSteps
-    state.animDuration = settings.oneElementMovingTime * Math.max.apply(null, state.steps) / settings.speed;
-    state.stepsLeft = [0, 0, 0];
-    state.lastStep = [0, 0, 0];
-    for(let i = 0; i < 3; i++)
-        state.stepsInStart[i] = state.steps[i];
+    state.rotations = Math.floor(Math.random() * settings.addMaxRotations) + settings.minRotations
+    state.animDuration = settings.oneRotationMovingTime * state.rotations / settings.speed;
+    state.currentSpeed = settings.speed;
     state.animStart = performance.now();
+    let stopTFValue = 0.75 + Math.random() / 4
     requestAnimationFrame(function animate(time)
     {
-        // timeFraction изменяется от 0 до 1
         let timeFraction = (time - state.animStart) / state.animDuration;
         if (timeFraction > 1) timeFraction = 1;
 
         if(timeFraction > 0)
         {
-            for(let i = 0; i < 3 ; i++)
-            {
-                let fractionsForI = 1 / state.stepsInStart[i];
-                if(state.steps[i] > 0)
-                {
-                    state.position[i] = (timeFraction % fractionsForI) / fractionsForI;
-                    if (state.lastStep[i] !== Math.floor(timeFraction / fractionsForI))
-                    {
-                        state.inBoxNow[i][3] = state.inBoxNow[i][2];
-                        state.inBoxNow[i][2] = state.inBoxNow[i][1];
-                        state.inBoxNow[i][1] = state.inBoxNow[i][0];
-                        state.inBoxNow[i][0] = findNextImg(i);
-                        state.steps[i] -= 1;
-                        state.stepsLeft[i] += 1;
+            let newTF = 1 - Math.sqrt(timeFraction)
 
-                    }
-                    state.lastStep[i] = Math.floor(timeFraction / fractionsForI);
-                }
-            }
+            // ровное вращение
+            //state.currentPosition = (timeFraction % (1 / state.rotations)) * state.rotations
+
+            // вращение с замедлением
+            state.currentPosition = (newTF % (1 / state.rotations)) * state.rotations
             reDrawCNVS();
         }
-        if (timeFraction < 1)
+        if (timeFraction < stopTFValue)
             requestAnimationFrame(animate);
         else
         {
-            for(let i = 0; i < 3 ; i++)
-            {
-                if(state.position[i] > 0.5)
-                {
-                    console.log("+++")
-                    state.inBoxNow[i][3] = state.inBoxNow[i][2];
-                    state.inBoxNow[i][2] = state.inBoxNow[i][1];
-                    state.inBoxNow[i][1] = state.inBoxNow[i][0];
-                    state.inBoxNow[i][0] = findNextImg(i);
-
-                    state.position[i] = 0;
-                }
-            }
             checkResults()
         }
-    });*/
-
+    });
 }
 
 /*  animationType description
@@ -221,11 +196,11 @@ function goClicked()
  */
 function winAnimation(type)
 {
-    /*if(type === 1)
+    if(type === 1)
     {
-        state.bet *= settings.multiplier[state.inBoxNow[0][2]];
+        state.bet *= settings.multiplier[state.indexMultiplier];
         $("#" + ids.bet).text(state.bet);
-    }*/
+    }
 
     let baseFrameColor = state.centralFrameColor;
     let addFrameColor = type === 0 ? "red" : "green";
@@ -258,28 +233,25 @@ function winAnimation(type)
 
 function checkResults()
 {
-    /*
     let animationType = 0;
-    if(state.inBoxNow[0][2] === state.inBoxNow[1][2] && state.inBoxNow[0][2] === state.inBoxNow[2][2])
+    state.indexMultiplier = Math.floor((state.currentPosition / (1 / 18)) % settings.leafColors.length);
+    console.log(settings.imgNames[state.indexMultiplier])
+    let multiplier = settings.multiplier[state.indexMultiplier]
+    if(multiplier == -1) // jackpot
     {
-        let multiplier = settings.multiplier[state.inBoxNow[0][2]]
-        if(multiplier == -1) // jackpot
-        {
-            animationType = 3;
-        }
-        else if(multiplier == -2) // money back
-        {
-            animationType = 2;
-        }
-        else
-        {
-            // it will be better count multiplier effect here, but it's happening in winAnimation(...) for more common tests
-            animationType = 1;
-        }
+        animationType = 3;
     }
-    winAnimation(animationType)
+    else if(multiplier == -2) // money back
+    {
+        animationType = 2;
+    }
+    else
+    {
+        // it will be better count multiplier effect here, but it's happening in winAnimation(...) for more common tests
+        animationType = 1;
+    }
 
-    */
+    winAnimation(animationType)
 }
 
 function moneyOperation(type)
@@ -307,7 +279,7 @@ function animationEnded()
     $("#" + ids.go).removeClass('goBordered').addClass('goNotBordered');
 }
 
-let w = null, h = null, boxOffset = null, box = null, strokeBox = null, strokeBoxes = null, boxes = null, arrowOffsets = null;
+let w = null, h = null;
 
 function countBoxSizes()
 {
@@ -319,18 +291,6 @@ function countBoxSizes()
     state.ringRO = Math.floor(Math.min(w,h)*4/10);
     state.ringRI = state.ringRO - Math.floor(Math.min(w,h)*3/100);
     state.ringRC = Math.floor(Math.min(w,h)*5/100);
-
-
-    /*
-    boxOffset = {x: w * 0.05, y: 0};
-    let lw = settings.boxLineW;
-    box = {w: w * 0.7 / 3 - lw, h: h - lw};
-    strokeBox = {w: w * 0.7 / 3, h: h};
-    strokeBoxes = [{x: 2 * boxOffset.x, y: boxOffset.y}, {x: 3 * boxOffset.x + box.w, y: boxOffset.y}, {x: 4 * boxOffset.x + 2 * box.w, y: boxOffset.y}];
-    boxes = [{x: 2 * boxOffset.x + lw/2, y: boxOffset.y + lw/2}, {x: 3 * boxOffset.x + box.w + lw/2, y: boxOffset.y + lw/2}, {x: 4 * boxOffset.x + 2 * box.w + lw/2, y: boxOffset.y + lw/2}];
-    arrowOffsets = {x: w / 20, y: h / 15}
-
-    */
 }
 
 function rotatePoint(point, angle, offset)
@@ -341,12 +301,11 @@ function rotatePoint(point, angle, offset)
     return {x: (b_cos) * (- point.x) + (-b_sin) * (- point.y) + offset.x, y: (b_sin) * (- point.x) + (b_cos) * (- point.y) + offset.y}
 }
 
-function drawLines()
+function reDrawCNVS()
 {
     let cnvs = document.getElementById("cnvs");
     let ctx = cnvs.getContext('2d');
-
-
+    ctx.clearRect(0,0, w, h)
     let x = state.center.x
     let y = state.center.y
 
@@ -356,7 +315,7 @@ function drawLines()
     ctx.strokeStyle = "black";
     ctx.arc(x, y, state.ringRO, 0, 2 * Math.PI, false);
     ctx.stroke();
-    let gr = ctx.createRadialGradient(state.center.x,state.center.y,state.ringRI, state.center.x,state.center.y,state.ringRO);
+    let gr = ctx.createRadialGradient(x,y,state.ringRI, x,y,state.ringRO);
     gr.addColorStop(1, "#e2bd4a");
     gr.addColorStop(0.5, "white");
     gr.addColorStop(0, "#e2bd4a");
@@ -370,32 +329,62 @@ function drawLines()
     ctx.closePath();
 
     // Leaf
+    state.leafW = Math.PI * 2 / (settings.leafColors.length * settings.leafOneColorAmount)
+    let leafW = state.leafW
+    for(let i = 0; i < settings.leafColors.length * settings.leafOneColorAmount; i++)
+    {
+        let grL = ctx.createRadialGradient(x,y,state.ringRC, x,y,state.ringRI);
+        grL.addColorStop(1, settings.leafColors[i % settings.leafColors.length]);
+        grL.addColorStop(0, "white");
 
-    // init
-    let leafColorAmount = 4;
-    let leafOneColorAmount = 4;
-    let leafW = Math.PI * 2 / (leafColorAmount * leafOneColorAmount)
-    ctx.lineWidth = 1;
+        ctx.lineWidth = 1;
+        let startAngle = -leafW * i - Math.PI * 2 * state.currentPosition
+        ctx.beginPath();
+        ctx.moveTo(x, y)
+        ctx.arc(x, y, state.ringRI, startAngle,startAngle - leafW, true);
+        ctx.lineTo(x, y)
+        ctx.stroke();
+        ctx.fillStyle = grL
+        ctx.fill();
+        ctx.closePath();
 
-    /*let startAngle = 0
-    ctx.beginPath();
-    ctx.moveTo(x, y - state.ringRC)
-    ctx.lineTo(x, y - state.ringRI)
-    let endArc = rotatePoint({x:x, y:y - state.ringRI}, -Math.PI * 2 * leafW, {x:x, y: y});
-    //ctx.moveTo(endArc.x, endArc.y)
-    ctx.arc(x, y, state.ringRI, 0, Math.PI * 2 * leafW, false);
+        startAngle *= -1
+        // dots
+        let dotAmount = 3
+        for(let j = 0; j < dotAmount; j++)
+        {
+            let medR = Math.floor((state.ringRO - state.ringRI) / 2)
+            let point = rotatePoint({x: x + state.ringRI + medR, y: y}, Math.PI  - (startAngle + leafW / dotAmount / 2 + leafW / dotAmount * j),{x:x,y:y})
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, medR / 2 , 0, 2 * Math.PI, false);
+            ctx.stroke();
+            ctx.fill();
+            ctx.closePath();
+        }
 
-    ctx.lineTo(x, y)
-    ctx.stroke();
-    //ctx.fillStyle = "green"
-    //ctx.fill();
-    ctx.closePath();*/
+        // img
+        if(state.isImagesLoaded)
+        {
+            let point = rotatePoint({x: x + state.ringRI * 4 / 5, y: y}, Math.PI  - (startAngle + leafW / 2),{x:x,y:y})
+            let imgSize = Math.floor(Math.min(w,h) / 17)
 
-
+            ctx.save();
+            ctx.beginPath();
+            ctx.translate(point.x, point.y);
+            ctx.rotate(- Math.PI / 2 + Math.PI  - (startAngle + leafW / 2))
+            ctx.drawImage(images[i % settings.leafColors.length], -imgSize, -imgSize, imgSize * 2, imgSize * 2);
+            ctx.fillStyle = "red"
+            ctx.fill();
+            ctx.closePath();
+            ctx.restore();
+        }
+    }
 
     // Center arrow
+    ctx.fillStyle = "#e2bd4a"
     ctx.beginPath();
     ctx.arc(x, y, state.ringRC, 0, 2 * Math.PI, false);
+    ctx.fill();
     ctx.stroke();
     ctx.closePath();
 
@@ -408,123 +397,4 @@ function drawLines()
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
-
-    /*
-    // boxes
-    ctx.beginPath();
-    ctx.lineWidth = 4;
-    ctx.strokeStyle = "#e2bd4a";
-    for(let i = 0; i < boxes.length; i++)
-        ctx.strokeRect(strokeBoxes[i].x, strokeBoxes[i].y, strokeBox.w, strokeBox.h);
-    ctx.stroke();
-
-    // win box
-    ctx.beginPath();
-    ctx.lineWidth = 7;
-    ctx.strokeStyle = "black";
-    ctx.strokeRect(boxOffset.x, h * 3 / 10, w - 2 * boxOffset.x, h * 4 / 10);
-    ctx.lineWidth = 5;
-    ctx.strokeStyle = state.centralFrameColor;//"#e2bd4a";
-    ctx.strokeRect(boxOffset.x, h * 3 / 10, w - 2 * boxOffset.x, h * 4 / 10);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.fillStyle = "rgba(255,255,255,0.6)"
-    for(let i = 0; i < boxes.length; i++)
-    {
-        ctx.fillRect(boxes[i].x, boxes[i].y, box.w, h * 3 / 10 - boxes[i].y - 4);
-        ctx.fillRect(boxes[i].x, h * 7 / 10 + 4, box.w, h * 3 / 10 - boxes[i].y - 4);
-    }
-    ctx.fill();
-
-    // left arrow
-    ctx.beginPath();
-    ctx.lineWidth = 2;
-    ctx.fillStyle = state.centralFrameColor;//"#e2bd4a";
-    ctx.moveTo(0, h / 2 - arrowOffsets.y);
-    ctx.lineTo(arrowOffsets.x * 2 / 3, h / 2);
-    ctx.lineTo(0, h / 2 + arrowOffsets.y);
-    ctx.lineTo(0, h / 2 - arrowOffsets.y);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "black";
-    ctx.moveTo(0, h / 2 - arrowOffsets.y);
-    ctx.lineTo(arrowOffsets.x * 2 / 3, h / 2);
-    ctx.lineTo(0, h / 2 + arrowOffsets.y);
-    ctx.lineTo(0, h / 2 - arrowOffsets.y);
-    ctx.stroke();
-
-    // right arrow
-    ctx.beginPath();
-    ctx.lineWidth = 5;
-    ctx.fillStyle = state.centralFrameColor;//"#e2bd4a";
-    ctx.moveTo(w, h / 2 - arrowOffsets.y);
-    ctx.lineTo(w - arrowOffsets.x * 2 / 3, h / 2);
-    ctx.lineTo(w, h / 2 + arrowOffsets.y);
-    ctx.lineTo(w, h / 2 - arrowOffsets.y);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = "black";
-    ctx.moveTo(w, h / 2 - arrowOffsets.y);
-    ctx.lineTo(w - arrowOffsets.x * 2 / 3, h / 2);
-    ctx.lineTo(w, h / 2 + arrowOffsets.y);
-    ctx.lineTo(w, h / 2 - arrowOffsets.y);
-    ctx.stroke();
-
-    */
 }
-
-/*
-function drawImages()
-{
-    for(let i = 0; i < 3; i++)
-    {
-        for(let j = 0; j < 4; j++)
-        {
-            drawImage(state.inBoxNow[i][j], i, state.position[i] / 3 + (j-1) / 3);
-        }
-    }
-}*/
-
-/*
-function findNextImg(forBoxI)
-{
-    let byf = [];
-    for(let i = 0; i < settings.imgNames.length; i++)
-    {
-        let flag = true;
-        for(let j = 0; j < 4; j++)
-        {
-            if(flag && i === state.inBoxNow[forBoxI][j])
-                flag = false;
-        }
-        if(flag)
-            byf.push(i);
-    }
-    return  byf[Math.floor(Math.random() * byf.length)];
-
-}
-*/
-
-// position is 0..1
-/*function drawImage(imgI, boxI, pos)
-{
-    let cnvs = document.getElementById("cnvs");
-    let ctx = cnvs.getContext('2d');
-    if(state.isImagesLoaded)
-        ctx.drawImage(images[imgI], boxes[boxI].x + 2, boxes[boxI].y + 2 + pos * box.h, box.w-4, box.h/3-4);
-}
-*/
-
-function reDrawCNVS()
-{
-    let cnvs = document.getElementById("cnvs");
-    let ctx = cnvs.getContext('2d');
-    ctx.clearRect(0,0, w, h)
-
-    /*drawImages();*/
-    drawLines();
-}
-

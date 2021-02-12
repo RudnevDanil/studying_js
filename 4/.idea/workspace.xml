@@ -49,6 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1613031693614</updated>
       <workItem from="1613031695205" duration="8482000" />
+      <workItem from="1613096475917" duration="16953000" />
     </task>
     <servers />
   </component>
@@ -65,5 +66,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="616" y="235" key="run.anything.popup" timestamp="1613098109596">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="235" key="run.anything.popup/1920.30.1680.1010/0.0.1920.1040@0.0.1920.1040" timestamp="1613098109596" />
   </component>
 </project>
