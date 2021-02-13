@@ -222,7 +222,8 @@ function winAnimation(type)
             if(doBlinkBet)
                 $("#" + ids.bet).css({'color': (i % 2 === 0 ? 'green': 'white')});
 
-
+            if(i%2 === 0)
+                drawWinPos()
         }, 500 * i);
 
     setTimeout(function(){moneyOperation(type);},500 * (maxIteration));
@@ -232,7 +233,7 @@ function winAnimation(type)
 function checkResults()
 {
     let animationType = 0;
-    state.indexMultiplier = 5 - Math.floor(((state.currentPosition + (state.currentPosition < 0.25 ? 0.75 : -0.25)) / (1 / 18)) % settings.leafColors.length);
+    state.indexMultiplier = (settings.leafColors.length - 1) - Math.floor(((state.currentPosition + (state.currentPosition < 0.25 ? 0.75 : -0.25)) / (1 / 18)) % settings.leafColors.length);
     //console.log(settings.imgNames[state.indexMultiplier])
     let multiplier = settings.multiplier[state.indexMultiplier]
     if(multiplier == -1) // jackpot
@@ -310,8 +311,15 @@ function drawWinPos()
     ctx.strokeStyle = "black";
     ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.moveTo(state.center.x, state.center.y)
-    let offset = 0//state.leafW * ((state.currentPosition);
-    console.log((state.currentPosition % 1), state.currentPosition)
+
+    let offset = 0
+    let amountEl = settings.leafColors.length * settings.leafOneColorAmount
+    if(state.currentPosition / (1/amountEl) - Math.floor(state.currentPosition / (1/amountEl)) > 0.5)
+        offset -= (1/amountEl - state.currentPosition%(1/amountEl))
+    else
+        offset += state.currentPosition%(1/amountEl)
+    offset *= 2 * Math.PI
+
     ctx.arc(state.center.x, state.center.y, state.ringRI, -Math.PI / 2 - state.leafW / 2 - offset, -Math.PI / 2 + state.leafW / 2 - offset, true);
     ctx.stroke();
     ctx.fill();
