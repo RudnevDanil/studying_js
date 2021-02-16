@@ -1,12 +1,8 @@
 let settings = {
     imgNames: ["./data/trophy.png", "./data/coins.png", "./data/brilliant.png", "./data/lemon.png", "./data/banana.png", "./data/cherry.png"],
-    multiplier: [-1, 100, 10, 5, 3, -2], // -1 is jackpot, -2 is a money back/ . Use same order as imNames
-    /*boxLineW: 4, // box line width. Just don't touch
-    addMaxSteps: 10, // steps in one rotation = minSteps + rand(0...addMaxSteps)
-    minSteps: 10, // minimal steps in one rotation
-    speed: 5, // rotation speed. increase if it's too slow
-    oneRotationMovingTime: 500, // ms. just amin const. Use speed value for change speed
-    */
+    multiplier: [-1, 100, 10, 5, 3, -2], // -1 is jackpot, -2 is a money back/ . Use same order as imgNames
+    leafColors: ["gainsboro","burlywood","lightblue","palegreen","moccasin","plum"],//Use same order as imgNames
+    leafOneColorAmount: 3, // same elements
 
     addMaxRotations: 3, // steps in one rotation = minRotations + rand(0...addMaxRotations)
     minRotations: 3, // minimal steps in one rotation
@@ -15,10 +11,6 @@ let settings = {
     startJackpot: 7777, //start jackpot value
     startPlayerCoins: 100, //start player coins value
     startBet: 10, //start bet value
-
-    //leafColors: ["green","bisque","red","bisque","blue"], //
-    leafColors: ["gainsboro","burlywood","lightblue","palegreen","moccasin","plum"],
-    leafOneColorAmount: 3,
 }
 
 let state = {
@@ -26,19 +18,6 @@ let state = {
     playerCoins: 145, // debug. should be 0
     bet: 115, // debug. should be 0
 
-    /*inBoxNow: [ // store current images
-        [-1,-1,-1,-1],
-        [-1,-1,-1,-1],
-        [-1,-1,-1,-1],
-    ],
-    position: [0, 0, 0], // position in animation
-    steps: [0, 0, 0], // counter in animation
-    stepsLeft: [0, 0, 0], // counter in animation
-    stepsInStart: [0, 0, 0], // counter in animation
-    lastStep: [0, 0, 0], // counter in animation
-
-    animDuration: 2000, // changes in depend of steps
-    */
     rotations: 0, // counter in animation
     isImagesLoaded: false, // before this became true nothing will be painted
     counterLoadedImages: 0, //
@@ -222,7 +201,8 @@ function winAnimation(type)
             if(doBlinkBet)
                 $("#" + ids.bet).css({'color': (i % 2 === 0 ? 'green': 'white')});
 
-
+            if(i%2 === 0)
+                drawWinPos()
         }, 500 * i);
 
     setTimeout(function(){moneyOperation(type);},500 * (maxIteration));
@@ -232,7 +212,7 @@ function winAnimation(type)
 function checkResults()
 {
     let animationType = 0;
-    state.indexMultiplier = 5 - Math.floor(((state.currentPosition + (state.currentPosition < 0.25 ? 0.75 : -0.25)) / (1 / 18)) % settings.leafColors.length);
+    state.indexMultiplier = (settings.leafColors.length - 1) - Math.floor(((state.currentPosition + (state.currentPosition < 0.25 ? 0.75 : -0.25)) / (1 / 18)) % settings.leafColors.length);
     //console.log(settings.imgNames[state.indexMultiplier])
     let multiplier = settings.multiplier[state.indexMultiplier]
     if(multiplier == -1) // jackpot
@@ -310,8 +290,15 @@ function drawWinPos()
     ctx.strokeStyle = "black";
     ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.moveTo(state.center.x, state.center.y)
-    let offset = 0//state.leafW * ((state.currentPosition);
-    console.log((state.currentPosition % 1), state.currentPosition)
+
+    let offset = 0
+    let amountEl = settings.leafColors.length * settings.leafOneColorAmount
+    if(state.currentPosition / (1/amountEl) - Math.floor(state.currentPosition / (1/amountEl)) > 0.5)
+        offset -= (1/amountEl - state.currentPosition%(1/amountEl))
+    else
+        offset += state.currentPosition%(1/amountEl)
+    offset *= 2 * Math.PI
+
     ctx.arc(state.center.x, state.center.y, state.ringRI, -Math.PI / 2 - state.leafW / 2 - offset, -Math.PI / 2 + state.leafW / 2 - offset, true);
     ctx.stroke();
     ctx.fill();
