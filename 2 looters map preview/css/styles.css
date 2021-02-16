@@ -809,3 +809,11 @@ li{
 .butYellowBorder{border: 0.3vmin solid yellow;}
 .butRedBorder{border: 0.3vmin solid red;}
 .butGreenBorder{border: 0.3vmin solid green;}
+
+.addPhoto{
+    opacity:0;
+    width: 3vmin;
+    height: 3vmin;
+    position: absolute;
+    left: calc(0.78vw + (6.24vw - 2 * 3vmin)/3);
+}

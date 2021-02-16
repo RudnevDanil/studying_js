@@ -137,6 +137,11 @@
             <!-- ------------------------------------ aboutProjectScreen ------------------------------------------------ -->
             <div id="aboutProjectScreen">
                 <div id="aboutProjectText">This project uses connected IP cameras to mark employees visits to premises, as well as to signal unauthorized visitors.</div>
+                <div class='photoPlusMinus photoPlus'><div class='butBackground butBackgroundSmallSize'>
+                        <img src='./data/plus.png' alt='plus' class='imgTopLine butImgSmallSize'>
+                        <input type="file" class="addPhoto" multiple accept="image/png,image/jpeg">
+                    </div></div>
+
             </div>
 
             <!-- ------------------------------------ facesScreen ------------------------------------------------ -->
@@ -201,15 +206,15 @@
                 <div class="staffPage" id="staffBackground"></div>
 
                 <div class="staffPage" id="staffAddPage">
-                    <div class="topLine topLinePrevBut" id="staffAddPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLinePrevBut" id="staffAddPrevButt"><div class="butBackground butBackgroundBigSize" onclick="staffAddPrevPage()"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLinePrevButPlaceholder" id="staffAddPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="staffAddPrevButtBackground"></div></div>
-                    <div class="topLine topLineNextBut" id="staffAddNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineNextBut" id="staffAddNextButt"><div class="butBackground butBackgroundBigSize" onclick="staffAddNextPage()"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLineNextButPlaceholder" id="staffAddNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="staffAddNextButtBackground"></div></div>
 
                     <div class="topLine" id="staffAddFullNameBlock"><div class="text staffAddPageText">Full name</div><input class="inputVal staffInputVal"  id="staffAddPageName" type="text" placeholder="..."></div>
                     <div class="topLine"><div class="text staffAddPageText">Position</div><input class="inputVal staffInputVal"  id="staffAddPagePosition" type="text" placeholder="..."></div>
 
-                    <div class="topLine topLineForButBig" id="staffAddSaveButt"><div class='butBackground butBackgroundBigSize'><img src='./data/save.png' alt='save' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig" id="staffAddSaveButt"><div class='butBackground butBackgroundBigSize butNoFrame' onclick="saveNewPerson()" id="butSaveNewPerson"><img src='./data/save.png' alt='save' class='imgTopLine butImgBigSize imgNoFrame'  id="imgSaveNewPerson"></div></div>
                     <div class="topLine topLineForButBig" id="staffAddRemoveUserButt"><div class='butBackground butBackgroundBigSize'><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLineForButBig" id="staffAddRemoveUserButtPlaceHolder"><div class="button" id="staffAddRemoveUserButtBackground"></div></div>
                 </div>
@@ -234,7 +239,7 @@
 <script src="js/authFunct.js"></script>
 <script src="js/mapActions.js"></script>
 <script src="js/initFunctions.js"></script>
-
+<script src="js/staffFunctions.js"></script>
 
 <script>
     document.getElementById(ids.menu.auth).style.color = "black";
