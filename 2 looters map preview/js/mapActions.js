@@ -44,6 +44,33 @@ let actions_map = {
     changeVisibleType(id, toVisible){document.getElementById(id).classList.replace(!toVisible?'visible':'hidden', toVisible?'visible':'hidden');},
     changeMapPageViewMode(id, toView){document.getElementById(id).classList.replace(!toView?'mapPageViewMode':'mapPageEditingMode', toView?'mapPageViewMode':'mapPageEditingMode');},
 
+    loadMap()
+    {
+        mapObjects = [];
+
+        $.get('php/loadMap.php', {login: login, pass: pass}, function (result) {
+            result = $.parseJSON(result);
+            if(result.answer === "done")
+            {
+                for(let k = 0; k < result.arr.length; k++)
+                {
+                    mapObjects.push({
+                        x: result.arr[k][1],
+                        y: result.arr[k][2],
+                        w: result.arr[k][3],
+                        h: result.arr[k][4],
+                        r: result.arr[k][5],
+                        //d: result.arr[k][6],
+                        type: mapObjTypes[result.arr[k][0]],
+                    });
+                }
+            }
+            else
+                console.log("Loading map error")
+            actions_map.reDrawCNVS();
+        });
+    },
+
     saveClicked()
     {
         if(mapToolBarState.isEditMode)

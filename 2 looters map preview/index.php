@@ -189,17 +189,8 @@
                 <div class="topLine topLineForImg" id="staffScreenLoupe"><div class="butBackground butBackgroundBigSize"><img src='./data/loupe.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.listShow()"></div></div>
                 <div class="topLine topLineForImg" id="staffScreenPlus"><div class="butBackground butBackgroundBigSize"><img src='./data/plus.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.addShow()"></div></div>
                 <div class="topLine topLineForSelect topLineForChoiceVal" id="staffScreenChoiceVal">
-                    <select class="choiceVal">
-                        <optgroup label="Marketing dept">
-                            <option>Gates M</option>
-                            <option>Ford G</option>
-                            <option>Trump D</option>
-                        </optgroup>
-                        <optgroup label="IT dept">
-                            <option>Lane J</option>
-                            <option>Richardson M</option>
-                            <option>Obama B</option>
-                        </optgroup>
+                    <select class="choiceVal" id="staffScreenSelect">
+                        <option>loading ...</option>
                     </select>
                 </div>
 

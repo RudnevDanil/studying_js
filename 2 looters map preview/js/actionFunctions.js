@@ -18,6 +18,7 @@ let ids = {
         staff: "menuStaff",
         auth: "menuAuth",
     },
+    staffList: "staffScreenSelect",
 }
 
 function initZIndexForDisplay()
@@ -42,44 +43,19 @@ function initializeFontColorForDisplay()
     document.getElementById(ids.menu.auth).style.color = "honeydew";
 }
 
+let login = 'admin', pass = '111'; // debug
+
 function menuClicked(i)
 {
     if(!authFunct.isAuthorized)
         return;
     let screen = "", menu = "";
 
-    let login = 'admin', pass = '111'; // debug
-
     switch(i){
         case 1:
             screen = ids.screen.map;
             menu = ids.menu.map;
-
-            // loading objects if it's not loaded before
-            //...
-            mapObjects = [];
-
-            $.get('php/loadMap.php', {login: login, pass: pass}, function (result) {
-                result = $.parseJSON(result);
-                if(result.answer === "done")
-                {
-                    for(let k = 0; k < result.arr.length; k++)
-                    {
-                        mapObjects.push({
-                            x: result.arr[k][1],
-                            y: result.arr[k][2],
-                            w: result.arr[k][3],
-                            h: result.arr[k][4],
-                            r: result.arr[k][5],
-                            //d: result.arr[k][6],
-                            type: mapObjTypes[result.arr[k][0]],
-                        });
-                    }
-                }
-                else
-                    console.log("Loading map error")
-                actions_map.reDrawCNVS();
-            });
+            actions_map.loadMap();
             break;
         case 2:
             screen = ids.screen.cameras;
@@ -88,71 +64,7 @@ function menuClicked(i)
         case 3:
             screen = ids.screen.cameraSettings;
             menu = ids.menu.cameraSettings;
-
-            console.log("----")
-            $.get('php/loadCamSettings.php', {login: login, pass: pass}, function (result) {
-                result = $.parseJSON(result);
-                if(result.answer === "done")
-                {
-                    console.log(result.arr)
-
-                    let amountCam = result.arr.length
-                    $("#" + camSetIds.data.uni[0]).val(amountCam)
-                    camSetData.arr = [];
-                    let listId = "#" + camSetIds.data.stream[0];
-                    $(listId).empty();
-                    if(amountCam > 0)
-                    {
-                        for(let i = 0; i < amountCam; i++)
-                        {
-                           let arr = [];
-                            arr.push(parseInt(result.arr[i][0]))
-                            arr.push(result.arr[i][1])
-                            arr.push(result.arr[i][2])
-                            for(let k = 3; k <= 6; k++)
-                                arr.push(parseInt(result.arr[i][k]))
-                            arr.push(parseFloat(result.arr[i][7]))
-                            camSetData.arr.push(arr)
-
-                            // сделать список для выбора камеры по cam_code
-                            $(listId).append('<option value="'+(i+1)+'">'+(i+1)+'</option>');
-                        }
-
-                        // вызов функции заполнения полей по первой камере
-                        fillCamSetFields(camSetData.arr[0])
-                    }
-                    /*
-                    camSetData.arr = [];
-                    let listId = "#" + camSetIds.data.stream[0];
-                    $(listId).empty();
-
-                    if(amountCam > 0)
-                    {
-                        for(let i = 0; i < amountCam; i++)
-                        {
-                            camSetData.arr.push([i, "", "", 0, 0, 25, 25000, 1.0])
-
-                            // сделать список для выбора камеры по i
-                            $(listId).append('<option value="'+(i+1)+'">'+(i+1)+'</option>');
-                        }
-
-                        // вызов функции заполнения полей по первой камере
-                        fillCamSetFields(camSetData.arr[0])
-                    }
-                    * */
-
-
-
-
-
-
-
-                }
-                else
-                    console.log("Loading camera settings error")
-                actions_map.reDrawCNVS();
-            });
-
+            loadCameraSettings();
             break;
         case 4:
             screen = ids.screen.aboutProject;
@@ -165,6 +77,7 @@ function menuClicked(i)
         case 6:
             screen = ids.screen.staff;
             menu = ids.menu.staff;
+            loadStaffList();
             break;
         case 7:
             screen = ids.screen.auth;
@@ -257,6 +170,44 @@ let camSetData =
 {
     savingInProgress: false,
     arr: [],
+}
+
+function loadCameraSettings()
+{
+    $.get('php/loadCamSettings.php', {login: login, pass: pass}, function (result) {
+        result = $.parseJSON(result);
+        if(result.answer === "done")
+        {
+            let amountCam = result.arr.length
+            $("#" + camSetIds.data.uni[0]).val(amountCam)
+            camSetData.arr = [];
+            let listId = "#" + camSetIds.data.stream[0];
+            $(listId).empty();
+            if(amountCam > 0)
+            {
+                for(let i = 0; i < amountCam; i++)
+                {
+                    let arr = [];
+                    arr.push(parseInt(result.arr[i][0]))
+                    arr.push(result.arr[i][1])
+                    arr.push(result.arr[i][2])
+                    for(let k = 3; k <= 6; k++)
+                        arr.push(parseInt(result.arr[i][k]))
+                    arr.push(parseFloat(result.arr[i][7]))
+                    camSetData.arr.push(arr)
+
+                    // сделать список для выбора камеры по cam_code
+                    $(listId).append('<option value="'+(i+1)+'">'+(i+1)+'</option>');
+                }
+
+                // вызов функции заполнения полей по первой камере
+                fillCamSetFields(camSetData.arr[0])
+            }
+        }
+        else
+            console.log("Loading camera settings error")
+        actions_map.reDrawCNVS();
+    });
 }
 
 function fillCamSetFields(arr /*[camN, description, connLine, savingSkipFr, classSkipFr, camFPS, frInOneAvi, scaling]*/)
@@ -402,8 +353,13 @@ function saveCamSettings()
 let actions_staff = {
     addShow()
     {
-        document.getElementById("staffListPage").style.zIndex = "0";
-        document.getElementById("staffAddPage").style.zIndex = "2";
+        if(!staffState.savingInProgress && !staffState.loadingInProgress)
+        {
+            document.getElementById("staffListPage").style.zIndex = "0";
+            document.getElementById("staffAddPage").style.zIndex = "2";
+            //document.getElementById("staffAddRemoveUserButt").style.zIndex = "0"; // debug. Need to be uncommented
+            clearStuffAdd()
+        }
     },
 
     listShow()
@@ -411,21 +367,6 @@ let actions_staff = {
         document.getElementById("staffAddPage").style.zIndex = "0";
         document.getElementById("staffListPage").style.zIndex = "2";
     },
-
-    nextListShow() {document.getElementById("staffListNextButt").style.zIndex = "2";},
-    nextListHide() {document.getElementById("staffListNextButt").style.zIndex = "0";},
-    prevListShow() {document.getElementById("staffListPrevButt").style.zIndex = "2";},
-    prevListHide() {document.getElementById("staffListPrevButt").style.zIndex = "0";},
-
-    nextAddShow() {document.getElementById("staffAddNextButt").style.zIndex = "2";},
-    nextAddHide() {document.getElementById("staffAddNextButt").style.zIndex = "0";},
-    prevAddShow() {document.getElementById("staffAddPrevButt").style.zIndex = "2";},
-    prevAddHide() {document.getElementById("staffAddPrevButt").style.zIndex = "0";},
-
-    removeAddShow() {document.getElementById("staffAddRemoveUserButt").style.zIndex = "2";},
-    removeAddHide() {document.getElementById("staffAddRemoveUserButt").style.zIndex = "0";},
-
-
 }
 
 

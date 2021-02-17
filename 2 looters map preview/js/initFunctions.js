@@ -53,7 +53,7 @@
             str += "<div class='photoCard photoCardBut photoCard"+((counter%10)+1)+"' id='staffAddPhotoBackground_"+counter+"'>";
             str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffAddPhoto_"+counter+"'>";
             str += "<div class='photoPlusMinus photoPlus'><div class='butBackground butBackgroundSmallSize'><img src='./data/plus.png' alt='plus' class='imgTopLine butImgSmallSize'><input type='file' class='addPhoto' multiple accept='image/png,image/jpeg'></div></div>";
-            str += "<div class='photoPlusMinus photoMinus'><div class='butBackground butBackgroundSmallSize'><img src='./data/minus.png' alt='minus' class='imgTopLine butImgSmallSize'></div></div>";
+            str += "<div class='photoPlusMinus photoMinus'><div class='butBackground butBackgroundSmallSize' onclick='removeImg("+i+","+j+")'><img src='./data/minus.png' alt='minus' class='imgTopLine butImgSmallSize'></div></div>";
             str += "</div>";
             str += "<div class='photoCard photoCard"+((counter%10)+1)+" photoCardPlaceHolderAdd' id='photoCardAddPlaceHolder_"+counter+"'></div>";
             counter += 1;

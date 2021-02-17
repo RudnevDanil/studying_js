@@ -5,7 +5,7 @@ $pass = $_GET['pass'];
 include "./checkAuth.php";
 include "./dbConnect.php";
 
-$query = "select cam_code, description, connecting_line, saving_skip_fr, class_skip_fr, cam_FPS, fr_in_one_avi, scaling from lm_cameras where user_id='$userId';";
+$query = "select full_name, position from lm_staff where user_id='$userId';";
 
 if ($result = $mysqli->query($query))
 {

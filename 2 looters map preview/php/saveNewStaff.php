@@ -5,52 +5,84 @@ $pass = $_POST['pass'];
 include "./checkAuth.php";
 include "./dbConnect.php";
 
-// first let's remove old cameras
-/*
-$query = "delete from lm_cameras where user_id='$userId'";
-
-if ($result = $mysqli->query($query))
+if(    isset($_POST['fullName']) && !empty($_POST['fullName'])
+    && isset($_POST['position']) && !empty($_POST['position'])
+    && isset($_POST['arr']) && !empty($_POST['arr']) && count($arr = $_POST['arr']) != 0)
 {
-    if(isset($_POST['arr']) && !empty($_POST['arr']) && count($arr = $_POST['arr']) != 0)
+    $full_name = $_POST['fullName'];
+    $position = $_POST['position'];
+    $arr = $_POST['arr'];
+
+    $query = "select count(id) as count from lm_staff where full_name='$full_name' and user_id='$userId'";
+    if ($result = $mysqli->query($query))
     {
-        $arr = $_POST['arr'];
-        $errorsNumber = 0;
-
-        for($i = 0; $i < count($arr) ; $i++)
+        $answer = $result->fetch_array(MYSQLI_ASSOC);// для одной строки
+        //$answer = $result->fetch_all();// для всего массива
+        $staffId = null;
+        if($answer["count"] == 0)
         {
-            $v0 = $arr[$i][0];
-            $v1 = $arr[$i][1];
-            $v2 = $arr[$i][2];
-            $v3 = $arr[$i][3];
-            $v4 = $arr[$i][4];
-            $v5 = $arr[$i][5];
-            $v6 = $arr[$i][6];
-            $v7 = $arr[$i][7];
-
-            $query = "insert into lm_cameras (user_id, cam_code, description, connecting_line, saving_skip_fr, class_skip_fr, cam_FPS, fr_in_one_avi, scaling) values ('$userId', '$v0', '$v1', '$v2', '$v3', '$v4', '$v5', '$v6', '$v7');";
+            $query = "insert into lm_staff (user_id, full_name, position, isBanned) values ('$userId','$full_name', '$position', '0');";
             if ($result = $mysqli->query($query))
             {
-                //echo json_encode(array("answer" => "done"));
+                //echo json_encode(array("answer"=>"new staff registered"));
             }
             else
             {
-                $errorsNumber += 1;
-                print_r($query);
+                echo json_encode(array("answer"=>"query insert new staff error"));
             }
         }
-        if($errorsNumber != 0)
-            echo json_encode(array("answer"=>"saving error", "message"=>"$errorsNumber object was not saved"));
-        else
-            echo json_encode(array("answer"=>"saving success"));
-    }
-    else
-    {
-        echo json_encode(array("answer"=>"saving success"));
+
+        $query = "select id from lm_staff where full_name='$full_name' and user_id='$userId'";
+        if ($result = $mysqli->query($query))
+        {
+            $answer = $result->fetch_array(MYSQLI_ASSOC);
+            $staffId = $answer["id"];
+            $query = "update lm_staff set position='$position' where full_name='$full_name' and user_id='$userId'";
+            if ($result = $mysqli->query($query))
+            {
+                $query = "delete from lm_faces where staff_id='$staffId' and user_id='$userId'";
+                if ($result = $mysqli->query($query))
+                {
+                    $errorsNumber = 0;
+
+                    for($i = 0; $i < count($arr) ; $i++)
+                    {
+                        $img = $arr[$i];
+
+                        $query = "insert into lm_faces (img, user_id, staff_id) values ('$img', '$userId', '$staffId');";
+                        if ($result = $mysqli->query($query))
+                        {
+                            //echo json_encode(array("answer" => "done"));
+                        }
+                        else
+                        {
+                            $errorsNumber += 1;
+                            print_r($query);
+                        }
+                    }
+                    if($errorsNumber == 0)
+                        echo json_encode(array("answer"=>"saving success"));
+                    else
+                        echo json_encode(array("answer"=>"saving error", "message"=>"$errorsNumber object was not saved"));
+                }
+                else
+                {
+                    echo json_encode(array("answer"=>"remove old error error"));
+                }
+            }
+            else
+            {
+                echo json_encode(array("answer"=>"update error error"));
+            }
+
+
+        }
     }
 }
 else
 {
-    echo json_encode(array("answer"=>"remove error"));
-}*/
+    echo json_encode(array("answer"=>"params error"));
+}
 $mysqli->close();
+
 ?>
