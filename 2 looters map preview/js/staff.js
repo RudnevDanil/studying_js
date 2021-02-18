@@ -8,6 +8,7 @@ staffIds = {
     background: "staffAddPhotoBackground_", // + counter
     leftArrow: "staffAddPrevButt",
     rightArrow: "staffAddNextButt",
+    removeButton: "staffAddRemoveUserButt",
     fullName: "staffAddPageName",
     position: "staffAddPagePosition",
 }
@@ -18,6 +19,30 @@ staffState = {
     loadingWait: 0,
     savingInProgress: false,
     loadingInProgress: false,
+    removingInProgress: false,
+}
+
+let actions_staff = {
+    addShow()
+    {
+        if(!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
+        {
+            document.getElementById("staffListPage").style.zIndex = "0";
+            document.getElementById("staffAddPage").style.zIndex = "2";
+            document.getElementById("staffAddRemoveUserButt").style.zIndex = "0";
+            clearStuffAdd()
+        }
+    },
+
+    listShow()
+    {
+        if(!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
+        {
+            document.getElementById("staffAddPage").style.zIndex = "0";
+            document.getElementById("staffListPage").style.zIndex = "2";
+            loadLoupe()
+        }
+    },
 }
 
 function clearStuffAdd(isClearArray = true, isDrawImages = true)
@@ -36,11 +61,59 @@ function clearStuffAdd(isClearArray = true, isDrawImages = true)
 
     if(isDrawImages)
         showAddStuffImages(staffState.currentPage)
+
+    $("#"+staffIds.removeButton).css('z-index', 0)
+}
+
+function removePerson()
+{
+    if(!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
+    {
+        //let login = document.getElementById(authFunct.ids.login).value.trim();
+        //let pass = document.getElementById(authFunct.ids.pass).value.trim();
+        let login = 'admin', pass = '111'; // debug
+        let fullName = document.getElementById(staffIds.fullName).value.trim();
+        let position = document.getElementById(staffIds.position).value.trim();
+
+        let butId = '#butRemovePerson'
+        let imgId = '#imgDeletePerson'
+        $(butId).removeClass('butNoFrame').addClass('butFrame');
+        $(imgId).removeClass('imgNoFrame').addClass('imgFrame');
+        $(butId).removeClass('butRedBorder').removeClass('butGreenBorder').addClass('butYellowBorder');
+        $(butId).removeClass('allowedToTouch').addClass('notAllowedToTouch');
+        staffState.removingInProgress = true;
+
+        $.post('php/deleteCurrentStaff.php', {login: login, pass: pass, fullName: fullName, position: position}, function (result)
+        {
+            if(result !== "")
+            {
+                result = $.parseJSON(result);
+                if(result.answer === "done")
+                {
+                    $(butId).removeClass('butRedBorder').removeClass('butYellowBorder').addClass('butGreenBorder');
+                }
+                else
+                    $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
+            }
+            else
+                $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
+            $(butId).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+            setTimeout(() => {
+                $(butId).removeClass('butFrame').addClass('butNoFrame');
+                $(imgId).removeClass('imgFrame').addClass('imgNoFrame');
+                $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').removeClass('butRedBorder');
+                staffState.removingInProgress = false;
+                clearStuffAdd()
+                loadStaffList();
+            }, 1000);
+        });
+
+    }
 }
 
 function saveNewPerson()
 {
-    if(!staffState.savingInProgress && !staffState.loadingInProgress)
+    if(!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
     {
         //let login = document.getElementById(authFunct.ids.login).value.trim();
         //let pass = document.getElementById(authFunct.ids.pass).value.trim();
@@ -48,12 +121,6 @@ function saveNewPerson()
 
         let fullName = document.getElementById(staffIds.fullName).value.trim();
         let position = document.getElementById(staffIds.position).value.trim();
-
-
-        if(fullName === "" || position === "") {
-            // обработать, поморгать надписью !!!
-            return // debug
-        }
 
         let butId = '#butSaveNewPerson'
         let imgId = '#imgSaveNewPerson'
@@ -90,22 +157,21 @@ function saveNewPerson()
     }
 }
 
-$("#" + ids.staffList).change(function()
+function openStaffCard(fullName)
 {
-    let val = $(this).val()
-    if(val === "" || val === "loading ...") return false;
+    if(fullName === "" || fullName === "loading ...") return false;
 
     actions_staff.addShow();
     staffState.loadingInProgress = true;
     document.getElementById(staffIds.fullName).value = "loading ...";
     document.getElementById(staffIds.position).value = "loading ...";
 
-    $.get('php/loadStaffCard.php', {login: login, pass: pass, full_name: val}, function (result)
+    $.get('php/loadStaffCard.php', {login: login, pass: pass, full_name: fullName}, function (result)
     {
         result = $.parseJSON(result);
         if(result.answer === "done")
         {
-            for(val in result.arr)
+            for(let val in result.arr)
                 staffState.arr.push(result.arr[val][0])
             showAddStuffImages(staffState.currentPage)
             document.getElementById(staffIds.fullName).value = result.full_name;
@@ -114,8 +180,12 @@ $("#" + ids.staffList).change(function()
         else
             console.log("Loading staff card error")
         staffState.loadingInProgress = false;
+        $("#"+staffIds.removeButton).css('z-index', 2)
+        $("#defaultOption").attr("selected", "selected");
     });
-});
+}
+
+$("#" + ids.staffList).change(function() {openStaffCard($(this).val())});
 
 function loadStaffList()
 {
@@ -139,7 +209,7 @@ function loadStaffList()
                 }
                 optgroups[index].push(result.arr[j][0])
             }
-            $(listId).append("<option></option>");
+            $(listId).append("<option id='defaultOption'></option>");
             for(let key of keys.values())
             {
                 let str = "<optgroup label='" + key + "'>";
@@ -233,3 +303,87 @@ $(".addPhoto").bind('change', function()
         fr.readAsDataURL(this.files[i]);
     }
 });
+
+// ------------------------ loupe ---------------------------
+loupeSettings = {
+    widthElements: 10,
+    heightElements: 4,
+}
+
+loupeIds = {
+    img: "staffListPhoto_",
+    fullName: "staffListPersonName_",
+    position: "staffListPersonPosition_",
+    background: "photoCardList_",
+    leftArrow: "staffListPrevButt",
+    rightArrow: "staffListNextButt",
+    loading: "staffLoupeLoading",
+}
+
+loupeState = {
+    currentPage: 0,
+}
+
+function staffCardClicked(i)
+{
+    openStaffCard($("#"+loupeIds.fullName + i).text())
+}
+
+function loadLoupe(page = 1)
+{
+    if(!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
+    {
+        //let login = document.getElementById(authFunct.ids.login).value.trim();
+        //let pass = document.getElementById(authFunct.ids.pass).value.trim();
+        let login = 'admin', pass = '111'; // debug
+
+        //let pageSize = loupeSettings.heightElements * loupeSettings.widthElements;
+        let pageSize = 3; // debug
+
+        for(let i = 0; i <  loupeSettings.widthElements; i++)
+            for(let j = 0; j < loupeSettings.heightElements; j++)
+                $("#" + loupeIds.background + (i*loupeSettings.heightElements + j)).css('z-index', 0)
+        $("#"+loupeIds.leftArrow).css('z-index', 0)
+        $("#"+loupeIds.rightArrow).css('z-index', 0)
+        $("#"+loupeIds.loading).css('z-index', 2)
+
+        $.get('php/loadLoupeList.php', {login: login, pass: pass, page: page, pageSize: pageSize}, function (result) {
+            result = $.parseJSON(result);
+            if(result.answer === "done")
+            {
+                loupeState.currentPage = page;
+                if(page > 1)
+                    $("#"+loupeIds.leftArrow).css('z-index', 2)
+                if(page * pageSize  < result.count)
+                    $("#"+loupeIds.rightArrow).css('z-index', 2)
+                let counterLoupe = 0;
+                for(let i in result.arr)
+                {
+                    $("#"+loupeIds.fullName + counterLoupe).text(result.arr[i][0])
+                    $("#"+loupeIds.position + counterLoupe).text(result.arr[i][1])
+                    $("#"+loupeIds.img  + counterLoupe).attr('src', result.arr[i][2]);
+                    $("#" + loupeIds.background + (counterLoupe)).css('z-index', 2)
+                    counterLoupe += 1;
+                }
+            }
+            else
+                console.log("Loading staff list error")
+            $("#"+loupeIds.loading).css('z-index', 0)
+        });
+    }
+}
+
+function staffLoupePrevPage()
+{
+    if(loupeState.currentPage > 1)
+    {
+        loupeState.currentPage -= 1;
+        loadLoupe(loupeState.currentPage)
+    }
+}
+
+function staffLoupeNextPage()
+{
+    loupeState.currentPage += 1;
+    loadLoupe(loupeState.currentPage)
+}

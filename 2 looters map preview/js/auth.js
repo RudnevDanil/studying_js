@@ -1,3 +1,9 @@
+function newUserClicked()
+{
+    if(!document.getElementById("authNewUserButt").classList.replace('notChecked', 'checked'))
+        document.getElementById("authNewUserButt").classList.replace('checked', 'notChecked')
+}
+
 let authFunct =
 {
     ids: {

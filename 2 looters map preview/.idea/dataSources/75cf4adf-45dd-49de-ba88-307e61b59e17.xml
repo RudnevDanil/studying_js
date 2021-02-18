@@ -746,8 +746,9 @@
     </column>
     <column id="226" parent="208" name="description">
       <Position>4</Position>
-      <DataType>int(11)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
     </column>
     <column id="227" parent="208" name="connecting_line">
       <Position>5</Position>
@@ -795,91 +796,101 @@
       <DataType>blob|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="236" parent="209" name="staff_id">
+    <column id="236" parent="209" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="237" parent="209" name="staff_id_rec">
+    <column id="237" parent="209" name="staff_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <key id="238" parent="209" name="PRIMARY">
+    <column id="238" parent="209" name="staff_id_rec">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <key id="239" parent="209" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="239" parent="210" name="id">
+    <column id="240" parent="210" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="240" parent="210" name="type">
+    <column id="241" parent="210" name="type">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="241" parent="210" name="user_id">
+    <column id="242" parent="210" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="242" parent="210" name="x">
+    <column id="243" parent="210" name="x">
       <Position>4</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="243" parent="210" name="y">
+    <column id="244" parent="210" name="y">
       <Position>5</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="244" parent="210" name="w">
+    <column id="245" parent="210" name="w">
       <Position>6</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="245" parent="210" name="h">
+    <column id="246" parent="210" name="h">
       <Position>7</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="246" parent="210" name="r">
+    <column id="247" parent="210" name="r">
       <Position>8</Position>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="247" parent="210" name="d">
+    <column id="248" parent="210" name="d">
       <Position>9</Position>
       <DataType>float|0s</DataType>
     </column>
-    <key id="248" parent="210" name="PRIMARY">
+    <key id="249" parent="210" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="249" parent="211" name="id">
+    <column id="250" parent="211" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="250" parent="211" name="full_name">
+    <column id="251" parent="211" name="full_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="251" parent="211" name="position">
+    <column id="252" parent="211" name="user_id">
       <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="253" parent="211" name="position">
+      <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="252" parent="211" name="isBanned">
-      <Position>4</Position>
+    <column id="254" parent="211" name="isBanned">
+      <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="253" parent="211" name="PRIMARY">
+    <key id="255" parent="211" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -817,3 +817,22 @@ li{
     position: absolute;
     left: calc(0.78vw + (6.24vw - 2 * 3vmin)/3);
 }
+
+#staffLoupeLoading, #staffLoupeLoadingBackground{
+    position: absolute;
+    width: calc(78vw - 9vmin * 2);
+    text-align: center;
+    font-size: 5vmin;
+    z-index: 2;
+    left: 9vmin;
+}
+
+#staffLoupeLoadingBackground{
+    z-index: 1;
+    background-color: darkkhaki;
+    border-spacing: 0;
+}
+#staffLoupeLoadingBackgroundInner{
+    height: inherit;
+    width: inherit;
+}

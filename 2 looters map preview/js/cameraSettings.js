@@ -1,176 +1,35 @@
-/*---------------------------- MENU --------------------------------------------*/
-let ids = {
-    screen: {
-        map: "mapScreen",
-        cameras: "camerasScreen",
-        cameraSettings: "cameraSettingsScreen",
-        aboutProject: "aboutProjectScreen",
-        faces: "facesScreen",
-        staff: "staffScreen",
-        auth: "authScreen",
-    },
-    menu: {
-        map: "menuMap",
-        cameras: "menuCameras",
-        cameraSettings: "menuCameraSettings",
-        aboutProject: "menuAboutProject",
-        faces: "menuFaces",
-        staff: "menuStaff",
-        auth: "menuAuth",
-    },
-    staffList: "staffScreenSelect",
-}
-
-function initZIndexForDisplay()
-{
-    document.getElementById(ids.screen.map).style.zIndex = "1";
-    document.getElementById(ids.screen.cameras).style.zIndex = "1";
-    document.getElementById(ids.screen.cameraSettings).style.zIndex = "1";
-    document.getElementById(ids.screen.aboutProject).style.zIndex = "1";
-    document.getElementById(ids.screen.faces).style.zIndex = "1";
-    document.getElementById(ids.screen.staff).style.zIndex = "1";
-    document.getElementById(ids.screen.auth).style.zIndex = "1";
-}
-
-function initializeFontColorForDisplay()
-{
-    document.getElementById(ids.menu.map).style.color = "honeydew";
-    document.getElementById(ids.menu.cameras).style.color = "honeydew";
-    document.getElementById(ids.menu.cameraSettings).style.color = "honeydew";
-    document.getElementById(ids.menu.aboutProject).style.color = "honeydew";
-    document.getElementById(ids.menu.faces).style.color = "honeydew";
-    document.getElementById(ids.menu.staff).style.color = "honeydew";
-    document.getElementById(ids.menu.auth).style.color = "honeydew";
-}
-
-let login = 'admin', pass = '111'; // debug
-
-function menuClicked(i)
-{
-    if(!authFunct.isAuthorized)
-        return;
-    let screen = "", menu = "";
-
-    switch(i){
-        case 1:
-            screen = ids.screen.map;
-            menu = ids.menu.map;
-            actions_map.loadMap();
-            break;
-        case 2:
-            screen = ids.screen.cameras;
-            menu = ids.menu.cameras;
-            break;
-        case 3:
-            screen = ids.screen.cameraSettings;
-            menu = ids.menu.cameraSettings;
-            loadCameraSettings();
-            break;
-        case 4:
-            screen = ids.screen.aboutProject;
-            menu = ids.menu.aboutProject;
-            break;
-        case 5:
-            screen = ids.screen.faces;
-            menu = ids.menu.faces;
-            break;
-        case 6:
-            screen = ids.screen.staff;
-            menu = ids.menu.staff;
-            loadStaffList();
-            break;
-        case 7:
-            screen = ids.screen.auth;
-            menu = ids.menu.auth;
-            break;
-    }
-    initZIndexForDisplay()
-    document.getElementById(screen).style.zIndex = "2";
-    initializeFontColorForDisplay()
-    document.getElementById(menu).style.color = "black";
-}
-
-/*---------------------------- AUTH --------------------------------------------*/
-
-function newUserClicked()
-{
-    if(!document.getElementById("authNewUserButt").classList.replace('notChecked', 'checked'))
-        document.getElementById("authNewUserButt").classList.replace('checked', 'notChecked')
-}
-
-/*---------------------------- CAMERA --------------------------------------------*/
-function initCameraBlocks()
-{
-    for(let i = 1; i <= 4; i++)
-    {
-        document.getElementById("cameraBlock_" + i).style.w = "0";
-        document.getElementById("cameraBlock_" + i).className = "cameraBlock";
-        document.getElementById("placeholder_" + i).className = "";
-    }
-}
-
-function switchDisplayAmountCamerasTo_1()
-{
-    initCameraBlocks();
-    document.getElementById("cameraBlock_1").className += " ";
-    document.getElementById("cameraBlock_1").className += "amountCameras_1";
-    document.getElementById("placeholder_1").className = "testInside_1";
-}
-
-function switchDisplayAmountCamerasTo_2()
-{
-    initCameraBlocks();
-    for(let i = 1; i <= 4; i+=2)
-    {
-        document.getElementById("cameraBlock_" + i).className += " ";
-        document.getElementById("cameraBlock_" + i).className += "amountCameras_2";
-        document.getElementById("placeholder_" + i).className = "testInside_2_4";
-    }
-}
-
-function switchDisplayAmountCamerasTo_4()
-{
-    initCameraBlocks();
-    for(let i = 1; i <= 4; i++)
-    {
-        document.getElementById("cameraBlock_" + i).className += " ";
-        document.getElementById("cameraBlock_" + i).className += "amountCameras_4";
-        document.getElementById("placeholder_" + i).className = "testInside_2_4";
-    }
-}
-
 /*---------------------------- CAMERA SETTINGS --------------------------------------------*/
 
 let camSetIds =
-{
-    uniSetBut: "CamSetUniSetBut",
-    uniSetImg: "CamSetUniSetImg",
-    streamSetBut: "CamSetStreamSetBut",
-    streamSetImg: "CamSetStreamSetImg",
-    saveBut: "CamSetSaveBut",
-    saveImg: "CamSetSaveImg",
-    data: {
-        uni: [
-            "uniSetAmountOfCam",
-        ],
-        stream: [
-            "streamSetCamNumb",
-            "streamSetDescription",
-            "streamSetConnectingLine",
-            "streamSetSavingSkipFrames",
-            "streamSetClassificationSkipFrames",
-            "streamSetFPS",
-            "streamSetFramesInOneVideo",
-            "streamSetScaling",
-        ],
-    },
-}
+    {
+        uniSetBut: "CamSetUniSetBut",
+        uniSetImg: "CamSetUniSetImg",
+        streamSetBut: "CamSetStreamSetBut",
+        streamSetImg: "CamSetStreamSetImg",
+        saveBut: "CamSetSaveBut",
+        saveImg: "CamSetSaveImg",
+        data: {
+            uni: [
+                "uniSetAmountOfCam",
+            ],
+            stream: [
+                "streamSetCamNumb",
+                "streamSetDescription",
+                "streamSetConnectingLine",
+                "streamSetSavingSkipFrames",
+                "streamSetClassificationSkipFrames",
+                "streamSetFPS",
+                "streamSetFramesInOneVideo",
+                "streamSetScaling",
+            ],
+        },
+    }
 
 let camSetData =
-{
-    savingInProgress: false,
-    arr: [],
-}
+    {
+        savingInProgress: false,
+        arr: [],
+    }
 
 function loadCameraSettings()
 {
@@ -343,30 +202,3 @@ function saveCamSettings()
         }, 3000);
     });
 }
-
-/*---------------------------- ABOUT PROJECT --------------------------------------------*/
-
-/*---------------------------- FACES --------------------------------------------*/
-
-/*---------------------------- STAFF --------------------------------------------*/
-
-let actions_staff = {
-    addShow()
-    {
-        if(!staffState.savingInProgress && !staffState.loadingInProgress)
-        {
-            document.getElementById("staffListPage").style.zIndex = "0";
-            document.getElementById("staffAddPage").style.zIndex = "2";
-            //document.getElementById("staffAddRemoveUserButt").style.zIndex = "0"; // debug. Need to be uncommented
-            clearStuffAdd()
-        }
-    },
-
-    listShow()
-    {
-        document.getElementById("staffAddPage").style.zIndex = "0";
-        document.getElementById("staffListPage").style.zIndex = "2";
-    },
-}
-
-

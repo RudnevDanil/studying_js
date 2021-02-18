@@ -28,7 +28,7 @@
         str += "<div class='photoLine'>";
         for(let j = 0; j < 10; j++)
         {
-            str += "<div class='photoCard photoCardDescription photoCard" + ""+((counter%10)+1)+"' id='photoCardList_"+counter+"'>";
+            str += "<div class='photoCard photoCardDescription photoCard" + ""+((counter%10)+1)+"' id='photoCardList_"+counter+"' onclick='staffCardClicked("+counter+")'>";
             str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='staffListPhoto_"+counter+"'>";
             str += "<div class='staffPageText' id='staffListPersonName_"+counter+"'>Gates .M</div>";
             str += "<div class='staffPageText' id='staffListPersonPosition_"+counter+"'>SEO</div>";
