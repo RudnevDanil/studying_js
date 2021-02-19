@@ -3,12 +3,24 @@ php -S localhost:8000 -t "C:\web\studying_js\2 looters map preview"
 php -S localhost:8000 -t "C:\Users\User-\Desktop\studying_js\2 looters map preview"
 php -S localhost:8000 -t "C:\Users\rudnev\Desktop\studying_js\2 looters map preview"
 
+from studying_js/2
+php -S localhost:8000 -t "./"
+
+
 start SQL server:
 net start mysql
 
+check SQL on ubuntu:
+sudo systemctl status mysql
 
-SQL client usage:
-use lm
+start SQL client on ubuntu:
+sudo mysql -u root
+
+start SQL client:
+sudo mysql -u root
+
+create database lm;
+use lm;
 
 CREATE TABLE `lm`.`lm_auth` ( `id` INT NOT NULL AUTO_INCREMENT , `login` VARCHAR(255) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
