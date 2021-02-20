@@ -1,10 +1,8 @@
 <?php
 $login = $_GET['login'];
 $pass = $_GET['pass'];
-
 include "./checkAuth.php";
 include "./dbConnect.php";
-
 $query = "select full_name, position from lm_staff where user_id='$userId';";
 
 if ($result = $mysqli->query($query))

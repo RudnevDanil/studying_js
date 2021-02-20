@@ -170,9 +170,9 @@ function saveCamSettings()
     let imgId = '#' + camSetIds.saveImg;
 
     // сохранение настроек камеры
-    let login = document.getElementById(authFunct.ids.login).value.trim();
-    let pass = document.getElementById(authFunct.ids.pass).value.trim();
-    //let login = 'admin', pass = '111'; // debug
+    //let login = document.getElementById(authFunct.ids.login).value.trim();
+    //let pass = document.getElementById(authFunct.ids.pass).value.trim();
+    let login = 'admin', pass = '111'; // debug
 
     $(butId).removeClass('butNoFrame').addClass('butFrame');
     $(imgId).removeClass('imgNoFrame').addClass('imgFrame');
@@ -182,9 +182,9 @@ function saveCamSettings()
 
     $.post('php/saveCamSettings.php', {login: login, pass: pass, arr: camSetData.arr}, function (result)
     {
+        console.log(result)
         if(result !== "")
         {
-            console.log(result)
             result = $.parseJSON(result);
             if(result.answer === "saving success")
                 $(butId).removeClass('butRedBorder').removeClass('butYellowBorder').addClass('butGreenBorder');

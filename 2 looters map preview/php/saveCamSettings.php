@@ -1,10 +1,8 @@
 <?php
 $login = $_POST['login'];
 $pass = $_POST['pass'];
-
 include "./checkAuth.php";
 include "./dbConnect.php";
-
 // first let's remove old cameras
 $query = "delete from lm_cameras where user_id='$userId'";
 

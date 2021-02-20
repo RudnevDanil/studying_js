@@ -132,6 +132,7 @@ function saveNewPerson()
 
         $.post('php/saveNewStaff.php', {login: login, pass: pass, fullName: fullName, position: position, arr: staffState.arr}, function (result)
         {
+            //console.log(result)
             if(result !== "")
             {
                 result = $.parseJSON(result);
@@ -190,6 +191,7 @@ $("#" + ids.staffList).change(function() {openStaffCard($(this).val())});
 function loadStaffList()
 {
     $.get('php/loadStaffList.php', {login: login, pass: pass}, function (result) {
+        console.log(result)
         result = $.parseJSON(result);
         if(result.answer === "done")
         {

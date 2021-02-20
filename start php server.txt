@@ -6,7 +6,6 @@ php -S localhost:8000 -t "C:\Users\rudnev\Desktop\studying_js\2 looters map prev
 from studying_js/2
 php -S localhost:8000 -t "./"
 
-
 start SQL server:
 net start mysql
 
@@ -17,7 +16,7 @@ start SQL client on ubuntu:
 sudo mysql -u root
 
 start SQL client:
-sudo mysql -u root
+sudo mysql -u root -p
 
 create database lm;
 use lm;

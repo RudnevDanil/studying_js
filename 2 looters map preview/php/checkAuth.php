@@ -1,6 +1,6 @@
 <?php
 include_once "./dbConnect.php";
-$query = "select count(id) as isCorrect, id from lm_auth where login='$login' and pass='$pass';";
+$query = "select count(id) as isCorrect, id from lm_auth where login='$login' and pass='$pass' GROUP BY id;";
 $answer = false;
 $userId = null;
 if ($result = $mysqli->query($query))
