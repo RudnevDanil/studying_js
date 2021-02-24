@@ -169,6 +169,7 @@ function openStaffCard(fullName)
 
     $.get('php/loadStaffCard.php', {login: login, pass: pass, full_name: fullName}, function (result)
     {
+        //console.log(result)
         result = $.parseJSON(result);
         if(result.answer === "done")
         {

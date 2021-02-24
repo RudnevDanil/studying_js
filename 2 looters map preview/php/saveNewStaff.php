@@ -48,7 +48,6 @@ if(    isset($_POST['fullName']) && !empty($_POST['fullName'])
                     for($i = 0; $i < count($arr) ; $i++)
                     {
                         $img = $arr[$i];
-
                         $query = "insert into lm_faces (img, user_id, staff_id) values ('$img', '$userId', '$staffId');";
                         if ($result = $mysqli->query($query))
                         {
