@@ -20,11 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="444d57d2-3940-4a40-86e5-9305ba1e0aee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/php/test2.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/staff.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/saveNewStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveNewStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/test.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +49,9 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1n2mVciqN2Xak5E9GDEStmOJe3M" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -114,7 +112,8 @@
       <workItem from="1613614037971" duration="12661000" />
       <workItem from="1613739176183" duration="3511000" />
       <workItem from="1613802016439" duration="7143000" />
-      <workItem from="1614146535797" duration="10855000" />
+      <workItem from="1614146535797" duration="11455000" />
+      <workItem from="1614170798419" duration="4480000" />
     </task>
     <servers />
   </component>
