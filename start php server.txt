@@ -34,6 +34,8 @@ ALTER TABLE `lm_map_objects` ADD `x` FLOAT NOT NULL AFTER `user_id`, ADD `y` FLO
 
 CREATE TABLE `lm`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT NULL , `staff_id` INT NULL DEFAULT NULL , `staff_id_rec` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_faces` ADD `user_id` INT NOT NULL AFTER `img`;
+ALTER TABLE lm_faces modify img MEDIUMBLOB;
+
 
 CREATE TABLE `lm`.`lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_staff` ADD `user_id` INT NOT NULL AFTER `full_name`;
