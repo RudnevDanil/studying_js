@@ -138,7 +138,7 @@
 
             <!-- ------------------------------------ facesScreen ------------------------------------------------ -->
             <div id="facesScreen">
-                <div class="topLine topLineForImg" id="facesScreenRefresh"><div class="butBackground butBackgroundBigSize"><img src='./data/refresh.png' alt='refresh' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenRefresh"><div class="butBackground butBackgroundBigSize" onclick="facesRefreshClicked()"><img src='./data/refresh.png' alt='refresh' class='imgTopLine butImgBigSize'></div></div>
                 <div class="topLine topLineForImg" id="facesScreenLast"><div class="butBackground butBackgroundBigSize"><img src='./data/speedometr.png' alt='last' class='imgTopLine butImgBigSize'></div></div>
 
                 <div class="topLine topLineForDate" id="facesScreenDate_1"><input type="date" name="calendar"></div>
@@ -162,14 +162,16 @@
                 </div>
                 <div class="topLine topLineForSelect topLineForChoiceVal" id="facesScreenChoiceValBackground"><select class="choiceVal" id="choiceValFacesScreenBackground"></select></div>
 
-                <div class="topLine topLineForImg" id="facesScreenArrowOutR"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_out_right.png' alt='add_to_staff' class='imgTopLine butImgBigSize'></div></div>
-                <div class="topLine topLineForImg" id="facesScreenPoo"><div class="butBackground butBackgroundBigSize"><img src='./data/poo.png' alt='make_bad_man' class='imgTopLine butImgBigSize'></div></div>
-                <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenArrowOutR"><div class="butBackground butBackgroundBigSize"  onclick="facesAddToStaffClicked()"><img src='./data/arrow_out_right.png' alt='add_to_staff' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenPoo"><div class="butBackground butBackgroundBigSize"  onclick="facesAddToBannedClicked()"><img src='./data/poo.png' alt='make_bad_man' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize"  onclick="facesRemoveClicked()"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
 
                 <div class="staffPage" id="facesPage">
-                    <div class="topLine topLineForButBig topLinePrevBut" id="facesPrevButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine topLineForButBig topLinePrevBut" id="facesPrevButt"><div class="butBackground butBackgroundBigSize" onclick="facesPrevPage()"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLineForButBig topLinePrevButPlaceholder" id="facesPrevButtPlaceHolder"><div class="button prevButtPlaceHolder" id="facesPrevButtBackground"></div></div>
-                    <div class="topLine topLineForButBig topLineNextBut" id="facesNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
+                    <div class="topLine" id="facesLoading"> Loading ...</div>
+                    <div class="topLine" id="facesLoadingBackground"><div id="facesLoadingBackgroundInner"></div></div>
+                    <div class="topLine topLineForButBig topLineNextBut" id="facesNextButt"><div class="butBackground butBackgroundBigSize" onclick="facesNextPage()"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize'></div></div>
                     <div class="topLine topLineForButBig topLineNextButPlaceholder" id="facesNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="facesNextButtBackground"></div></div>
                 </div>
 
@@ -228,6 +230,7 @@
 <script src="js/map.js"></script>
 <script src="js/init.js"></script>
 <script src="js/staff.js"></script>
+<script src="js/faces.js"></script>
 
 
 <script>

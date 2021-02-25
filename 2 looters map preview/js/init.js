@@ -72,14 +72,14 @@
         str += "<div class='photoLine photoLineWithButAndDescription'>";
         for(let j = 0; j < 10; j++)
         {
-            str += "<div class='photoCard photoCardButAndDescription photoCard"+((counter%10)+1)+"' id='photoFacesBlock_"+counter+"'>";
+            str += "<div class='photoCard photoCardButAndDescription photoCard"+((counter%10)+1)+"' id='photoFacesBlock_"+counter+"' onclick='facesCardClicked("+counter+")'>";
             str += "<img src='./data/photoPlaceholder.jpg' alt='photo' class='photo_30' id='facesPhoto_"+counter+"'>";
             str += "<div class='staffPageText' id='facesPersonName_"+counter+"'>Gates .M</div>";
             str += "<div class='staffPageText staffPageTextPosition' id='facesPersonPosition_"+counter+"'>SEO</div>";
 
-            str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationOk' id='butResultClassificationBackground_"+counter+"'><img src='./data/checked.png' alt='plus' class='imgTopLine butImgSmallSize' id='butResultClassification_"+counter+"'></div></div>";
-            str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationWarn' id='butResultClassificationBackground_"+counter+"'><img src='./data/info_2.png' alt='plus' class='imgTopLine butImgSmallSize' id='butResultClassification_"+counter+"'></div></div>";
-            str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationAlert' id='butResultClassificationBackground_"+counter+"'><img src='./data/poo_surprise.png' alt='plus' class='imgTopLine butImgSmallSize' id='butResultClassification_"+counter+"'></div></div>";
+            str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationOk' id='butResultClassificationGreen_"+counter+"'><img src='./data/checked.png' alt='plus' class='imgTopLine butImgSmallSize' id='butResultClassification_"+counter+"'></div></div>";
+            str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationWarn' id='butResultClassificationYellow_"+counter+"'><img src='./data/info_2.png' alt='plus' class='imgTopLine butImgSmallSize' id='butResultClassification_"+counter+"'></div></div>";
+            str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationAlert' id='butResultClassificationRed_"+counter+"'><img src='./data/poo_surprise.png' alt='plus' class='imgTopLine butImgSmallSize' id='butResultClassification_"+counter+"'></div></div>";
             str += "<div class='photoPlusMinus resultClassification'><div class='butBackground butBackgroundSmallSize butResultClassification butResultClassificationBackground' id='butResultClassificationBackground_"+counter+"'></div></div>";
 
             str += "</div>";
@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function(event)
 
 // debug show list faces and buttons
 {
+/*
     let blocks = document.getElementsByClassName("photoCardDescription");
     for (let i = 0; i < blocks.length; i++)
         blocks[i].style.zIndex = "2";
@@ -151,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function(event)
     {
         blocks_6[i].style.zIndex = "2";
     }
+*/
 
     document.getElementById("camSetNextButt").style.zIndex = "2";
     document.getElementById("camSetPrevButt").style.zIndex = "2";
@@ -161,10 +163,10 @@ document.addEventListener("DOMContentLoaded", function(event)
     document.getElementById("staffAddNextButt").style.zIndex = "2";
     document.getElementById("staffAddPrevButt").style.zIndex = "2";
     document.getElementById("staffAddRemoveUserButt").style.zIndex = "2";
-
+/*
     document.getElementById("facesNextButt").style.zIndex = "2";
     document.getElementById("facesPrevButt").style.zIndex = "2";
-
+*/
     //document.getElementById("wallSliders").style.zIndex = "0";
     //document.getElementById("cameraSliders").style.zIndex = "0";
 

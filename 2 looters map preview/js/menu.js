@@ -73,6 +73,7 @@ function menuClicked(i)
         case 5:
             screen = ids.screen.faces;
             menu = ids.menu.faces;
+            loadFaces();
             break;
         case 6:
             screen = ids.screen.staff;

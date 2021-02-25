@@ -120,6 +120,7 @@ li{
     vertical-align: middle;
     white-space: nowrap;
     display: inline-block;
+    text-align: center;
     margin-left: 0.78vw;
     width: 6.24vw;
     max-width: 6.24vw;
@@ -383,6 +384,10 @@ li{
 
 #facesScreenArrowOutR, #facesScreenPoo, #facesScreenRemove, #facesScreenRefresh, #facesScreenLast, #facesScreenDate_1, #facesScreenDate_2, #facesScreenArrowForward{
     position: absolute;
+    z-index: 0;
+}
+
+#facesScreenRefresh, #facesScreenLast, #facesScreenDate_1, #facesScreenDate_2, #facesScreenArrowForward{
     z-index: 2;
 }
 #facesScreenRefresh{left: 0vmin;}
@@ -491,7 +496,7 @@ li{
 }
 
 .topLineForSelect{
-    height: 8vh;
+    height: 8vmin;
     border-spacing: 1vw 1vh;
 }
 
@@ -562,7 +567,7 @@ li{
 
 .topLineForDate{
     height: 2.5vh;
-    width: 20vw;
+    width: 20vmin;
     position: absolute;
     border-spacing: 0;
 }
@@ -583,7 +588,7 @@ li{
 #facesScreenDate_1{top: 1vh;}
 #facesScreenDate_2{top: calc(1vh + 2.5vmin + 1vmin);}
 
-#facesPage{top:8vmin;}
+#facesPage{top:10vmin;}
 
 .butResultClassification{
     margin: auto;
@@ -826,13 +831,30 @@ li{
     z-index: 2;
     left: 9vmin;
 }
-
 #staffLoupeLoadingBackground{
     z-index: 1;
     background-color: darkkhaki;
     border-spacing: 0;
 }
 #staffLoupeLoadingBackgroundInner{
+    height: inherit;
+    width: inherit;
+}
+
+#facesLoading, #facesLoadingBackground{
+    position: absolute;
+    width: calc(78vw - 9vmin * 2);
+    text-align: center;
+    font-size: 5vmin;
+    z-index: 2;
+    left: 9vmin;
+}
+#facesLoadingBackground{
+    z-index: 1;
+    background-color: darkkhaki;
+    border-spacing: 0;
+}
+#facesLoadingBackgroundInner{
     height: inherit;
     width: inherit;
 }
