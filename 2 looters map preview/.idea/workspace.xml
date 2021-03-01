@@ -23,8 +23,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/init.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/faces.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/faces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/staff.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/staff.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/loadFacesList.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadFacesList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/loadStaffCard.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadStaffCard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/saveNewStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveNewStaff.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,7 +121,8 @@
       <workItem from="1613802016439" duration="7143000" />
       <workItem from="1614146535797" duration="11455000" />
       <workItem from="1614170798419" duration="4480000" />
-      <workItem from="1614232755014" duration="21844000" />
+      <workItem from="1614232755014" duration="22076000" />
+      <workItem from="1614579088625" duration="10602000" />
     </task>
     <servers />
   </component>

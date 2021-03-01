@@ -17,17 +17,19 @@ if(isset($_GET['full_name']) && !empty($_GET['full_name']))
         //echo json_encode(array("answer"=>"done", "arr"=>$arr));
         if($result["count"] != 0)
         {
-            $query = "select id, position from lm_staff where user_id='$userId' and full_name='$full_name';";
+            $query = "select id, position, isBanned from lm_staff where user_id='$userId' and full_name='$full_name';";
             if ($result = $mysqli->query($query))
             {
                 $result = $result->fetch_array(MYSQLI_ASSOC);// для одной строки
                 $position = $result["position"];
                 $id = $result["id"];
+                $isBanned = $result["isBanned"];
+
                 $query = "select img from lm_faces where user_id='$userId' and staff_id='$id';";
                 if ($result = $mysqli->query($query))
                 {
                     $arr = $result->fetch_all();// для всего массива
-                    echo json_encode(array("answer"=>"done", "arr"=>$arr, "position"=>$position, "full_name"=>$full_name));
+                    echo json_encode(array("answer"=>"done", "arr"=>$arr, "position"=>$position, "full_name"=>$full_name, "isBanned"=>$isBanned));
                 }
                 else
                     echo json_encode(array("answer"=>"query select error"));

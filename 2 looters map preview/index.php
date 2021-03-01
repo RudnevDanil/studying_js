@@ -202,6 +202,7 @@
                     <div class="topLine topLineForButBig" id="staffAddSaveButt"><div class='butBackground butBackgroundBigSize butNoFrame' onclick="saveNewPerson()" id="butSaveNewPerson"><img src='./data/save.png' alt='save' class='imgTopLine butImgBigSize imgNoFrame'  id="imgSaveNewPerson"></div></div>
                     <div class="topLine topLineForButBig" id="staffAddRemoveUserButt"><div class='butBackground butBackgroundBigSize butNoFrame' onclick="removePerson()" id="butRemovePerson"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize imgNoFrame'  id="imgDeletePerson"></div></div>
                     <div class="topLine topLineForButBig" id="staffAddRemoveUserButtPlaceHolder"><div class="button" id="staffAddRemoveUserButtBackground"></div></div>
+                    <div class="topLine topLineForButBig" id="staffAddBanned"><div class="button staffBannedGreen" id="staffAddBannedButton" onclick="staffAddButBanClicked()">Allow</div></div>
                 </div>
 
                 <div class="staffPage" id="staffListPage">

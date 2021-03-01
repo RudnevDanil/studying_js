@@ -416,13 +416,13 @@ li{
     z-index: 0;
     position: absolute;
     top: 58vh;
-    left: 9vmin;
+    left: 25vmin;
 }
 #staffAddRemoveUserButtPlaceHolder{
     z-index: 1;
     position: absolute;
     top: 58vh;
-    left: 9vmin;
+    left: 25vmin;
     border-spacing: 0;
 }
 #staffAddRemoveUserButtBackground{
@@ -857,4 +857,28 @@ li{
 #facesLoadingBackgroundInner{
     height: inherit;
     width: inherit;
+}
+
+#staffAddBanned{
+    z-index: 1;
+    position: absolute;
+    top: 58vh;
+    left: 9vmin;
+    width: 16vmin;
+    height: 8vmin;
+}
+#staffAddBannedButton{
+    border-spacing: 0;
+    height: 6vmin;
+    font-size: 3vmin;
+    text-align: center;
+    background-color: beige;
+    color: black;
+    border-radius: 1vmin;
+}
+.staffBannedRed{
+    border: 0.3vmin solid red;
+}
+.staffBannedGreen{
+    border: 0.3vmin solid green;
 }

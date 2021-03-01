@@ -7,10 +7,12 @@ include "./dbConnect.php";
 
 if(    isset($_POST['fullName']) && !empty($_POST['fullName'])
     && isset($_POST['position']) && !empty($_POST['position'])
+    && isset($_POST['isBanned']) && !empty($_POST['isBanned'])
     && isset($_POST['arr']) && !empty($_POST['arr']) && count($arr = $_POST['arr']) != 0)
 {
     $full_name = $_POST['fullName'];
     $position = $_POST['position'];
+    $isBanned = $_POST['isBanned'] == "true" ? "1" : "0";
     $arr = $_POST['arr'];
 
     $query = "select count(id) as count from lm_staff where full_name='$full_name' and user_id='$userId'";
@@ -21,7 +23,7 @@ if(    isset($_POST['fullName']) && !empty($_POST['fullName'])
         $staffId = null;
         if($answer["count"] == 0)
         {
-            $query = "insert into lm_staff (user_id, full_name, position, isBanned) values ('$userId','$full_name', '$position', '0');";
+            $query = "insert into lm_staff (user_id, full_name, position, isBanned) values ('$userId','$full_name', '$position', '$isBanned');";
             if ($result = $mysqli->query($query))
             {
                 //echo json_encode(array("answer"=>"new staff registered"));
@@ -37,7 +39,7 @@ if(    isset($_POST['fullName']) && !empty($_POST['fullName'])
         {
             $answer = $result->fetch_array(MYSQLI_ASSOC);
             $staffId = $answer["id"];
-            $query = "update lm_staff set position='$position' where full_name='$full_name' and user_id='$userId'";
+            $query = "update lm_staff set position='$position', isBanned='$isBanned' where full_name='$full_name' and user_id='$userId'";
             if ($result = $mysqli->query($query))
             {
                 $query = "delete from lm_faces where staff_id='$staffId' and user_id='$userId'";

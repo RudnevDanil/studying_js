@@ -11,6 +11,7 @@ staffIds = {
     removeButton: "staffAddRemoveUserButt",
     fullName: "staffAddPageName",
     position: "staffAddPagePosition",
+    ban: "staffAddBannedButton",
 }
 
 staffState = {
@@ -20,6 +21,7 @@ staffState = {
     savingInProgress: false,
     loadingInProgress: false,
     removingInProgress: false,
+    isBanned: false,
 }
 
 let actions_staff = {
@@ -43,6 +45,23 @@ let actions_staff = {
             loadLoupe()
         }
     },
+}
+
+function staffAddButBanClicked()
+{
+    if(!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
+    {
+        $("#"+staffIds.ban).removeClass(staffState.isBanned ? 'staffBannedRed' : 'staffBannedGreen').addClass(staffState.isBanned ? 'staffBannedGreen' : 'staffBannedRed');
+        $("#"+staffIds.ban).text(staffState.isBanned ? "Allow" : "Ban")
+        staffState.isBanned = !staffState.isBanned;
+    }
+}
+
+function setBan(ban)
+{
+    $("#"+staffIds.ban).removeClass(ban ? 'staffBannedGreen' : 'staffBannedRed').addClass(ban ? 'staffBannedRed' : 'staffBannedGreen');
+    $("#"+staffIds.ban).text(ban ? "Ban" : "Allow")
+    staffState.isBanned = ban;
 }
 
 function clearStuffAdd(isClearArray = true, isDrawImages = true)
@@ -129,10 +148,8 @@ function saveNewPerson()
         $(butId).removeClass('butRedBorder').removeClass('butGreenBorder').addClass('butYellowBorder');
         $(butId).removeClass('allowedToTouch').addClass('notAllowedToTouch');
         staffState.savingInProgress = true;
-
-        $.post('php/saveNewStaff.php', {login: login, pass: pass, fullName: fullName, position: position, arr: staffState.arr}, function (result)
+        $.post('php/saveNewStaff.php', {login: login, pass: pass, fullName: fullName, position: position,isBanned: staffState.isBanned ,arr: staffState.arr}, function (result)
         {
-            //console.log(result)
             if(result !== "")
             {
                 result = $.parseJSON(result);
@@ -178,6 +195,7 @@ function openStaffCard(fullName)
             showAddStuffImages(staffState.currentPage)
             document.getElementById(staffIds.fullName).value = result.full_name;
             document.getElementById(staffIds.position).value = result.position;
+            setBan(result.isBanned === "1")
         }
         else
             console.log("Loading staff card error")
@@ -192,7 +210,6 @@ $("#" + ids.staffList).change(function() {openStaffCard($(this).val())});
 function loadStaffList()
 {
     $.get('php/loadStaffList.php', {login: login, pass: pass}, function (result) {
-        console.log(result)
         result = $.parseJSON(result);
         if(result.answer === "done")
         {
@@ -340,8 +357,7 @@ function loadLoupe(page = 1)
         //let pass = document.getElementById(authFunct.ids.pass).value.trim();
         let login = 'admin', pass = '111'; // debug
 
-        //let pageSize = loupeSettings.heightElements * loupeSettings.widthElements;
-        let pageSize = 3; // debug
+        let pageSize = loupeSettings.heightElements * loupeSettings.widthElements;
 
         for(let i = 0; i <  loupeSettings.widthElements; i++)
             for(let j = 0; j < loupeSettings.heightElements; j++)

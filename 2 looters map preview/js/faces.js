@@ -79,7 +79,13 @@ function loadFaces(page = 1)
                     if(result.arr[counterFaces][1] === "-1")
                         $("#" + facesIds.resultYellow + (counterFaces)).css('z-index', 2)
                     else
-                        $("#" + facesIds.resultGreen + (counterFaces)).css('z-index', 2)
+                    {
+                        if(result.arr[i][5] === "1")
+                            $("#" + facesIds.resultRed + (counterFaces)).css('z-index', 2)
+                        else
+                            $("#" + facesIds.resultGreen + (counterFaces)).css('z-index', 2)
+                    }
+
                     facesState.facesIdArray.push(result.arr[counterFaces][0])
                     facesState.checked.push(false)
                     $("#" + facesIds.fullName + counterFaces).text(result.arr[i][2])
