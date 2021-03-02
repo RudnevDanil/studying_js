@@ -5,7 +5,7 @@ $pass = $_GET['pass'];
 include "./checkAuth.php";
 include "./dbConnect.php";
 
-$query = "select type, x, y , w, h ,r, d from lm_map_objects where user_id='$userId';";
+$query = "select type, x, y , w, h ,r, d, id from lm_map_objects where user_id='$userId';";
 
 if ($result = $mysqli->query($query))
 {

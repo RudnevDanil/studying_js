@@ -23,8 +23,9 @@ if ($result = $mysqli->query($query))
             $v5 = $arr[$i][5];
             $v6 = $arr[$i][6];
             $v7 = $arr[$i][7];
+            $v8 = $arr[$i][8];
 
-            $query = "insert into lm_cameras (user_id, cam_code, description, connecting_line, saving_skip_fr, class_skip_fr, cam_FPS, fr_in_one_avi, scaling) values ('$userId', '$v0', '$v1', '$v2', '$v3', '$v4', '$v5', '$v6', '$v7');";
+            $query = "insert into lm_cameras (user_id, cam_code, description, connecting_line, saving_skip_fr, class_skip_fr, cam_FPS, fr_in_one_avi, scaling, map_cam_id_code) values ('$userId', '$v0', '$v1', '$v2', '$v3', '$v4', '$v5', '$v6', '$v7', '$v8');";
             if ($result = $mysqli->query($query))
             {
                 //echo json_encode(array("answer" => "done"));

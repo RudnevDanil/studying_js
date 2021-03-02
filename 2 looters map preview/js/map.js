@@ -16,7 +16,7 @@ let mapToolBarState = {
 let mapObjTypes = ['wall', 'cam', 'door', 'window'];
 let mapObjRotationsConst = [6.28/2 , 6.28 , 6.28, 6.28]
 let mapObjects = [];
-let mapObjectsColours = ['#000000', '#281cab', '#000002', '#000003'];
+let mapObjectsColours = ['#000000', '#281cab', '#000002', '#000003', 'rgba(40, 28, 171, 0.3)'];
 
 let actions_map = {
 
@@ -35,6 +35,7 @@ let actions_map = {
         "wallSliders",
         "cameraSliders",
     ],
+    cameraIndexId: "mapCameraChoice",
 
     elementMoveStartPosition: {x:null, y:null},
     savingInProgress: false,
@@ -60,7 +61,8 @@ let actions_map = {
                         w: result.arr[k][3],
                         h: result.arr[k][4],
                         r: result.arr[k][5],
-                        //d: result.arr[k][6],
+                        d: result.arr[k][6],
+                        id: result.arr[k][7],
                         type: mapObjTypes[result.arr[k][0]],
                     });
                 }
@@ -78,7 +80,6 @@ let actions_map = {
             // сохранение карты
             //let login = document.getElementById(authFunct.ids.login).value.trim();
             //let pass = document.getElementById(authFunct.ids.pass).value.trim();
-
             let login = 'admin', pass = '111'; // debug
 
             //#mapScreenSaveBackground
@@ -148,8 +149,6 @@ let actions_map = {
             this.changeVisibleType(this.mapSlidersIds[1], false);
             this.changeOpacity(this.mapSlidersIds[0], false);
             this.changeOpacity(this.mapSlidersIds[1], false);
-
-
         }
     },
 
@@ -173,6 +172,7 @@ let actions_map = {
             this.changeMapToolBarStateIs([true, false, true, false, false, false, false]);
             this.changeCheckStateArr([true, false, false, true, false, false, false, false]);
             this.slidersAction(2,true);
+            $("#"+actions_map.cameraIndexId).html("");
             actions_map.setSliderToPosition(4,0.00);
             actions_map.setSliderToPosition(5,0.00);
         }
@@ -216,8 +216,6 @@ let actions_map = {
         }
         else
         {
-
-
             this.changeMapToolBarStateIs([true, false, false, false, false, false, false]);
             this.changeCheckStateArr([true, false, false, false, false, false, false, false]);
             this.changeOpacityArr([true, true, true, true, true, true, true, false]);
@@ -261,6 +259,8 @@ let actions_map = {
             w: obj.w / cnvsW,
             h: obj.h / cnvsH,
             r: 0,
+            d: 0,
+            id: -1,
             type: mapObjType,
         }
         mapObjects.push(newVal);
@@ -283,6 +283,7 @@ let actions_map = {
                 w: mapObjects[i].w * cnvsW,
                 h: mapObjects[i].h * cnvsH,
                 r: mapObjects[i].r,
+                d: mapObjects[i].d,
             }
 
             if(mapObjects[i].type === mapObjTypes[0]) actions_map.drawWall(cnvs, newVal);
@@ -343,7 +344,7 @@ let actions_map = {
 
     drawCamera(cnvs, fig)
     {
-        let points = [
+        let pointsCam = [
             {x: fig.x, y: fig.y},
             {x: fig.x + fig.w / 6 * 4, y: fig.y},
             {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 3},
@@ -353,8 +354,20 @@ let actions_map = {
             {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h},
             {x: fig.x, y: fig.y + fig.h},
         ];
-        actions_map.rotatePoints(points, mapObjRotationsConst[1] * fig.r, fig.w, fig.h, points[0])
-        actions_map.drawFigure(cnvs, points, false, mapObjectsColours[1]);
+        actions_map.rotatePoints(pointsCam, mapObjRotationsConst[1] * fig.r, fig.w, fig.h, pointsCam[0])
+        actions_map.drawFigure(cnvs, pointsCam, false, mapObjectsColours[1]);
+
+        let points = [
+            {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 2},
+            {x: fig.x + fig.w * 4 , y: fig.y - fig.h * fig.d * 5},
+            {x: fig.x + fig.w * 4 , y: fig.y + fig.h * fig.d * 5},
+            {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 2},
+
+        ];
+        actions_map.rotatePoints(points, mapObjRotationsConst[1] * fig.r, 0, 0, {x: fig.x + fig.w/2, y: fig.y + fig.h/2})
+        actions_map.drawFigure(cnvs, points, false, mapObjectsColours[4]);
+
+
     },
 
     drawDoor(cnvs, fig)
@@ -454,6 +467,8 @@ let actions_map = {
                     actions_map.slidersAction(isCam ? 2 : 1,true);
                     if(isCam)
                     {
+                        $("#"+actions_map.cameraIndexId).html("Id code is " + mapObjects[mapToolBarState.draggingI].id);
+                        actions_map.setSliderToPosition(4, mapObjects[mapToolBarState.draggingI].d)
                         actions_map.setSliderToPosition(5, mapObjects[mapToolBarState.draggingI].r)
                     }
                     else
@@ -598,6 +613,8 @@ let actions_map = {
                         mapObjects[mapObjects.length - 1].h = mapToolBarState.sliderPosition[index-1];
                     if(index == 3 && mapObjects[mapObjects.length - 1].type !=='cam')
                         mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];
+                    if(index == 4 && mapObjects[mapObjects.length - 1].type ==='cam')
+                        mapObjects[mapObjects.length - 1].d = mapToolBarState.sliderPosition[index-1];
                     if(index == 5 && mapObjects[mapObjects.length - 1].type ==='cam')
                         mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];
                     actions_map.reDrawCNVS();

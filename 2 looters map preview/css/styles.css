@@ -725,34 +725,6 @@ li{
     background-color: darkkhaki;
 }
 
-.cameraChoice{
-    background-color: darkkhaki;
-    width: 16vmin;
-    height: 4vmin;
-    padding: 1vmin;
-    position: absolute;
-
-    left: 0vmin
-}
-
-.cameraChoice select{
-    background-color: beige;
-    border-radius: 1vmin;
-    width: inherit;
-    height: inherit;
-    position: absolute;
-
-    display: table-cell;
-    vertical-align: middle;
-    white-space: nowrap;
-    text-align-last: center;
-    text-align: center;
-    color: black;
-    font-size: 2vmin;
-    outline: none;
-    border: 0;
-}
-
 .visible{z-index: 2}
 .background{z-index: 1}
 .hidden{z-index: 0}

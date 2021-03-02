@@ -29,7 +29,7 @@ if ($result = $mysqli->query($query))
                 $w = $arr[$i]['w'];
                 $h = $arr[$i]['h'];
                 $r = $arr[$i]['r'];
-                $d = 0.0;//$arr[$i]['d'];
+                $d = $arr[$i]['d'];
                 $query = "insert into lm_map_objects (type, user_id, x, y, w, h, r, d) values ('$type', '$userId', '$x', '$y', '$w', '$h', '$r', '$d');";
                 if ($result = $mysqli->query($query))
                 {
