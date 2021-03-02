@@ -19,7 +19,8 @@ facesIds = {
     butRemove: "facesScreenRemove",
     staffList: "facesScreenChoiceVal",
     staffListSelect: "choiceValFacesScreen",
-
+    butBorderRemove: "butFacesRemove",
+    imgBorderRemove: "imgFacesRemove",
 }
 
 facesState = {
@@ -27,10 +28,14 @@ facesState = {
     startId: 0,
     facesIdArray: [],
     checked: [],
+    isRemovingInProgress: false,
 }
 
 function loadFaces(page = 1)
 {
+    if(facesState.isRemovingInProgress)
+        return
+
     if(true)//!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
     {
         //let login = document.getElementById(authFunct.ids.login).value.trim();
@@ -53,7 +58,6 @@ function loadFaces(page = 1)
         $("#"+facesIds.rightArrow).css('z-index', 0)
         $("#"+facesIds.loading).css('z-index', 2)
 
-        console.log(page, facesState.startId, pageSize)
         $.get('php/loadFacesList.php', {login: login, pass: pass, page: page, startId: facesState.startId, pageSize: pageSize}, function (result) {
             result = $.parseJSON(result);
             if(result.answer === "done")
@@ -121,6 +125,9 @@ function facesSetCardOpacity(op, i)
 
 function facesRefreshClicked()
 {
+    if(facesState.isRemovingInProgress)
+        return
+
     facesState.currentPage = 0;
     facesState.startId = 0;
     loadFaces();
@@ -148,7 +155,9 @@ function facesShowStaffList(zIndex)
 
 function facesCardClicked(i)
 {
-    console.log(i)
+    if(facesState.isRemovingInProgress)
+        return
+
     if(facesState.checked.every(elem => elem === false))
     {
         facesSetAllCardsOpacity(0.5)
@@ -194,5 +203,46 @@ function facesAddToBannedClicked()
 
 function facesRemoveClicked()
 {
+    if(!facesState.isRemovingInProgress)
+    {
+        facesState.isRemovingInProgress = true;
+        let butId = "#"+facesIds.butBorderRemove
+        let imgId = "#"+facesIds.imgBorderRemove
+        $(butId).removeClass("butNoFrame").addClass("butFrame");
+        $(imgId).removeClass("imgNoFrame").addClass("imgFrame");
+        $(butId).removeClass('butRedBorder').removeClass('butGreenBorder').addClass('butYellowBorder');
+        $(butId).removeClass('allowedToTouch').addClass('notAllowedToTouch');
 
+        let arr = []
+        for(let i = 0; i < facesState.checked.length; i++)
+            if(facesState.checked[i])
+                arr.push(facesState.facesIdArray[i]);
+
+        console.log(arr)
+
+        $.post('php/deleteCurrentFaces.php', {login: login, pass: pass, arr: arr}, function (result)
+        {
+            console.log(result)
+            if(result !== "")
+            {
+                result = $.parseJSON(result);
+                if(result.answer === "done")
+                {
+                    $(butId).removeClass('butRedBorder').removeClass('butYellowBorder').addClass('butGreenBorder');
+                }
+                else
+                    $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
+            }
+            else
+                $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
+            $(butId).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+            setTimeout(() => {
+                $(butId).removeClass('butFrame').addClass('butNoFrame');
+                $(imgId).removeClass('imgFrame').addClass('imgNoFrame');
+                $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').removeClass('butRedBorder');
+                facesState.isRemovingInProgress = false;
+                facesRefreshClicked()
+            }, 1000);
+        });
+    }
 }

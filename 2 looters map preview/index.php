@@ -104,12 +104,7 @@
                     <div id="streamSetFirstPage">
 
                         <div class="topLine"><div class="text streamSetPage1Text">Camera number</div>
-                            <select class="choiceVal" id="streamSetCamNumb" onchange="camSettingsStreamChanged(0)">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
+                            <select class="choiceVal" id="streamSetCamNumb" onchange="camSettingsStreamChanged(0)"></select>
                         </div>
                         <div class="topLine"><div class="text streamSetPage1Text">Description</div><input class="inputVal"  id="streamSetDescription" type="text"placeholder="..." onchange="camSettingsStreamChanged(1)"></div>
                         <div class="topLine"><div class="text streamSetPage1Text">Connecting line</div><input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="..." onchange="camSettingsStreamChanged(2)"></div>
@@ -164,7 +159,7 @@
 
                 <div class="topLine topLineForImg" id="facesScreenArrowOutR"><div class="butBackground butBackgroundBigSize"  onclick="facesAddToStaffClicked()"><img src='./data/arrow_out_right.png' alt='add_to_staff' class='imgTopLine butImgBigSize'></div></div>
                 <div class="topLine topLineForImg" id="facesScreenPoo"><div class="butBackground butBackgroundBigSize"  onclick="facesAddToBannedClicked()"><img src='./data/poo.png' alt='make_bad_man' class='imgTopLine butImgBigSize'></div></div>
-                <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize"  onclick="facesRemoveClicked()"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize butNoFrame allowedToTouch"  id="butFacesRemove" onclick="facesRemoveClicked()"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize imgNoFrame' id="imgFacesRemove"></div></div>
 
                 <div class="staffPage" id="facesPage">
                     <div class="topLine topLineForButBig topLinePrevBut" id="facesPrevButt"><div class="butBackground butBackgroundBigSize" onclick="facesPrevPage()"><img src='./data/arrow_back.png' alt='<' class='imgTopLine butImgBigSize'></div></div>
