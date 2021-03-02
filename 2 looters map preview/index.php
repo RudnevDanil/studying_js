@@ -102,16 +102,12 @@
                 <div id="streamSet">
                     <div class="settingsBackground"></div>
                     <div id="streamSetFirstPage">
-
-                        <div class="topLine"><div class="text streamSetPage1Text">Camera number</div>
-                            <select class="choiceVal" id="streamSetCamNumb" onchange="camSettingsStreamChanged(0)"></select>
-                        </div>
+                        <div class="topLine"><div class="text streamSetPage1Text">Camera number</div><select class="choiceVal" id="streamSetCamNumb" onchange="camSettingsStreamChanged(0)"></select></div>
                         <div class="topLine"><div class="text streamSetPage1Text">Description</div><input class="inputVal"  id="streamSetDescription" type="text"placeholder="..." onchange="camSettingsStreamChanged(1)"></div>
                         <div class="topLine"><div class="text streamSetPage1Text">Connecting line</div><input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="..." onchange="camSettingsStreamChanged(2)"></div>
 
                         <div class="topLine topLineForButBig topLineNextBut" id="camSetNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize' onclick="switchDisplaySettingsToNextPage()"></div></div>
                         <div class="topLine topLineForButBig topLineNextButPlaceholder" id="camSetNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="camSetNextButtBackground"></div></div>
-
                     </div>
                     <div id="streamSetSecondPage">
                         <div class="topLine"><div class="text streamSetPage2Text">Saving skip frames</div><input class="inputVal"  id="streamSetSavingSkipFrames" type="text"placeholder="..." onchange="camSettingsStreamChanged(3)"></div>
@@ -134,31 +130,15 @@
             <!-- ------------------------------------ facesScreen ------------------------------------------------ -->
             <div id="facesScreen">
                 <div class="topLine topLineForImg" id="facesScreenRefresh"><div class="butBackground butBackgroundBigSize" onclick="facesRefreshClicked()"><img src='./data/refresh.png' alt='refresh' class='imgTopLine butImgBigSize'></div></div>
-                <div class="topLine topLineForImg" id="facesScreenLast"><div class="butBackground butBackgroundBigSize"><img src='./data/speedometr.png' alt='last' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForDate" id="facesScreenDate_1"><input type="date" name="calendar" id="facesDateSortS"></div>
+                <div class="topLine topLineForDate" id="facesScreenDate_2"><input type="date" name="calendar" id="facesDateSortE"></div>
+                <div class="topLine topLineForImg" id="facesScreenArrowForward"><div class="butBackground butBackgroundBigSize" onclick="facesDateSortClicked()"><img src='./data/arrow_forward.png' alt='search' class='imgTopLine butImgBigSize'></div></div>
 
-                <div class="topLine topLineForDate" id="facesScreenDate_1"><input type="date" name="calendar"></div>
-                <div class="topLine topLineForDate" id="facesScreenDate_2"><input type="date" name="calendar"></div>
-
-                <div class="topLine topLineForImg" id="facesScreenArrowForward"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='search' class='imgTopLine butImgBigSize'></div></div>
-
-                <div class="topLine topLineForSelect topLineForChoiceVal" id="facesScreenChoiceVal">
-                    <select class="choiceVal" id="choiceValFacesScreen">
-                        <optgroup label="Marketing dept">
-                            <option>Gates M</option>
-                            <option>Ford G</option>
-                            <option>Trump D</option>
-                        </optgroup>
-                        <optgroup label="IT dept">
-                            <option>Lane J</option>
-                            <option>Richardson M</option>
-                            <option>Obama B</option>
-                        </optgroup>
-                    </select>
-                </div>
+                <div class="topLine topLineForSelect topLineForChoiceVal" id="facesScreenChoiceVal"><select class="choiceVal" id="choiceValFacesScreen"><option>loading ...</option></select></div>
                 <div class="topLine topLineForSelect topLineForChoiceVal" id="facesScreenChoiceValBackground"><select class="choiceVal" id="choiceValFacesScreenBackground"></select></div>
 
-                <div class="topLine topLineForImg" id="facesScreenArrowOutR"><div class="butBackground butBackgroundBigSize"  onclick="facesAddToStaffClicked()"><img src='./data/arrow_out_right.png' alt='add_to_staff' class='imgTopLine butImgBigSize'></div></div>
-                <div class="topLine topLineForImg" id="facesScreenPoo"><div class="butBackground butBackgroundBigSize"  onclick="facesAddToBannedClicked()"><img src='./data/poo.png' alt='make_bad_man' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenArrowOutR"><div class="butBackground butBackgroundBigSize allowedToTouch"  onclick="facesAddToStaffClicked()"><img src='./data/arrow_out_right.png' alt='add_to_staff' class='imgTopLine butImgBigSize'></div></div>
+                <div class="topLine topLineForImg" id="facesScreenPoo"><div class="butBackground butBackgroundBigSize allowedToTouch"  onclick="facesAddToBannedClicked()"><img src='./data/poo.png' alt='make_bad_man' class='imgTopLine butImgBigSize'></div></div>
                 <div class="topLine topLineForImg" id="facesScreenRemove"><div class="butBackground butBackgroundBigSize butNoFrame allowedToTouch"  id="butFacesRemove" onclick="facesRemoveClicked()"><img src='./data/x.png' alt='remove' class='imgTopLine butImgBigSize imgNoFrame' id="imgFacesRemove"></div></div>
 
                 <div class="staffPage" id="facesPage">
@@ -177,11 +157,7 @@
 
                 <div class="topLine topLineForImg" id="staffScreenLoupe"><div class="butBackground butBackgroundBigSize"><img src='./data/loupe.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.listShow()"></div></div>
                 <div class="topLine topLineForImg" id="staffScreenPlus"><div class="butBackground butBackgroundBigSize"><img src='./data/plus.png' alt='plus' class='imgTopLine butImgBigSize' onclick="actions_staff.addShow()"></div></div>
-                <div class="topLine topLineForSelect topLineForChoiceVal" id="staffScreenChoiceVal">
-                    <select class="choiceVal" id="staffScreenSelect">
-                        <option>loading ...</option>
-                    </select>
-                </div>
+                <div class="topLine topLineForSelect topLineForChoiceVal" id="staffScreenChoiceVal"><select class="choiceVal" id="staffScreenSelect"><option>loading ...</option></select></div>
 
                 <div class="staffPage" id="staffBackground"></div>
 
@@ -225,9 +201,8 @@
 <script src="js/auth.js"></script>
 <script src="js/map.js"></script>
 <script src="js/init.js"></script>
-<script src="js/staff.js"></script>
 <script src="js/faces.js"></script>
-
+<script src="js/staff.js"></script>
 
 <script>
     document.getElementById(ids.menu.auth).style.color = "black";

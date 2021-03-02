@@ -21,6 +21,8 @@ facesIds = {
     staffListSelect: "choiceValFacesScreen",
     butBorderRemove: "butFacesRemove",
     imgBorderRemove: "imgFacesRemove",
+    dateS: "facesDateSortS",
+    dateE: "facesDateSortE",
 }
 
 facesState = {
@@ -28,13 +30,21 @@ facesState = {
     startId: 0,
     facesIdArray: [],
     checked: [],
+    color: [],
     isRemovingInProgress: false,
+    dateS: "",
+    dateE: "",
 }
 
 function loadFaces(page = 1)
 {
     if(facesState.isRemovingInProgress)
         return
+
+    loadStaffList()
+    facesState.facesIdArray = [];
+    facesState.checked = [];
+    facesState.color = [];
 
     if(true)//!staffState.savingInProgress && !staffState.loadingInProgress && !staffState.removingInProgress && !loupeState.loadingInProgress)
     {
@@ -58,12 +68,15 @@ function loadFaces(page = 1)
         $("#"+facesIds.rightArrow).css('z-index', 0)
         $("#"+facesIds.loading).css('z-index', 2)
 
-        $.get('php/loadFacesList.php', {login: login, pass: pass, page: page, startId: facesState.startId, pageSize: pageSize}, function (result) {
+        console.log(staffState.dateS,staffState.dateE)
+        $.get('php/loadFacesList.php', {login: login, pass: pass, page: page, startId: facesState.startId, pageSize: pageSize, dateS: facesState.dateS, dateE: facesState.dateE}, function (result) {
+            console.log(result)
             result = $.parseJSON(result);
             if(result.answer === "done")
             {
                 facesState.facesIdArray = [];
                 facesState.checked = [];
+                facesState.color = [];
                 facesState.currentPage = page;
                 if(page === 1)
                 {
@@ -80,14 +93,20 @@ function loadFaces(page = 1)
                 for(let i in result.arr)
                 {
                     // data from result.arr[counterFaces][1] also has id_stuff if recognized correctly. that info isn't use right now
-                    if(result.arr[counterFaces][1] === "-1")
+                    if(result.arr[counterFaces][1] === "-1") {
                         $("#" + facesIds.resultYellow + (counterFaces)).css('z-index', 2)
+                        facesState.color.push('y')
+                    }
                     else
                     {
-                        if(result.arr[i][5] === "1")
+                        if(result.arr[i][5] === "1") {
                             $("#" + facesIds.resultRed + (counterFaces)).css('z-index', 2)
-                        else
+                            facesState.color.push('r')
+                        }
+                        else {
                             $("#" + facesIds.resultGreen + (counterFaces)).css('z-index', 2)
+                            facesState.color.push('g')
+                        }
                     }
 
                     facesState.facesIdArray.push(result.arr[counterFaces][0])
@@ -104,6 +123,8 @@ function loadFaces(page = 1)
                 console.log("Loading staff list error")
             $("#"+facesIds.loading).css('z-index', 0)
         });
+
+        facesShowActions(0);
     }
 }
 
@@ -138,14 +159,10 @@ function facesShowActions(zIndex, dontTouchList = false)
     $("#" + facesIds.butArrowOutR).css('z-index', zIndex);
     $("#" + facesIds.butPoo).css('z-index', zIndex);
     $("#" + facesIds.butRemove).css('z-index', zIndex);
+    $("#" + facesIds.butArrowOutR).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+    $("#" + facesIds.butPoo).removeClass('notAllowedToTouch').addClass('allowedToTouch');
     if(zIndex === 0 && !dontTouchList)
         facesShowStaffList(0)
-}
-
-
-function facesShowStaffList(zIndex)
-{
-    // ..
 }
 
 function facesShowStaffList(zIndex)
@@ -165,8 +182,18 @@ function facesCardClicked(i)
     }
 
     facesSetCardOpacity(facesState.checked[i] === false ? 1 : 0.5, i)
+    if(facesState.checked[i] === false) {
+        if(facesState.color[i] === 'g' || facesState.color[i] === 'r') {
+            $("#" + facesIds.butArrowOutR).removeClass('allowedToTouch').addClass('notAllowedToTouch');
+            $("#" + facesIds.butPoo).removeClass('allowedToTouch').addClass('notAllowedToTouch');
+        }
+    }
+    else
+    {
+        $("#" + facesIds.butArrowOutR).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+        $("#" + facesIds.butPoo).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+    }
     facesState.checked[i] = !facesState.checked[i];
-
 
     if(facesState.checked.every(elem => elem === false))
     {
@@ -192,13 +219,20 @@ function facesNextPage()
 
 function facesAddToStaffClicked()
 {
+    if(facesState.isRemovingInProgress)
+        return
+
     facesShowStaffList(2)
     facesShowActions(0,true)
 }
 
 function facesAddToBannedClicked()
 {
+    if(facesState.isRemovingInProgress)
+        return
 
+    menuClicked(6);
+    actions_staff.addShow()
 }
 
 function facesRemoveClicked()
@@ -218,11 +252,8 @@ function facesRemoveClicked()
             if(facesState.checked[i])
                 arr.push(facesState.facesIdArray[i]);
 
-        console.log(arr)
-
         $.post('php/deleteCurrentFaces.php', {login: login, pass: pass, arr: arr}, function (result)
         {
-            console.log(result)
             if(result !== "")
             {
                 result = $.parseJSON(result);
@@ -241,8 +272,41 @@ function facesRemoveClicked()
                 $(imgId).removeClass('imgFrame').addClass('imgNoFrame');
                 $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').removeClass('butRedBorder');
                 facesState.isRemovingInProgress = false;
+                facesState.checked = [];
                 facesRefreshClicked()
             }, 1000);
         });
+    }
+}
+
+$("#" + facesIds.staffListSelect).change(function() {
+    menuClicked(6);
+    openStaffCard($(this).val())
+});
+
+function facesDateSortClicked()
+{
+    if(facesState.isRemovingInProgress)
+        return
+
+    facesState.dateS = $('#' + facesIds.dateS).val()
+    if(facesState.dateS == NaN || facesState.dateS === "")
+        facesState.dateS = "";
+    else
+    {
+        facesState.dateE = $('#' + facesIds.dateE).val()
+        if(facesState.dateE == NaN || facesState.dateE === "")
+        {
+            facesState.dateS = "";
+            facesState.dateE = "";
+        }
+        else
+        {
+            facesState.dateS += " 00:00:00"
+            facesState.dateE += " 00:00:00"
+            facesState.currentPage = 0;
+            facesState.startId = 0;
+            loadFaces();
+        }
     }
 }

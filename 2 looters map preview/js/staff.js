@@ -33,6 +33,17 @@ let actions_staff = {
             document.getElementById("staffAddPage").style.zIndex = "2";
             document.getElementById("staffAddRemoveUserButt").style.zIndex = "0";
             clearStuffAdd()
+
+            if(facesState.checked.length != 0)
+            {
+                setBan(true);
+
+                for(let i = 0; i < facesState.checked.length; i++)
+                    if(facesState.checked[i])
+                        staffState.arr.push($("#" + facesIds.img  + i).attr('src'))
+
+                showAddStuffImages(staffState.currentPage)
+            }
         }
     },
 
@@ -158,6 +169,9 @@ function saveNewPerson()
                     $(butId).removeClass('butRedBorder').removeClass('butYellowBorder').addClass('butGreenBorder');
                     clearStuffAdd()
                     loadStaffList();
+                    if(facesState.checked.length != 0) {
+                        facesRemoveClicked();
+                    }
                 }
                 else
                     $(butId).removeClass('butGreenBorder').removeClass('butYellowBorder').addClass('butRedBorder');
@@ -186,12 +200,16 @@ function openStaffCard(fullName)
 
     $.get('php/loadStaffCard.php', {login: login, pass: pass, full_name: fullName}, function (result)
     {
-        //console.log(result)
         result = $.parseJSON(result);
         if(result.answer === "done")
         {
             for(let val in result.arr)
                 staffState.arr.push(result.arr[val][0])
+
+            if(facesState.checked.length != 0) {
+                facesRemoveClicked();
+            }
+
             showAddStuffImages(staffState.currentPage)
             document.getElementById(staffIds.fullName).value = result.full_name;
             document.getElementById(staffIds.position).value = result.position;
@@ -239,6 +257,8 @@ function loadStaffList()
                 str += "</optgroup>";
                 $(listId).append(str);
             }
+
+            $("#" + facesIds.staffListSelect).html($(listId).html())
         }
         else
             console.log("Loading staff list error")

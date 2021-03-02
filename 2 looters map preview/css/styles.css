@@ -367,12 +367,13 @@ li{
 #facesScreenChoiceVal{
     z-index: 0;
     left: 44vmin;
+    width: 24vmin;
 }
 #choiceValFacesScreen, #choiceValFacesScreenBackground{
-    width: calc(17vmin + 5vw);
+    width: calc(24vmin - 2vw);
 }
 #facesScreenChoiceValBackground{
-    width: calc(17vmin + 5vw);
+    width: calc(24vmin - 2vw);
     background-color: darkkhaki;
     position: absolute;
     z-index: 1;
@@ -392,9 +393,9 @@ li{
 }
 #facesScreenRefresh{left: 0vmin;}
 #facesScreenLast{left: 8vmin;}
-#facesScreenDate_1{left: 16vmin;}
-#facesScreenDate_2{left: 16vmin;}
-#facesScreenArrowForward{left: 36vmin;}
+#facesScreenDate_1{left: 12vmin;}
+#facesScreenDate_2{left: 12vmin;}
+#facesScreenArrowForward{left: 32vmin;}
 #facesScreenArrowOutR{left: 44vmin;}
 #facesScreenPoo{left: 52vmin;}
 #facesScreenRemove{left: 60vmin;}
