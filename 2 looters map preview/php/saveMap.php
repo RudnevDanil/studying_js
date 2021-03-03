@@ -14,6 +14,7 @@ if ($result = $mysqli->query($query))
         $arr = $_POST['arr'];
         $errorsNumber = 0;
         $types = array('wall', 'cam', 'door', 'window');
+
         for($i = 0; $i < count($arr) ; $i++)
         {
             $type = -1;
@@ -30,7 +31,13 @@ if ($result = $mysqli->query($query))
                 $h = $arr[$i]['h'];
                 $r = $arr[$i]['r'];
                 $d = $arr[$i]['d'];
-                $query = "insert into lm_map_objects (type, user_id, x, y, w, h, r, d) values ('$type', '$userId', '$x', '$y', '$w', '$h', '$r', '$d');";
+                $oa = $arr[$i]['oa'];
+                $camCode = $arr[$i]['camCode'];
+                $isCamCode = $arr[$i]['camCode'] == null || $arr[$i]['camCode'] == "-1";
+                $camCodeParam = $isCamCode ? "" : ", camCode";
+                $camCodeVal = $isCamCode ? "" : ", '$camCode'";
+
+                $query = "insert into lm_map_objects (type, user_id, x, y, w, h, r, d, oa$camCodeParam) values ('$type', '$userId', '$x', '$y', '$w', '$h', '$r', '$d', '$oa'$camCodeVal);";
                 if ($result = $mysqli->query($query))
                 {
                     //echo json_encode(array("answer" => "done"));

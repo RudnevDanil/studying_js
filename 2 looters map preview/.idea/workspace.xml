@@ -24,11 +24,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/cameraSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cameraSettings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/init.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/loadCamSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadCamSettings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/loadMap.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadMap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/saveCamSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveCamSettings.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/php/saveMap.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveMap.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +125,8 @@
       <workItem from="1614579088625" duration="10879000" />
       <workItem from="1614665302619" duration="3188000" />
       <workItem from="1614681065089" duration="1490000" />
-      <workItem from="1614683109015" duration="13376000" />
+      <workItem from="1614683109015" duration="13419000" />
+      <workItem from="1614760240936" duration="17665000" />
     </task>
     <servers />
   </component>

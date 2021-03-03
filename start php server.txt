@@ -33,6 +33,8 @@ ALTER TABLE `lm_cameras` CHANGE `map_cam_id_code` `map_cam_id_code` INT(11) NULL
 
 CREATE TABLE `lm`.`lm_map_objects` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NULL , `user_id` INT NOT NULL , `w` FLOAT NOT NULL , `h` FLOAT NOT NULL , `r` FLOAT NOT NULL , `d` FLOAT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_map_objects` ADD `x` FLOAT NOT NULL AFTER `user_id`, ADD `y` FLOAT NOT NULL AFTER `x`;
+ALTER TABLE `lm_map_objects` ADD `oa` FLOAT NOT NULL AFTER `d`;
+ALTER TABLE `lm_map_objects` ADD `camCode` INT NULL DEFAULT NULL AFTER `oa`;
 
 CREATE TABLE `lm`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT NULL , `staff_id` INT NULL DEFAULT NULL , `staff_id_rec` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_faces` ADD `user_id` INT NOT NULL AFTER `img`;

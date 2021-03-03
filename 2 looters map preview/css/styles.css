@@ -855,3 +855,35 @@ li{
 .staffBannedGreen{
     border: 0.3vmin solid green;
 }
+
+#sliderIdCode{
+    left: 54vmin;
+}
+
+.cameraChoice{
+    background-color: darkkhaki;
+    width: 16vmin;
+    height: 4vmin;
+    padding: 1vmin;
+    position: absolute;
+
+    left: 54vmin
+}
+
+.cameraChoice select{
+    background-color: beige;
+    border-radius: 1vmin;
+    width: inherit;
+    height: inherit;
+    position: absolute;
+
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align-last: center;
+    text-align: center;
+    color: black;
+    font-size: 2vmin;
+    outline: none;
+    border: 0;
+}

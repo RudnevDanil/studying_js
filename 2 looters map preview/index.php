@@ -57,7 +57,9 @@
                 <div class="sliderBlock slidersBackground background"></div>
 
                 <div class="sliderBlock notAllowedToTouch hidden" id="cameraSliders">
-                    <div class="slider"><div class="sliderLine"></div><div class="sliderDescription" id="mapCameraChoice"></div></div>
+                    <div class="cameraChoice"><select id="mapCameraChoice"></select></div>
+                    <!--<div class="slider" id="sliderIdCode"><div class="sliderLine"></div></div>-->
+                    <div class="slider sliderPosition_1" id="slider_6"><div class="sliderLine" id="sliderLine_6"></div><div class="sliderDescription">Open Angle</div><div class="sliderBall" id="ball_6"></div></div>
                     <div class="slider sliderPosition_2" id="slider_4"><div class="sliderLine" id="sliderLine_4"></div><div class="sliderDescription">Distance</div><div class="sliderBall" id="ball_4"></div></div>
                     <div class="slider sliderPosition_3" id="slider_5"><div class="sliderLine" id="sliderLine_5"></div><div class="sliderDescription">Rotation</div><div class="sliderBall" id="ball_5"></div></div>
                 </div>

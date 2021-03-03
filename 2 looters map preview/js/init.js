@@ -94,7 +94,7 @@
 // add slider action
 function addActionsToSlider()
 {
-    for(let i = 1; i <= 5; i++)
+    for(let i = 1; i <= 6; i++)
         actions_map.addActionToSlider(i);
 }
 addActionsToSlider();

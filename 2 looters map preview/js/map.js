@@ -9,14 +9,14 @@ let mapToolBarState = {
     isHand: false,
     isRemove: false,
     isDragging: false,
-    sliderPosition: [0.0, 0.0, 0.0, 0.0, 0.0],
+    sliderPosition: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
     draggingI: null,
 }
 
 let mapObjTypes = ['wall', 'cam', 'door', 'window'];
 let mapObjRotationsConst = [6.28/2 , 6.28 , 6.28, 6.28]
 let mapObjects = [];
-let mapObjectsColours = ['#000000', '#281cab', '#000002', '#000003', 'rgba(40, 28, 171, 0.3)'];
+let mapObjectsColours = ['#000000', '#281cab', '#000002', '#000003', 'rgba(40, 28, 171, 0.3)', 'rgba(40, 28, 171, 0.2)', 'rgba(40, 28, 171, 0.1)'];
 
 let actions_map = {
 
@@ -36,6 +36,7 @@ let actions_map = {
         "cameraSliders",
     ],
     cameraIndexId: "mapCameraChoice",
+    cameraIndexIdDefOpt: "cameraDefaultOption",
 
     elementMoveStartPosition: {x:null, y:null},
     savingInProgress: false,
@@ -63,9 +64,25 @@ let actions_map = {
                         r: result.arr[k][5],
                         d: result.arr[k][6],
                         id: result.arr[k][7],
+                        oa: result.arr[k][8],
+                        camCode: result.arr[k][9],
                         type: mapObjTypes[result.arr[k][0]],
                     });
                 }
+
+                $.get('php/loadCamCodes.php', {login: login, pass: pass}, function (result) {
+                    result = $.parseJSON(result);
+                    if(result.answer === "done")
+                    {
+                        let listId = "#" + actions_map.cameraIndexId;
+                        $(listId).empty();
+                        $(listId).append("<option id='"+actions_map.cameraIndexIdDefOpt+"'></option>");
+                        for(let k = 0; k < result.arr.length; k++)
+                            $(listId).append("<option>" + result.arr[k] + "</option>");
+                    }
+                    else
+                        console.log("Loading camera codes error")
+                });
             }
             else
                 console.log("Loading map error")
@@ -158,7 +175,6 @@ let actions_map = {
         {
             this.changeMapToolBarStateIs([true, true, false, false, false, false, false]);
             this.changeCheckStateArr([true, false, true, false, false, false, false, false]);
-            this.slidersAction(1,true);
             actions_map.setSliderToPosition(1,0.1);
             actions_map.setSliderToPosition(2,0.01);
             actions_map.setSliderToPosition(3,0.0);
@@ -172,9 +188,10 @@ let actions_map = {
             this.changeMapToolBarStateIs([true, false, true, false, false, false, false]);
             this.changeCheckStateArr([true, false, false, true, false, false, false, false]);
             this.slidersAction(2,true);
-            $("#"+actions_map.cameraIndexId).html("");
             actions_map.setSliderToPosition(4,0.00);
             actions_map.setSliderToPosition(5,0.00);
+            actions_map.setSliderToPosition(6,0.00);
+            $("#"+actions_map.cameraIndexIdDefOpt).prop('selected', true);
         }
     },
 
@@ -239,6 +256,7 @@ let actions_map = {
             this.changeCheckStateArr([true, false, false, false, false, false, true, false]);
             this.changeOpacityArr([true, true, true, true, true, true, true, false]);
             this.slidersAction(0,false);
+            $("#"+actions_map.cameraIndexIdDefOpt).prop('selected', true);
         }
     },
 
@@ -261,6 +279,8 @@ let actions_map = {
             r: 0,
             d: 0,
             id: -1,
+            oa: 0,
+            camCode: -1,
             type: mapObjType,
         }
         mapObjects.push(newVal);
@@ -284,6 +304,8 @@ let actions_map = {
                 h: mapObjects[i].h * cnvsH,
                 r: mapObjects[i].r,
                 d: mapObjects[i].d,
+                oa: mapObjects[i].oa,
+                camCode: mapObjects[i].camCode,
             }
 
             if(mapObjects[i].type === mapObjTypes[0]) actions_map.drawWall(cnvs, newVal);
@@ -344,6 +366,7 @@ let actions_map = {
 
     drawCamera(cnvs, fig)
     {
+        let isCamCodeInitialized = fig.camCode !== "" && fig.camCode !== "-1" && fig.camCode !== undefined && fig.camCode !== -1  && fig.camCode !== null;
         let pointsCam = [
             {x: fig.x, y: fig.y},
             {x: fig.x + fig.w / 6 * 4, y: fig.y},
@@ -355,19 +378,18 @@ let actions_map = {
             {x: fig.x, y: fig.y + fig.h},
         ];
         actions_map.rotatePoints(pointsCam, mapObjRotationsConst[1] * fig.r, fig.w, fig.h, pointsCam[0])
-        actions_map.drawFigure(cnvs, pointsCam, false, mapObjectsColours[1]);
+        actions_map.drawFigure(cnvs, pointsCam, false, isCamCodeInitialized ? mapObjectsColours[1] : mapObjectsColours[5]);
 
+        let dist = parseFloat(fig.d) * Math.max(fig.w, fig.h) / 4
+        let openAngle = fig.oa * fig.d * 13;
         let points = [
             {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 2},
-            {x: fig.x + fig.w * 4 , y: fig.y - fig.h * fig.d * 5},
-            {x: fig.x + fig.w * 4 , y: fig.y + fig.h * fig.d * 5},
+            {x: fig.x + fig.w / 6 * 4 + fig.w * dist , y: fig.y + fig.h/ 2 - fig.h * openAngle},
+            {x: fig.x + fig.w / 6 * 4 + fig.w * dist , y: fig.y + fig.h/ 2 + fig.h * openAngle},
             {x: fig.x + fig.w / 6 * 4, y: fig.y + fig.h/ 2},
-
         ];
         actions_map.rotatePoints(points, mapObjRotationsConst[1] * fig.r, 0, 0, {x: fig.x + fig.w/2, y: fig.y + fig.h/2})
-        actions_map.drawFigure(cnvs, points, false, mapObjectsColours[4]);
-
-
+        actions_map.drawFigure(cnvs, points, false, isCamCodeInitialized ? mapObjectsColours[4] : mapObjectsColours[6]);
     },
 
     drawDoor(cnvs, fig)
@@ -423,6 +445,7 @@ let actions_map = {
         {
             if(mapToolBarState.isEditMode && mapToolBarState.isHand)
             {
+                $("#"+actions_map.cameraIndexIdDefOpt).prop('selected', true);
                 mapToolBarState.isDragging = true;
                 mapToolBarState.draggingI = null;
                 let cnvsOffsetL = cnvs.getBoundingClientRect().x;
@@ -467,9 +490,12 @@ let actions_map = {
                     actions_map.slidersAction(isCam ? 2 : 1,true);
                     if(isCam)
                     {
-                        $("#"+actions_map.cameraIndexId).html("Id code is " + mapObjects[mapToolBarState.draggingI].id);
+                        // $("#"+actions_map.cameraIndexIdDefOpt).prop('selected', true);
                         actions_map.setSliderToPosition(4, mapObjects[mapToolBarState.draggingI].d)
                         actions_map.setSliderToPosition(5, mapObjects[mapToolBarState.draggingI].r)
+                        actions_map.setSliderToPosition(6, mapObjects[mapToolBarState.draggingI].oa)
+                        // set select as a value of mapObjects[mapToolBarState.draggingI].camCode
+                        $("#" + actions_map.cameraIndexId).val(mapObjects[mapToolBarState.draggingI].camCode)
                     }
                     else
                     {
@@ -617,6 +643,8 @@ let actions_map = {
                         mapObjects[mapObjects.length - 1].d = mapToolBarState.sliderPosition[index-1];
                     if(index == 5 && mapObjects[mapObjects.length - 1].type ==='cam')
                         mapObjects[mapObjects.length - 1].r = mapToolBarState.sliderPosition[index-1];
+                    if(index == 6 && mapObjects[mapObjects.length - 1].type ==='cam')
+                        mapObjects[mapObjects.length - 1].oa = mapToolBarState.sliderPosition[index-1];
                     actions_map.reDrawCNVS();
                 }
             }
@@ -633,3 +661,12 @@ let actions_map = {
         ball.ondragstart = function(){return false;};
     },
 }
+
+$("#"+actions_map.cameraIndexId).change(function() {
+    let newVal =  $(this).val();
+    if(newVal !== "")
+        mapObjects[mapObjects.length - 1].camCode = newVal;
+    else
+        mapObjects[mapObjects.length - 1].camCode = "-1";
+    actions_map.reDrawCNVS();
+});
