@@ -58,7 +58,6 @@
 
                 <div class="sliderBlock notAllowedToTouch hidden" id="cameraSliders">
                     <div class="cameraChoice"><select id="mapCameraChoice"></select></div>
-                    <!--<div class="slider" id="sliderIdCode"><div class="sliderLine"></div></div>-->
                     <div class="slider sliderPosition_1" id="slider_6"><div class="sliderLine" id="sliderLine_6"></div><div class="sliderDescription">Open Angle</div><div class="sliderBall" id="ball_6"></div></div>
                     <div class="slider sliderPosition_2" id="slider_4"><div class="sliderLine" id="sliderLine_4"></div><div class="sliderDescription">Distance</div><div class="sliderBall" id="ball_4"></div></div>
                     <div class="slider sliderPosition_3" id="slider_5"><div class="sliderLine" id="sliderLine_5"></div><div class="sliderDescription">Rotation</div><div class="sliderBall" id="ball_5"></div></div>
@@ -99,7 +98,6 @@
                         <div class="topLine"><div class="text streamSetPage1Text">Camera number</div><select class="choiceVal" id="streamSetCamNumb" onchange="camSettingsStreamChanged(0)"></select></div>
                         <div class="topLine"><div class="text streamSetPage1Text">Description</div><input class="inputVal"  id="streamSetDescription" type="text"placeholder="..." onchange="camSettingsStreamChanged(1)"></div>
                         <div class="topLine"><div class="text streamSetPage1Text">Connecting line</div><input class="inputVal"  id="streamSetConnectingLine" type="text"placeholder="..." onchange="camSettingsStreamChanged(2)"></div>
-                        <div class="topLine"><div class="text streamSetPage1Text">Id code</div><input class="inputVal"  id="streamSetIdCode" type="text"placeholder="..." onchange="camSettingsStreamChanged(8)"></div>
 
                         <div class="topLine topLineForButBig topLineNextBut" id="camSetNextButt"><div class="butBackground butBackgroundBigSize"><img src='./data/arrow_forward.png' alt='>' class='imgTopLine butImgBigSize' onclick="switchDisplaySettingsToNextPage()"></div></div>
                         <div class="topLine topLineForButBig topLineNextButPlaceholder" id="camSetNextButtPlaceHolder"><div class="button nextButtPlaceHolder" id="camSetNextButtBackground"></div></div>

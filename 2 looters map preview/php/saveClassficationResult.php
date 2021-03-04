@@ -14,9 +14,11 @@ include "./checkAuth.php";
 include "./dbConnect.php";
 
 if(    isset($_POST['staff_id']) && !empty($_POST['staff_id'])
+    && isset($_POST['camCode']) && !empty($_POST['camCode'])
     && isset($_FILES['img']))
 {
     $staff_id_rec = $_POST['staff_id'];
+    $camCode = $_POST['camCode'];
     $query = "select count(id) as isCorrect from lm_staff where user_id='$userId' and id='$staff_id_rec';";
     if ($result = $mysqli->query($query))
     {
@@ -25,7 +27,7 @@ if(    isset($_POST['staff_id']) && !empty($_POST['staff_id'])
         {
             $img = file_get_contents($_FILES['img']['tmp_name']);
             $img = $mysqli->real_escape_string('data:image/png;base64,' . base64_encode($img));
-            $query = "insert into lm_faces (img, user_id, staff_id_rec) values ('$img', '$userId', '$staff_id_rec');";
+            $query = "insert into lm_faces (img, user_id, staff_id_rec, camCode) values ('$img', '$userId', '$staff_id_rec', '$camCode');";
             if ($mysqli->query($query))
                 echo json_encode(array("answer" => "done"));
             else

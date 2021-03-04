@@ -68,9 +68,12 @@ function loadFaces(page = 1)
         $("#"+facesIds.rightArrow).css('z-index', 0)
         $("#"+facesIds.loading).css('z-index', 2)
 
-        console.log(staffState.dateS,staffState.dateE)
+        if(staffState.dateS == undefined)
+            staffState.dateS = "";
+        if(staffState.dateE == undefined)
+            staffState.dateE = "";
+
         $.get('php/loadFacesList.php', {login: login, pass: pass, page: page, startId: facesState.startId, pageSize: pageSize, dateS: facesState.dateS, dateE: facesState.dateE}, function (result) {
-            console.log(result)
             result = $.parseJSON(result);
             if(result.answer === "done")
             {

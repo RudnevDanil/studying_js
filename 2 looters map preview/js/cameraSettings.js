@@ -21,7 +21,6 @@ let camSetIds =
                 "streamSetFPS",
                 "streamSetFramesInOneVideo",
                 "streamSetScaling",
-                "streamSetIdCode",
             ],
         },
     }
@@ -54,7 +53,6 @@ function loadCameraSettings()
                     for(let k = 3; k <= 6; k++)
                         arr.push(parseInt(result.arr[i][k]))
                     arr.push(parseFloat(result.arr[i][7]))
-                    arr.push(result.arr[i][8])
                     camSetData.arr.push(arr)
 
                     // сделать список для выбора камеры по cam_code
@@ -94,7 +92,7 @@ function amountOfCamChanged()
     {
         for(let i = 0; i < amountCam; i++)
         {
-            camSetData.arr.push([i, "", "", 0, 0, 25, 25000, 1.0, ""])
+            camSetData.arr.push([i+1, "", "", 0, 0, 25, 25000, 1.0, ""])
 
             // сделать список для выбора камеры по i
             $(listId).append('<option value="'+(i+1)+'">'+(i+1)+'</option>');
@@ -109,24 +107,24 @@ function camSettingsStreamChanged(i)
 {
     let val = $("#" + camSetIds.data.stream[i]).val();
 
-    let streamNumb = $("#" + camSetIds.data.stream[0]).val() - 1;
+    let streamNumb = $("#" + camSetIds.data.stream[0]).val() ;
     if(i === 0)
     {
-        fillCamSetFields(camSetData.arr[streamNumb])
+        fillCamSetFields(camSetData.arr[streamNumb-1])
     }
     else if (i <= 2)
     {
-        camSetData.arr[streamNumb][i] = val;
+        camSetData.arr[streamNumb-1][i] = val;
     }
-    else if (i <= 6 || i === 8)
+    else if (i <= 6)
     {
         if(isNaN(parseInt(val))) return;
-        camSetData.arr[streamNumb][i] = parseInt(val);
+        camSetData.arr[streamNumb-1][i] = parseInt(val);
     }
     else if (i === 7)
     {
         if(isNaN(parseFloat(val))) return;
-        camSetData.arr[streamNumb][i] = parseFloat(val);
+        camSetData.arr[streamNumb-1][i] = parseFloat(val);
     }
 }
 

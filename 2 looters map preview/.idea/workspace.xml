@@ -22,12 +22,13 @@
     <list default="true" id="444d57d2-3940-4a40-86e5-9305ba1e0aee" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/75cf4adf-45dd-49de-ba88-307e61b59e17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/75cf4adf-45dd-49de-ba88-307e61b59e17.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cameraSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cameraSettings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/faces.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/faces.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/loadMap.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadMap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/php/saveMap.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveMap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/loadCamSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/loadCamSettings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/saveCamSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveCamSettings.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php/saveClassficationResult.php" beforeDir="false" afterPath="$PROJECT_DIR$/php/saveClassficationResult.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +128,7 @@
       <workItem from="1614681065089" duration="1490000" />
       <workItem from="1614683109015" duration="13419000" />
       <workItem from="1614760240936" duration="17665000" />
+      <workItem from="1614838458766" duration="13156000" />
     </task>
     <servers />
   </component>

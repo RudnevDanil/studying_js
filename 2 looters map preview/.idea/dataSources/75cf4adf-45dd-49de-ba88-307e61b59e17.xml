@@ -870,40 +870,40 @@ SELECT|sys.sys_config
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="260" parent="235" name="map_cam_id_code">
-      <Position>11</Position>
-      <DataType>int(11)|0s</DataType>
-    </column>
-    <key id="261" parent="235" name="PRIMARY">
+    <key id="260" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="262" parent="236" name="id">
+    <column id="261" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="263" parent="236" name="img">
+    <column id="262" parent="236" name="img">
       <Position>2</Position>
       <DataType>mediumblob|0s</DataType>
     </column>
-    <column id="264" parent="236" name="user_id">
+    <column id="263" parent="236" name="user_id">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="265" parent="236" name="staff_id">
+    <column id="264" parent="236" name="staff_id">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="266" parent="236" name="staff_id_rec">
+    <column id="265" parent="236" name="staff_id_rec">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="267" parent="236" name="date">
+    <column id="266" parent="236" name="camCode">
       <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+    </column>
+    <column id="267" parent="236" name="date">
+      <Position>7</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>

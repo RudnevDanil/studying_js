@@ -30,6 +30,7 @@ ALTER TABLE `lm_cameras` ADD `saving_skip_fr` INT NOT NULL AFTER `connecting_lin
 ALTER TABLE `lm_cameras` CHANGE `description` `description` VARCHAR(255) NOT NULL DEFAULT '';
 ALTER TABLE `lm_cameras` ADD `map_cam_id_code` INT NULL AFTER `scaling`;
 ALTER TABLE `lm_cameras` CHANGE `map_cam_id_code` `map_cam_id_code` INT(11) NULL DEFAULT NULL;
+ALTER TABLE `lm_cameras` DROP `map_cam_id_code`;
 
 CREATE TABLE `lm`.`lm_map_objects` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NULL , `user_id` INT NOT NULL , `w` FLOAT NOT NULL , `h` FLOAT NOT NULL , `r` FLOAT NOT NULL , `d` FLOAT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_map_objects` ADD `x` FLOAT NOT NULL AFTER `user_id`, ADD `y` FLOAT NOT NULL AFTER `x`;
@@ -40,6 +41,7 @@ CREATE TABLE `lm`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT
 ALTER TABLE `lm_faces` ADD `user_id` INT NOT NULL AFTER `img`;
 ALTER TABLE lm_faces modify img MEDIUMBLOB;
 ALTER TABLE `lm_faces` ADD `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `staff_id_rec`;
+ALTER TABLE `lm_faces` ADD `camCode` INT NULL DEFAULT NULL AFTER `staff_id_rec`;
 
 CREATE TABLE `lm`.`lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_staff` ADD `user_id` INT NOT NULL AFTER `full_name`;

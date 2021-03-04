@@ -19,7 +19,6 @@ let mapObjects = [];
 let mapObjectsColours = ['#000000', '#281cab', '#000002', '#000003', 'rgba(40, 28, 171, 0.3)', 'rgba(40, 28, 171, 0.2)', 'rgba(40, 28, 171, 0.1)'];
 
 let actions_map = {
-
     mapBackgroundIds: [
         "mapScreenEditBackground",
         "mapScreenSaveBackground",
@@ -41,10 +40,58 @@ let actions_map = {
     elementMoveStartPosition: {x:null, y:null},
     savingInProgress: false,
 
+    dots: [],
+    dotsLoadingInProgress: false,
+    stopLoadingDots: false,
+    ticsLeft: new Map(),
+    maxTics: 10,
+    colorTypes: {
+        yellow: "255, 255, 0",
+        red: "255, 0, 0",
+        green: "0, 255, 0",
+    },
+
     changeCheckState(id,toChecked){document.getElementById(id).classList.replace(!toChecked?'checked':'notChecked', toChecked?'checked':'notChecked');},
     changeOpacity(id,toAllowed){document.getElementById(id).classList.replace(!toAllowed?'allowedToTouch':'notAllowedToTouch', toAllowed?'allowedToTouch':'notAllowedToTouch');},
     changeVisibleType(id, toVisible){document.getElementById(id).classList.replace(!toVisible?'visible':'hidden', toVisible?'visible':'hidden');},
     changeMapPageViewMode(id, toView){document.getElementById(id).classList.replace(!toView?'mapPageViewMode':'mapPageEditingMode', toView?'mapPageViewMode':'mapPageEditingMode');},
+
+    loadDots()
+    {
+        if(!actions_map.stopLoadingDots)
+        {
+            actions_map.dotsLoadingInProgress = true
+            actions_map.dots = [];
+
+            $.get('php/loadDots.php', {login: login, pass: pass}, function (result) {
+                result = $.parseJSON(result);
+                if(result.answer === "done")
+                {
+                    for(let k = 0; k < result.arr.length; k++)
+                    {
+                        actions_map.dots.push({
+                            id: result.arr[k][1],
+                            camCode: result.arr[k][0],
+                            x: 0,
+                            y: 0,
+                            colorType: result.arr[k][2] === "-1" ? actions_map.colorTypes.yellow : ((result.arr[k][2] == "1") ? actions_map.colorTypes.red: actions_map.colorTypes.green),
+                        });
+                        if(actions_map.ticsLeft.has(result.arr[k][1]))
+                            actions_map.ticsLeft.set(result.arr[k][1], actions_map.ticsLeft.get(result.arr[k][1]) + 1)
+                        else
+                            actions_map.ticsLeft.set(result.arr[k][1], 0)
+                    }
+                    actions_map.dotsLoadingInProgress = false
+                    actions_map.reDrawCNVS();
+                    if(!mapToolBarState.isEditMode)
+                        setTimeout(actions_map.loadDots, 1000);
+                }
+                else
+                    console.log("Loading dots error")
+                actions_map.dotsLoadingInProgress = false
+            });
+        }
+    },
 
     loadMap()
     {
@@ -83,6 +130,9 @@ let actions_map = {
                     else
                         console.log("Loading camera codes error")
                 });
+
+                if(!mapToolBarState.isEditMode)
+                    actions_map.loadDots();
             }
             else
                 console.log("Loading map error")
@@ -230,9 +280,12 @@ let actions_map = {
             this.changeOpacityArr([true, false, false, false, false, false, false, false]);
             this.changeMapPageViewMode(this.mapPageId, true);
             this.slidersAction(0,false);
+            actions_map.stopLoadingDots = false;
+            actions_map.loadDots();
         }
         else
         {
+            actions_map.stopLoadingDots = true;
             this.changeMapToolBarStateIs([true, false, false, false, false, false, false]);
             this.changeCheckStateArr([true, false, false, false, false, false, false, false]);
             this.changeOpacityArr([true, true, true, true, true, true, true, false]);
@@ -242,9 +295,6 @@ let actions_map = {
             document.getElementById("map").width = document.getElementById("mapPage").getBoundingClientRect().width;
             document.getElementById("map").height = document.getElementById("mapPage").getBoundingClientRect().height;
             actions_map.reDrawCNVS();
-
-            // Активация режима редактирования. Стоп обновления и удаление точек с карты
-            // ...
         }
     },
 
@@ -390,6 +440,35 @@ let actions_map = {
         ];
         actions_map.rotatePoints(points, mapObjRotationsConst[1] * fig.r, 0, 0, {x: fig.x + fig.w/2, y: fig.y + fig.h/2})
         actions_map.drawFigure(cnvs, points, false, isCamCodeInitialized ? mapObjectsColours[4] : mapObjectsColours[6]);
+
+        // draw dots
+        if(fig.camCode != null && fig.camCode != -1 && fig.camCode != "-1" && !mapToolBarState.isEditMode && !actions_map.dotsLoadingInProgress)
+        {
+            for(let i = 0; i < actions_map.dots.length; i++)
+            {
+                if(actions_map.dots[i].camCode === fig.camCode)
+                {
+                    actions_map.dots[i].r = Math.max(fig.h / 10, 5)
+                    let r1 = Math.random(), r2 = Math.random();
+                    if(actions_map.dots[i].x === 0 && actions_map.dots[i].y === 0)
+                    {
+                        actions_map.dots[i].x = (1 - Math.sqrt(r1)) * points[0].x + (Math.sqrt(r1) * (1-r2)) * points[1].x + (Math.sqrt(r1) * r2) * points[2].x;
+                        actions_map.dots[i].y = (1 - Math.sqrt(r1)) * points[0].y + (Math.sqrt(r1) * (1-r2)) * points[1].y + (Math.sqrt(r1) * r2) * points[2].y;
+                    }
+                    actions_map.drawDot(cnvs, actions_map.dots[i])
+                }
+            }
+        }
+    },
+
+    drawDot(cnvs, dot)
+    {
+        let ctx = cnvs.getContext('2d');
+        ctx.beginPath();
+        let alpha = 1 - actions_map.ticsLeft.get(dot.id) / actions_map.maxTics;
+        ctx.fillStyle = "rgba(" + dot.colorType + "," + alpha + ")";
+        ctx.arc(dot.x, dot.y, dot.r, 0, 2 * Math.PI);
+        ctx.fill()
     },
 
     drawDoor(cnvs, fig)
