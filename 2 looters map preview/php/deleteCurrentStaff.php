@@ -18,13 +18,20 @@ if(    isset($_POST['fullName']) && !empty($_POST['fullName'])
         $staffId = null;
         if($answer["count"] == 1)
         {
-            $query = "delete from lm_staff where full_name='$full_name' and position='$position' and user_id='$userId'";
+            $query = "delete from lm_faces where staff_id=(select id from lm_staff where full_name='$full_name' and position='$position' and user_id='$userId')  and user_id='$userId'";
             if ($result = $mysqli->query($query))
             {
-                echo json_encode(array("answer"=>"done"));
+                $query = "delete from lm_staff where full_name='$full_name' and position='$position' and user_id='$userId'";
+                if ($result = $mysqli->query($query))
+                {
+                    echo json_encode(array("answer"=>"done"));
+                }
+                else
+                    echo json_encode(array("answer"=>"query 2 error"));
             }
             else
-                echo json_encode(array("answer"=>"query error"));
+                echo json_encode(array("answer"=>"query 1 error"));
+
         }
         else
             echo json_encode(array("answer"=>"no user with this param error"));
