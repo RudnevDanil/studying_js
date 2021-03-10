@@ -193,8 +193,15 @@ function facesCardClicked(i)
     }
     else
     {
-        $("#" + facesIds.butArrowOutR).removeClass('notAllowedToTouch').addClass('allowedToTouch');
-        $("#" + facesIds.butPoo).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+        let doNeedToAllow = true
+        for(let j = 0; j < facesState.checked.length && doNeedToAllow; j++)
+            if(i !== j && facesState.checked[j] && facesState.color[j] !== 'y')
+                doNeedToAllow = false;
+        if(doNeedToAllow)
+        {
+            $("#" + facesIds.butArrowOutR).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+            $("#" + facesIds.butPoo).removeClass('notAllowedToTouch').addClass('allowedToTouch');
+        }
     }
     facesState.checked[i] = !facesState.checked[i];
 
