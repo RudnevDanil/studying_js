@@ -1,5 +1,5 @@
 let settings = {
-    imgNames: ["./data/trophy.png", "./data/coins.png", "./data/brilliant.png", "./data/lemon.png", "./data/banana.png", "./data/cherry.png"],
+    imgNames: ["./data/coin.png", "./data/arrows.png", "./data/bomb.png", "./data/dollar.png", "./data/map.png", "./data/shield.png", "./data/sign.png", "./data/snake.png", "./data/sword.png"],
     timeOneImgSwap: 300, // ms between image swap. like a speed
     countImagesInSpin: 5, // left will change this amount of images
     winColor: "green", // win color blink
