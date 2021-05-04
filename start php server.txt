@@ -21,30 +21,33 @@ sudo mysql -u root -p
 create database lm;
 use lm;
 
-CREATE TABLE `lm`.`lm_auth` ( `id` INT NOT NULL AUTO_INCREMENT , `login` VARCHAR(255) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm_auth` ( `id` INT NOT NULL AUTO_INCREMENT , `login` VARCHAR(255) NOT NULL , `pass` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `lm`.`lm_activity` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `rec_result` BOOLEAN NOT NULL , `time` TIMESTAMP NOT NULL , `cam_code` INT NOT NULL , `face_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm_activity` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `rec_result` BOOLEAN NOT NULL , `time` TIMESTAMP NOT NULL , `cam_code` INT NOT NULL , `face_id` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
-CREATE TABLE `lm`.`lm_cameras` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `cam_code` INT NOT NULL , `description` INT NOT NULL , `connecting_line` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm_cameras` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `cam_code` INT NOT NULL , `description` INT NOT NULL , `connecting_line` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_cameras` ADD `saving_skip_fr` INT NOT NULL AFTER `connecting_line`, ADD `class_skip_fr` INT NOT NULL AFTER `saving_skip_fr`, ADD `cam_FPS` INT NOT NULL AFTER `class_skip_fr`, ADD `fr_in_one_avi` INT NOT NULL AFTER `cam_FPS`, ADD `scaling` FLOAT NOT NULL AFTER `fr_in_one_avi`;
 ALTER TABLE `lm_cameras` CHANGE `description` `description` VARCHAR(255) NOT NULL DEFAULT '';
 ALTER TABLE `lm_cameras` ADD `map_cam_id_code` INT NULL AFTER `scaling`;
 ALTER TABLE `lm_cameras` CHANGE `map_cam_id_code` `map_cam_id_code` INT(11) NULL DEFAULT NULL;
 ALTER TABLE `lm_cameras` DROP `map_cam_id_code`;
 
-CREATE TABLE `lm`.`lm_map_objects` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NULL , `user_id` INT NOT NULL , `w` FLOAT NOT NULL , `h` FLOAT NOT NULL , `r` FLOAT NOT NULL , `d` FLOAT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm_map_objects` ( `id` INT NOT NULL AUTO_INCREMENT , `type` INT NOT NULL , `user_id` INT NOT NULL , `w` FLOAT NOT NULL , `h` FLOAT NOT NULL , `r` FLOAT NOT NULL , `d` FLOAT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_map_objects` ADD `x` FLOAT NOT NULL AFTER `user_id`, ADD `y` FLOAT NOT NULL AFTER `x`;
 ALTER TABLE `lm_map_objects` ADD `oa` FLOAT NOT NULL AFTER `d`;
 ALTER TABLE `lm_map_objects` ADD `camCode` INT NULL DEFAULT NULL AFTER `oa`;
 
-CREATE TABLE `lm`.`lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT NULL , `staff_id` INT NULL DEFAULT NULL , `staff_id_rec` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm_faces` ( `id` INT NOT NULL AUTO_INCREMENT , `img` BLOB NOT NULL , `staff_id` INT NULL DEFAULT NULL , `staff_id_rec` INT NULL DEFAULT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_faces` ADD `user_id` INT NOT NULL AFTER `img`;
 ALTER TABLE lm_faces modify img MEDIUMBLOB;
 ALTER TABLE `lm_faces` ADD `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `staff_id_rec`;
 ALTER TABLE `lm_faces` ADD `camCode` INT NULL DEFAULT NULL AFTER `staff_id_rec`;
 
-CREATE TABLE `lm`.`lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `lm_staff` ( `id` INT NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `position` VARCHAR(255) NOT NULL , `isBanned` BOOLEAN NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 ALTER TABLE `lm_staff` ADD `user_id` INT NOT NULL AFTER `full_name`;
+
+
+
 
 // добавление пользователя
 INSERT INTO lm_auth (login, pass) VALUES ('admin', '111');
