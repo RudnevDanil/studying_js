@@ -2,11 +2,11 @@ let settings = {
     imgNames: ["./data/trophy.png", "./data/coins.png", "./data/brilliant.png", "./data/lemon.png", "./data/banana.png", "./data/cherry.png"],
     timeOneImgSwap: 300, // ms between image swap. like a speed
     countImagesInSpin: 5, // left will change this amount of images
-    winColor: "green",
-    losingColor: "red",
-    defaultColor: "white",
-    blinkTimeout: 500,
-    blinkTimes: 6,
+    winColor: "green", // win color blink
+    losingColor: "red", // loose color blink
+    defaultColor: "white", // default background color
+    blinkTimeout: 500, // timeout between blinks
+    blinkTimes: 6, // amount of blinks
 }
 
 let state = {
@@ -14,8 +14,8 @@ let state = {
     counterLoadedImages: 0, // store count of loaded imgs
     currentImgI: [0,0,0], // array for image indexes for right now
     isSpin: false, // is spin now
-    backgroundColor: "white",
-    blinkMoreTimes: 0,
+    backgroundColor: "white", // background color now
+    blinkMoreTimes: 0, // counter for blink function
 }
 
 let ids = {

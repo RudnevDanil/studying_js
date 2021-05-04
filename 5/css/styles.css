@@ -3,10 +3,8 @@ body{
     padding: 0;
     margin: 0;
     background-color: #1A1A1A;
-	/*background: url(../data/background.jpg) no-repeat;
-	background-size: 100%;*/
     font-family: "Bubblegum Sans", sans-serif;
-    -webkit-text-stroke: 1px rgba(0,0,0,0.5); /* будет ли работать на мобильной платформе??? */
+    -webkit-text-stroke: 1px rgba(0,0,0,0.5);
 }
 
 #bodyBackground{
@@ -28,7 +26,6 @@ body{
     height: 10vh;
     border: 0.5vmin solid #fc1bff;
     border-radius: 3vmin;
-    /*background-color: #ead577;*/
     background: linear-gradient(to top, #570e58, #fc7eff);
 }
 .spinText{
