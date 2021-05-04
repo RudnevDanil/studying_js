@@ -43,6 +43,8 @@ function init()
             if(state.counterLoadedImages === settings.imgNames.length)
             {
                 state.isImagesLoaded = true;
+                for(let i = 0; i < state.currentImgI.length; i++)
+                    state.currentImgI[i] = Math.floor(Math.random() * images.length);
                 reDrawCNVS();
             }
         }
@@ -68,7 +70,6 @@ function compareWithZeroArr(arr) {
 
 function spinning(status)
 {
-    console.log(status, compareWithZeroArr(status))
     if(compareWithZeroArr(status)) // spin ends
     {
         checkResults()
