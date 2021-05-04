@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Bubblegum+Sans);
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #1A1A1A;
+	/*background: url(../data/background.jpg) no-repeat;
+	background-size: 100%;*/
+    font-family: "Bubblegum Sans", sans-serif;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.5); /* будет ли работать на мобильной платформе??? */
+}
+
+#bodyBackground{
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 100%;
+    height: 100%;
+	z-index: -1;
+	border: none;
+    border-radius: 0;
+}
+
+.spinButtonBorder{
+    position: absolute;
+    top: 83vh;
+    left: 33vw;
+    width: 30vw;
+    height: 10vh;
+    border: 0.5vmin solid #fc1bff;
+    border-radius: 3vmin;
+    /*background-color: #ead577;*/
+    background: linear-gradient(to top, #570e58, #fc7eff);
+}
+.spinText{
+    position: relative;
+    text-align: center;
+    font-size: 5vh;
+    top: 2vh;
+    color: white;
+    user-select: none;
+}
+
+#cnvs{
+    position: absolute;
+    top: 38vh;
+    left: 31vw;
+    width: 34.5vw;
+    height: 20vh;
+    background-color: white;
+}
