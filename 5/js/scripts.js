@@ -85,7 +85,7 @@ function spinning(status)
             state.currentImgI[i] = newVal
             status[i]--
         }
-    console.log(status)
+    
     setTimeout(function(){
         reDrawCNVS()
         spinning(status)
